@@ -1,4 +1,4 @@
-2026-01-20 10:42:18 | WARNING | ⚠️ ShinkaAutoFixer not available, running without auto-fix
+﻿2026-01-20 10:42:18 | WARNING | ⚠️ ShinkaAutoFixer not available, running without auto-fix
 2026-01-20 10:42:18 | INFO | Evaluating: results_pareto_evolution/gen_25/main.py
 2026-01-20 10:42:18 | INFO | Results will be in: results_pareto_evolution/gen_25/results
 2026-01-20 10:42:18 | INFO | Running: results_pareto_evolution/gen_25/main.py
@@ -33,4 +33,5 @@ Best params: {'w_q': 0.0, 'use_min': True, 'thr_gate': 0.65, 'snap_eps': 0.0, 'r
 🎯 Final Score: 1.200000
 Results saved to: results_pareto_evolution/gen_25/results/output.json
 score = 1.2
+
 

@@ -1,4 +1,4 @@
-f"""You are implementing an algorithm for: {task_name}
+﻿f"""You are implementing an algorithm for: {task_name}
 ## Your Task:
 {method_hint if method_hint else "Improve this code to achieve a better score."}
 ## CRITICAL REQUIREMENTS:

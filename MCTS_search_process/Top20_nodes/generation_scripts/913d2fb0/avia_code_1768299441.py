@@ -1,4 +1,4 @@
-# Suppress warnings to prevent false failures
+﻿# Suppress warnings to prevent false failures
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -43,9 +43,9 @@ SEED = 42
 np.random.seed(SEED)
 torch.manual_seed(SEED)
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"  # expected 1..7
@@ -1133,7 +1133,7 @@ def main():
         "n_train_full": int(len(full_f)),
         "device": str(DEVICE),
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/physics_timestep_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/physics_timestep_results.json"
     try:
         with open(out_path, "w") as f:
             json.dump(result, f, indent=2)

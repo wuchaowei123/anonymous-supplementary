@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Improved Method 17 -> Method 17.2:
 - Fix LightGBM custom AWMSE objective usage (was defined but NOT used)
@@ -29,9 +29,9 @@ import lightgbm as lgb
 SEED = 42
 np.random.seed(SEED)
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"  # expected 1..7
@@ -651,7 +651,7 @@ def main():
         "n_features": int(len(feat_cols)),
         "n_train_full": int(len(full_f)),
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_2_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_2_results.json"
     try:
         with open(out_path, "w") as f:
             json.dump(result, f, indent=2)

@@ -1,0 +1,17 @@
+# Python 缓存文件（阻止后续生成的缓存文件被提交）
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 二进制文件（避免泄露）
+*.pth
+*.pt
+*.joblib
+*.png
+*.jpg
+
+# 日志/备份文件
+*.log
+*.err
+*.out
+*.backup*

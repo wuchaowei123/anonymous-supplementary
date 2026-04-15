@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-AviaAgentMonty - Execution Node: bebcec9b
+anonymous_institutionAgentMonty - Execution Node: bebcec9b
 Type: fixed
 Generated: 2026-01-13T22:42:23.295724
 Fix Attempts: 1
@@ -21,9 +21,9 @@ import lightgbm as lgb
 
 device = "cpu"
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"
@@ -658,7 +658,7 @@ def main():
     print("=" * 70)
     print(f"\n🎯 Final Score: {score_val:.6f}")
 
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/improved_lgbm_temporal_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/improved_lgbm_temporal_results.json"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(
@@ -677,7 +677,7 @@ def main():
         )
 
     # === SAVE MODEL ===
-    node_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/bebcec9b"
+    node_dir = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/bebcec9b"
     os.makedirs(node_dir, exist_ok=True)
     
     # Try to save model if it exists

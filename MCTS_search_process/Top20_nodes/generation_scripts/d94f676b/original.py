@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-AviaAgentMonty - Execution Node: d94f676b
+anonymous_institutionAgentMonty - Execution Node: d94f676b
 Type: original
 Generated: 2026-01-13T12:15:02.738250
 Mutation: None
@@ -41,9 +41,9 @@ import lightgbm as lgb
 SEED = 42
 np.random.seed(SEED)
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"  # expected 1..7
@@ -858,7 +858,7 @@ def main():
         "n_train_full": int(len(full_f)),
         "n_test": int(len(test_f)),
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/improved_lgb_hurdle_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/improved_lgb_hurdle_results.json"
     try:
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         with open(out_path, "w") as f:

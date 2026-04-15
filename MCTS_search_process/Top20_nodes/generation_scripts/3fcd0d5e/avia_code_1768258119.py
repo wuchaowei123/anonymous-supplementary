@@ -1,4 +1,4 @@
-# Suppress warnings to prevent false failures
+﻿# Suppress warnings to prevent false failures
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -31,9 +31,9 @@ from torch.optim import AdamW
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"  # expected 1..7
@@ -794,7 +794,7 @@ def main():
         "n_features_tree": int(len(feat_cols)),
         "n_features_tft": int(len(tft_cols)),
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_results.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 

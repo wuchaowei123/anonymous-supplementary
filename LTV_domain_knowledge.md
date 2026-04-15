@@ -1,6 +1,6 @@
-# **Predictive Modeling of Signed LTV under Asymmetric Risk Constraints: A Superhuman Methodological Framework**
+﻿# **Predictive Modeling of Signed LTV under Asymmetric Risk Constraints: A Superhuman Methodological Framework**
 
-> **Note: This document has been adapted for BT_IOS_2503 (Bingo Tour iOS)**
+> **Note: This document has been adapted for BT_IOS_2503 (anonymous_game iOS)**
 > - Dataset: ~350K rows (49,638 train users, 4,975 val users, 5,545 test users)
 > - Target Distribution: 34.5% negative, 21.4% zero, 44.1% positive
 > - Target Range: -$1,454 to +$19,496 (smaller than SC_IOS)
@@ -9,7 +9,7 @@
 
 # Formatted Deep Research Methods
 
-*This document has been automatically formatted for AviaAgentMonty.*
+*This document has been automatically formatted for anonymous_institutionAgentMonty.*
 
 ---
 
@@ -724,3 +724,4 @@ When to use: Production deployment requiring maximum accuracy and full methodolo
 </notes>
 
 ---
+

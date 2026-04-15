@@ -1,4 +1,4 @@
-{
+﻿{
   "node_id": "59c29211",
   "score": null,
   "success": false,
@@ -7,5 +7,5 @@
   "code_file_path": null,
   "saved_at": "2026-01-14T07:12:03.871018",
   "stdout": "================================================================================\nImproved Method:\n  - Same rich temporal + TE features\n  - FIXED: AWMSE custom objective is actually used (fobj passed)\n  - Added lightweight temporal summaries (early/late/wmean)\n  - More stable test ErrorRate via global mean-matching (train+val mean, no test leakage)\n================================================================================\nUsers: train=49638 | val=4975 | test=5545\nFeatures: 4144 | seq_cols=100 | cat_cols=16\nGlobal mean (train+val) = 23.671730\n",
-  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/avia_code_1768374695.py\", line 886, in <module>\n    y_test, test_predictions = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/avia_code_1768374695.py\", line 637, in main\n    model = _train_lgb_reg(Xtr, ytr, Xva, yva, cat_cols, params, use_custom_obj=True, num_boost_round=8000)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/avia_code_1768374695.py\", line 461, in _train_lgb_reg\n    model = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/anonymous_institution_code_1768374695.py\", line 886, in <module>\n    y_test, test_predictions = main()\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/anonymous_institution_code_1768374695.py\", line 637, in main\n    model = _train_lgb_reg(Xtr, ytr, Xva, yva, cat_cols, params, use_custom_obj=True, num_boost_round=8000)\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/59c29211/anonymous_institution_code_1768374695.py\", line 461, in _train_lgb_reg\n    model = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
 }

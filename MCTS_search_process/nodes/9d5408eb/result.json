@@ -1,4 +1,4 @@
-{
+﻿{
   "node_id": "9d5408eb",
   "score": 0.8389334448517031,
   "success": true,
@@ -28,6 +28,6 @@
   "execution_time": null,
   "code_file_path": null,
   "saved_at": "2026-01-15T07:26:31.654006",
-  "stdout": "============================================================\nImproved Method 29: Rich temporal features + TE + (AWMSE/Quantile) LGBM Ensemble\n============================================================\nUsers: train=49638, val=4975, test=5545\nFeatures: 2742\n\ud83d\ude80 Training LightGBM AWMSE regressor...\n\ud83d\ude80 Training LightGBM Quantile(0.20) regressor...\n\ud83d\ude80 Training Negative-risk classifier...\n\ud83d\ude80 Training ExtraTrees (diversity)...\n\ud83d\udd27 Optimizing ensemble weights + (scale,bias) + risk-aware gating on validation...\n   Best VAL ensemble full_score=1.20000\n   Params: thr=0.45, s=0.00, a=0.0779, b=19.109\n   Weights: AW=0.233, Q20=0.340, ET=0.427\n\ud83d\ude80 Retraining regressors on TRAIN+VAL with best_iteration (fixed)...\n\n============================================================\n\ud83d\udcca Gini=0.9750, Err=0.1196, Spear=0.8806, RMSE=252.98\n\ud83d\udcca Scores: G=1.000, E=0.678, S=1.000, R=0.117, Final=0.8389\n============================================================\n\n\ud83c\udfaf Final Score: 0.8389\nSaved: /home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_29_results.json\nscore = 0.8389334448517031\nscore = 0.8389334448517031\n",
+  "stdout": "============================================================\nImproved Method 29: Rich temporal features + TE + (AWMSE/Quantile) LGBM Ensemble\n============================================================\nUsers: train=49638, val=4975, test=5545\nFeatures: 2742\n\ud83d\ude80 Training LightGBM AWMSE regressor...\n\ud83d\ude80 Training LightGBM Quantile(0.20) regressor...\n\ud83d\ude80 Training Negative-risk classifier...\n\ud83d\ude80 Training ExtraTrees (diversity)...\n\ud83d\udd27 Optimizing ensemble weights + (scale,bias) + risk-aware gating on validation...\n   Best VAL ensemble full_score=1.20000\n   Params: thr=0.45, s=0.00, a=0.0779, b=19.109\n   Weights: AW=0.233, Q20=0.340, ET=0.427\n\ud83d\ude80 Retraining regressors on TRAIN+VAL with best_iteration (fixed)...\n\n============================================================\n\ud83d\udcca Gini=0.9750, Err=0.1196, Spear=0.8806, RMSE=252.98\n\ud83d\udcca Scores: G=1.000, E=0.678, S=1.000, R=0.117, Final=0.8389\n============================================================\n\n\ud83c\udfaf Final Score: 0.8389\nSaved: /home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_29_results.json\nscore = 0.8389334448517031\nscore = 0.8389334448517031\n",
   "stderr": ""
 }

@@ -1,4 +1,4 @@
-{
+﻿{
   "node_id": "4f14b271",
   "score": null,
   "success": false,
@@ -7,5 +7,5 @@
   "code_file_path": null,
   "saved_at": "2026-01-13T09:13:45.548333",
   "stdout": "================================================================================\nImproved Method 6: Temporal features + AWMSE/Quantile LGBM + stacking + calibration\n================================================================================\nDetected numeric cols: 164 | categorical cols: 16\nEncoding categorical last cols: ['INSTALL_WEEK', 'BEGIN_TIME_US', 'END_TIME_US', 'BEGIN_DATE', 'END_DATE', 'INSTALL_TIME', 'APP_NAME', 'OS', 'MEDIA_SOURCE', 'CAMPAIGN_NAME', 'AD_NAME', 'COUNTRY', 'STATE', 'TDATE', 'DEVICE_TYPE', 'SYSTEM_VERSION']\nTrain users: 54385 | Test users: 5545 | Features: 3196\n\n[1/5] Training CV-bagged LightGBM (custom AWMSE objective)...\n",
-  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/avia_code_1768295580.py\", line 557, in <module>\n    main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/avia_code_1768295580.py\", line 456, in main\n    oof_aw, te_aw = lgb_oof_predict(\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/avia_code_1768295580.py\", line 266, in lgb_oof_predict\n    booster = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/anonymous_institution_code_1768295580.py\", line 557, in <module>\n    main()\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/anonymous_institution_code_1768295580.py\", line 456, in main\n    oof_aw, te_aw = lgb_oof_predict(\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4f14b271/anonymous_institution_code_1768295580.py\", line 266, in lgb_oof_predict\n    booster = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
 }

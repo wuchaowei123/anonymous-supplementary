@@ -1,4 +1,4 @@
-rank,node_id,score,gini,error_rate,spearman,rmse,depth,is_root,parent_id,mutation,method
+﻿rank,node_id,score,gini,error_rate,spearman,rmse,depth,is_root,parent_id,mutation,method
 1,433ffc18,1.2000,0.9591,0.0037,0.8139,185.90,6,No,162c38d7,replicate,Node 433ffc18
 2,d94f676b,1.2000,0.9481,0.0037,0.8550,155.41,4,No,913d2fb0,-,Leak-free Fold Target Encoding + Strong LightGBM Suite + Hurdle Head + LGB Meta + Distribution Calib
 3,908990a3,1.2000,0.9736,0.0062,0.8497,37.08,1,No,bfe77fca,expert,"Temporal Trajectory Features + Asymmetric GBDT Stack + RL-style MLP"""""""
@@ -133,3 +133,4 @@ rank,node_id,score,gini,error_rate,spearman,rmse,depth,is_root,parent_id,mutatio
 132,7572216d,-inf,,,,,1,No,86392397,expert,Hybrid Feature Fusion (Manual + Deep Sequence Embeddings + Risk Encoding + kNN Cohorts)
 133,965bc7b4,-inf,,,,,1,No,06a3c776,standard,CV-stacked LightGBM (Custom AWMSE + Quantile) + ExtraTrees + Risk features
 134,cd9e6042,-inf,,,,,1,No,06e2b562,hybridize,Node cd9e6042
+

@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-AviaAgentMonty - Execution Node: f3ffe695
+anonymous_institutionAgentMonty - Execution Node: f3ffe695
 Type: fixed
 Generated: 2026-01-13T21:08:43.919036
 Fix Attempts: 1
@@ -19,9 +19,9 @@ from sklearn.model_selection import train_test_split, StratifiedKFold
 
 import lightgbm as lgb
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 
 NUMERICAL_COLS = ['DEPOSIT_AMOUNT', 'REC_USD', 'REC_USD_CUM', 'REC_USD_D6', 'CPI',
@@ -709,14 +709,14 @@ def main():
         "n_features": int(Xtr.shape[1]),
         "seq_cols": seq_cols,
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/lgbm_suite_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/lgbm_suite_results.json"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(out, f, indent=2)
 
     
     # === SAVE MODEL ===
-    node_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/f3ffe695"
+    node_dir = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/f3ffe695"
     os.makedirs(node_dir, exist_ok=True)
     
     # Save predictions

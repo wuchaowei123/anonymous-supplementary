@@ -1,4 +1,4 @@
-prompt = f"""Analyze the following Python code and select the most appropriate expert advice type.
+﻿prompt = f"""Analyze the following Python code and select the most appropriate expert advice type.
 ### Code to Analyze:
 ```python
 ```

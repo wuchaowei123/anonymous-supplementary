@@ -1,8 +1,8 @@
-======================================================================
-ShinkaEvolve ZILNLTV Evaluation Wrapper (with AutoFixer)
+﻿======================================================================
+ ZILNLTV Evaluation Wrapper (with AutoFixer)
 ======================================================================
 Program: results_zilnltv_v2/gen_16/main.py
-Results: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/results
+Results: /home/jupyter//tasks/ZILNLTV/results_zilnltv_v2/gen_16/results
 AutoFixer: ✅ Enabled
 ======================================================================
 🔧 ShinkaAutoFixer initialized
@@ -13,10 +13,10 @@ AutoFixer: ✅ Enabled
    Static fixes: True
    Fix model: gpt-5.2-codex
 
-🚀 Executing with auto-fix: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py
+🚀 Executing with auto-fix: /home/jupyter//tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py
 ======================================================================
 
-🔍 Pre-validating: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py
+🔍 Pre-validating: /home/jupyter//tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py
 ⚠️  Suspicious non-ASCII chars found: {'和', '模', '评', '好', '载', '征', '中', '估', '验', '据', '特', '指', '提', '算', '加', '处', '训', '标', '并', '运', '练', '行', '的', '理', '实', '数', '测', '从', '签', '取', '预', '型', '计'}
 ✅ Applied 10 auto-fixes:
    - Replaced '"' × 98
@@ -34,14 +34,15 @@ AutoFixer: ✅ Enabled
 📍 Attempt 1/5
 ❌ Execution failed
    Error: Traceback (most recent call last):
-  File "/home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 578, in <module>
+  File "/home/jupyter//tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 578, in <module>
     metrics = run_experiment(sample_fraction=1.0, max_epoc
 
 🔧 Attempting to fix code...
 🤖 Asking gpt-5.2-codex to fix code...
-📁 Backup: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py.backup_1770391759
+📁 Backup: /home/jupyter//tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py.backup_1770391759
 ✏️  Fixed code saved
 ✅ Fix validation passed - no model changes detected
 
 📍 Attempt 2/5
 ✅ Execution successful!
+

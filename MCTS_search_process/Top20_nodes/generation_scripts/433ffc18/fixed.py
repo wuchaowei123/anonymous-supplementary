@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-AviaAgentMonty - Execution Node: 433ffc18
+anonymous_institutionAgentMonty - Execution Node: 433ffc18
 Type: fixed
 Generated: 2026-01-14T00:40:02.048922
 Fix Attempts: 1
@@ -28,9 +28,9 @@ from torch.utils.data import Dataset, DataLoader
 
 device = "cpu"
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"
@@ -871,7 +871,7 @@ def main():
     print(f"\n🎯 Final Score: {score_val:.6f}")
 
     # === SAVE MODEL ===
-    node_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/433ffc18"
+    node_dir = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/433ffc18"
     os.makedirs(node_dir, exist_ok=True)
     model_path = os.path.join(node_dir, "model.pt")
     torch.save({
@@ -893,7 +893,7 @@ def main():
     predictions_df.to_csv(predictions_path, index=False)
     print(f"✅ Predictions saved to: {predictions_path}")
 
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/physics_inspired_deep_mtl_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/physics_inspired_deep_mtl_results.json"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(

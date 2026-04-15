@@ -1,4 +1,4 @@
-# Suppress warnings to prevent false failures
+﻿# Suppress warnings to prevent false failures
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -67,10 +67,10 @@ seed_everything(42)
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
-OUTPUT_JSON = os.environ.get('AVIA_OUTPUT_JSON', '/tmp/avia_score_output.json')
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+OUTPUT_JSON = os.environ.get('anonymous_institution_OUTPUT_JSON', '/tmp/anonymous_institution_score_output.json')
 
 TARGET_COL = "REC_USD_D60"
 ID_COL = "DEVICE_ID"
@@ -786,7 +786,7 @@ def main():
             "status": "success"
         }
 
-        output_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch"
+        output_dir = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch"
         os.makedirs(output_dir, exist_ok=True)
         result_path = os.path.join(output_dir, "method_25_results.json")
 

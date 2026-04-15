@@ -1,4 +1,4 @@
-COMPARISON_PROMPT = """Compare these two code solutions to the same problem.
+﻿COMPARISON_PROMPT = """Compare these two code solutions to the same problem.
 Explain the main principles that differ between the codes:
 CODE 1:```python{code1}```
 CODE 2:```python{code2}```

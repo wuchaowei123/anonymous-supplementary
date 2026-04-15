@@ -1,4 +1,4 @@
-import scipy
+﻿import scipy
 import random
 
 import pandas as pd
@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore")
 # Configuration
 # ============================================================================
 
-BASE_PATH = '/home/jupyter/Luigi/KDD26/Comparative_experiment/ZILN_OPEN_data/ZILNLTV_new'
+BASE_PATH = '/home/jupyter/anonymous_user/KDD26/Comparative_experiment/ZILN_OPEN_data/ZILNLTV_new'
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), 'predictions')
 MODEL_DIR = os.path.join(os.path.dirname(__file__), 'modelpath')
 
@@ -503,7 +503,7 @@ def train_and_evaluate(model, train_loader, val_loader, test_loader, device,
 
 
 # ============================================================================
-# Main Experiment Function (for ShinkaEvolve)
+# Main Experiment Function (for )
 # ============================================================================
 
 def run_experiment(sample_fraction=1.0, max_epochs=100, patience=20, seed=42):
@@ -572,7 +572,7 @@ def run_experiment(sample_fraction=1.0, max_epochs=100, patience=20, seed=42):
 
 if __name__ == "__main__":
     print("=" * 70)
-    print(" " * 8 + "ZILN Model - ShinkaEvolve Version (Mutual Learning)")
+    print(" " * 8 + "ZILN Model -  Version (Mutual Learning)")
     print("=" * 70 + "\n")
 
     metrics = run_experiment(sample_fraction=1.0, max_epochs=100, patience=20)

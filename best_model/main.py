@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-ShinkaEvolve - BT_IOS_2503_Pareto Evolution
-Based on AviaAgentMonty Node: 433ffc18 (Score: 1.2000)
+ - BT_IOS_2503_Pareto Evolution
+Based on anonymous_institutionAgentMonty Node: 433ffc18 (Score: 1.2000)
 
 Method: Physics-Inspired Deep MTL: finite-difference features + residual TCN + sign/mean/q20 heads
 Metrics achieved:
@@ -35,11 +35,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # CONFIGURATION - Path to data files
 # =============================================================================
 # Use fixed path to task directory (data files are in the main task folder)
-_TASK_DIR = "/home/jupyter/ShinkaEvolve-main/tasks/BT_IOS_2503_Pareto_Evo"
+_TASK_DIR = "/home/jupyter/-main/tasks/BT_IOS_2503_Pareto_Evo"
 TRAIN_PATH = os.path.join(_TASK_DIR, "train.csv")
 VAL_PATH = os.path.join(_TASK_DIR, "val.csv")
 TEST_PATH = os.path.join(_TASK_DIR, "test.csv")
-OUTPUT_JSON = os.environ.get('AVIA_OUTPUT_JSON', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.json'))
+OUTPUT_JSON = os.environ.get('anonymous_institution_OUTPUT_JSON', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.json'))
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"
@@ -933,7 +933,7 @@ def main():
     print("=" * 70)
     print(f"\n🎯 Final Score: {score_val:.6f}")
 
-    # Write output JSON for ShinkaEvolve evaluation
+    # Write output JSON for  evaluation
     with open(OUTPUT_JSON, "w") as f:
         json.dump(
             {

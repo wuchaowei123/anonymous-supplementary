@@ -1,4 +1,4 @@
-<NAME>
+﻿<NAME>
 add_static_volatility_trend
 </NAME>
 <DESCRIPTION>

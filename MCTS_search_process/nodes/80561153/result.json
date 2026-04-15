@@ -1,4 +1,4 @@
-{
+﻿{
   "node_id": "80561153",
   "score": null,
   "success": false,
@@ -7,5 +7,5 @@
   "code_file_path": null,
   "saved_at": "2026-01-13T09:32:44.854689",
   "stdout": "======================================================================\nImproved Method 4: Temporal FE + LightGBM (AWMSE + Quantile + Huber + Hurdle) + VAL blend\n======================================================================\n\ud83e\uddf1 Building user-level feature tables...\nTrain users=49,638, Val users=4,975, Test users=5,545\nNumeric+cat raw features: 2,057 (cat_cols=16)\n\ud83c\udff7\ufe0f  Fitting OOF target encoder on train categoricals...\nFinal feature matrix: 2,089 features\nEarly-stop split: train=42,192, es=7,446\n\ud83c\udf32 Training LightGBM base models...\n",
-  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/avia_code_1768296744.py\", line 685, in <module>\n    main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/avia_code_1768296744.py\", line 471, in main\n    model_awmse, it_awmse = lgb_fit_refit_reg(\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/avia_code_1768296744.py\", line 266, in lgb_fit_refit_reg\n    model_es = lgb.train(\nTypeError: train() got an unexpected keyword argument 'obj'\n"
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/anonymous_institution_code_1768296744.py\", line 685, in <module>\n    main()\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/anonymous_institution_code_1768296744.py\", line 471, in main\n    model_awmse, it_awmse = lgb_fit_refit_reg(\n  File \"/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/80561153/anonymous_institution_code_1768296744.py\", line 266, in lgb_fit_refit_reg\n    model_es = lgb.train(\nTypeError: train() got an unexpected keyword argument 'obj'\n"
 }

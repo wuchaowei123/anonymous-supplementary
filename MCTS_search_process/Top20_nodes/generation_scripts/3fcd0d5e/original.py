@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-AviaAgentMonty - Execution Node: 3fcd0d5e
+anonymous_institutionAgentMonty - Execution Node: 3fcd0d5e
 Type: original
 Generated: 2026-01-12T22:42:48.690358
 Mutation: expert
@@ -37,9 +37,9 @@ from torch.optim import AdamW
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
-VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
-TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+TRAIN_PATH = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
 
 TARGET_COL, ID_COL = "REC_USD_D60", "DEVICE_ID"
 DAY_COL = "TDATE_RN"  # expected 1..7
@@ -796,7 +796,7 @@ def main():
         "n_features_tree": int(len(feat_cols)),
         "n_features_tft": int(len(tft_cols)),
     }
-    out_path = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_results.json"
+    out_path = "/home/jupyter/anonymous_institutionAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_17_results.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
 
@@ -816,3 +816,4 @@ if __name__ == "__main__":
 
 score = compute_pareto_multi_objective(y_test, test_predictions)
 print(f"score = {score}")  # This will be parsed by the system
+
