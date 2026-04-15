@@ -1,0 +1,31 @@
+{
+  "node_id": "dce3b341",
+  "score": 0.9299999970197678,
+  "success": true,
+  "metrics": {
+    "val": 54385.0,
+    "test": 5545.0,
+    "best_it_aw": 102.0,
+    "best_it_q": 401.0,
+    "proxy": 0.3804,
+    "w_aw": 0.0,
+    "w_h": 0.8,
+    "w_c": 0.2,
+    "gini": 0.9692,
+    "spear": 0.882,
+    "scale": 1.15,
+    "delta": -22.87,
+    "oof_score": 0.678203,
+    "err": 0.0029,
+    "rmse": 264.33,
+    "detected": 145.0,
+    "negative_ltv": 34.6,
+    "zero": 21.4,
+    "positive": 44.0
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T15:25:42.807300",
+  "stdout": "================================================================================\nImproved: LightGBM Asymmetric AWMSE + Quantile + 3-Part Hurdle (OOF blended + calibrated)\n================================================================================\nDetected: 145 numeric cols, 35 categorical cols\nUsers: train+val=54385, test=5545\nNegative LTV: 34.6% | Zero: 21.4% | Positive: 44.0%\nFold 01 done | best_it_aw=113 | best_it_q=424\nFold 02 done | best_it_aw=344 | best_it_q=419\nFold 03 done | best_it_aw=217 | best_it_q=277\nFold 04 done | best_it_aw=213 | best_it_q=298\nFold 05 done | best_it_aw=102 | best_it_q=401\nTop blend candidates by (Gini/Spearman proxy):\n  #1: proxy=0.5082 | w_aw=0.00, w_h=1.00, w_c=0.00 | gini=0.8995 spear=0.6909\n  #2: proxy=0.4626 | w_aw=0.00, w_h=0.90, w_c=0.10 | gini=0.8852 spear=0.6663\n  #3: proxy=0.4385 | w_aw=0.10, w_h=0.90, w_c=0.00 | gini=0.8857 spear=0.6363\n  #4: proxy=0.3936 | w_aw=0.10, w_h=0.81, w_c=0.09 | gini=0.8710 spear=0.6132\n  #5: proxy=0.3804 | w_aw=0.00, w_h=0.80, w_c=0.20 | gini=0.8627 spear=0.6149\nBest (quick) OOF score=0.678058 params={'w_aw': 0.0, 'w_h': 1.0, 'w_c': 0.0, 'thr': 0.38, 'temp': 0.06, 'risk_bias': 0.6, 'zero_bias': 0.5, 'scale': 1.100000023841858, 'delta': -22.90993309020996, 'stage': 'quick'}\nCalibration chosen on OOF (full): scale=1.1500, delta=-22.87, oof_score=0.678203\n\n================================================================================\n\ud83d\udcca Gini=0.9692, Err=0.0029, Spear=0.8820, RMSE=264.33, Score=0.9300\n\ud83d\udcca Gini=0.9692, Err=0.0029, Spear=0.8820, RMSE=264.33, Score=0.9300\n================================================================================\nscore = 0.9299999970197678\n",
+  "stderr": ""
+}

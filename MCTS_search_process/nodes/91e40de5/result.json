@@ -1,0 +1,18 @@
+{
+  "node_id": "91e40de5",
+  "score": 0.4839521138809503,
+  "success": true,
+  "metrics": {
+    "loss": 27515.877,
+    "gini": 0.7967,
+    "err": 0.1951,
+    "spear": 0.6284,
+    "rmse": 225.02,
+    "final_score": 0.484
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T08:01:56.999650",
+  "stdout": "\ud83d\udd27 Using device: cuda\n============================================================\nMethod 10: Multi-Task Learning DNN\n============================================================\n\ud83d\ude80 Training Multi-Task Learning DNN...\n   Epoch 10/50: Val Loss=25354.9512\n   Epoch 20/50: Val Loss=27348.1895\n   Epoch 30/50: Val Loss=29850.4941\n   Epoch 40/50: Val Loss=37654.1367\n   Epoch 50/50: Val Loss=27515.8770\n\ud83d\ude80 Training LightGBM for ensemble...\n\n============================================================\n\ud83d\udcca Gini=0.7967, Err=0.1951, Spear=0.6284, RMSE=225.02, Score=0.4840\n============================================================\n\ud83c\udfaf Final Score: 0.4840\nscore = 0.4839521138809503\n",
+  "stderr": ""
+}

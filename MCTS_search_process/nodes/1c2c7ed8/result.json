@@ -1,0 +1,14 @@
+{
+  "node_id": "1c2c7ed8",
+  "method": "Method 11: Residual GBDT",
+  "score": 0.5694816842202048,
+  "metrics": {
+    "gini": 0.7961380509608603,
+    "error_rate": 0.0934580021561496,
+    "spearman": 0.6413643034875294,
+    "rmse": 220.2411646268344
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.678900"
+}

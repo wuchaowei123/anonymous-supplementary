@@ -1,0 +1,29 @@
+{
+  "node_id": "57ca6601",
+  "score": 0.627826271057129,
+  "success": true,
+  "metrics": {
+    "full_train": 54613.0,
+    "test": 5545.0,
+    "numeric": 164.0,
+    "neg_thr": 0.52,
+    "zero_thr": 0.56,
+    "zero_band": 14.0,
+    "val_score": 0.5115,
+    "delta": -6.5,
+    "scale": 0.95848,
+    "proxy_score": 0.6114,
+    "gini": 0.8208,
+    "err": 0.0238,
+    "spear": 0.4077,
+    "rmse": 210.64,
+    "a": 1.0,
+    "b": -0.0,
+    "s_rmse": 269.001
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T01:15:49.540678",
+  "stdout": "========================================================================\nUpgraded solution: stronger temporal features + true AWMSE objective + hurdle experts + improved calibration/tuning\n========================================================================\nUsers: full_train=54613, test=5545\nUsing numeric=164, categorical(raw)=16\n\n--- Base Fold 1/5 ---\n[700]\tval's rmse: 172.604\n[1400]\tval's rmse: 168.124\n[2100]\tval's rmse: 165.544\n[2800]\tval's rmse: 164.948\n[3500]\tval's rmse: 163.229\n[4200]\tval's rmse: 162.709\n[4900]\tval's rmse: 162.447\n[5600]\tval's rmse: 161.935\n[6300]\tval's rmse: 161.585\n[700]\tval's rmse: 140.038\n[1400]\tval's rmse: 136.168\n[2100]\tval's rmse: 133.557\n[2800]\tval's rmse: 132.684\n[3500]\tval's rmse: 132.689\n[700]\tval's rmse: 257.333\nFold 1 base OOF proxy score (no calib/postproc) = 0.4384\n\n--- Base Fold 2/5 ---\n[700]\tval's rmse: 177.062\nFold 2 base OOF proxy score (no calib/postproc) = 0.3238\n\n--- Base Fold 3/5 ---\n[700]\tval's rmse: 106.98\n[700]\tval's rmse: 81.8645\n[700]\tval's rmse: 159.091\n[1400]\tval's rmse: 159.061\nFold 3 base OOF proxy score (no calib/postproc) = 0.3456\n\n--- Base Fold 4/5 ---\n[700]\tval's rmse: 260.701\n[700]\tval's rmse: 353.569\nFold 4 base OOF proxy score (no calib/postproc) = 0.2125\n\n--- Base Fold 5/5 ---\n[700]\tval's rmse: 115.303\n[700]\tval's rmse: 246.511\n[1400]\tval's rmse: 246.484\n[2100]\tval's rmse: 246.477\nFold 5 base OOF proxy score (no calib/postproc) = 0.5229\n\n--- Meta Fold 1/5 ---\nFold 1 meta OOF proxy score (no calib/postproc) = 0.5483\n\n--- Meta Fold 2/5 ---\nFold 2 meta OOF proxy score (no calib/postproc) = 0.4812\n\n--- Meta Fold 3/5 ---\nFold 3 meta OOF proxy score (no calib/postproc) = 0.4677\n\n--- Meta Fold 4/5 ---\n[700]\tval's rmse: 269.001\nFold 4 meta OOF proxy score (no calib/postproc) = 0.0755\n\n--- Meta Fold 5/5 ---\nFold 5 meta OOF proxy score (no calib/postproc) = 0.5178\n\nTuned postproc params (OOF only): neg_thr=0.520, zero_thr=0.560, zero_band=14.0 (val_score=0.4924)\nTuned delta (OOF only): delta=-6.50 (val_score=0.5115)\nGlobal scale tuned on OOF: scale=0.95848 (proxy_score=0.6114)\n\n========================================================================\nOOF (train+val) diagnostic score:\n\ud83d\udcca Gini=0.7894, Err=0.0285, Spear=0.2238, RMSE=170.50, Score=0.6056\nCalib: iso=True, affine a=1.0000, b=-0.00, delta=-6.50, scale=0.95848\n========================================================================\n\n========================================================================\n\ud83d\udcca Gini=0.8208, Err=0.0238, Spear=0.4077, RMSE=210.64, Score=0.6278\n========================================================================\nscore = 0.627826271057129\n\ud83d\udcca Gini=0.8208, Err=0.0238, Spear=0.4077, RMSE=210.64, Score=0.6278\nscore = 0.627826271057129\n",
+  "stderr": ""
+}

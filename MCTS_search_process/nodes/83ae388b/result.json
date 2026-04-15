@@ -1,0 +1,27 @@
+{
+  "node_id": "83ae388b",
+  "score": 0.9285298231244087,
+  "success": true,
+  "metrics": {
+    "users": 5545.0,
+    "mean": 121.0,
+    "q20": 79.0,
+    "cls": 80.0,
+    "thr": 0.45,
+    "a": 0.85,
+    "b": 3.56,
+    "fpr": 0.21,
+    "oof_score": 1.2,
+    "gini": 0.9412,
+    "err": 0.1717,
+    "spear": 0.8678,
+    "rmse": 216.9,
+    "detected_features": 145.0,
+    "final_score": 0.9285
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T19:26:30.439590",
+  "stdout": "================================================================================\nPhysics-inspired RK2 Time-Stepping DNN + LightGBM Hybrid Stacking (device=cuda)\n================================================================================\nDetected features: 145 numeric, 35 categorical\nDev users=54385, Test users=5545\nLGBM user-features: X_dev_num=(54385, 2275), X_test_num=(5545, 2275)\nDNN sequences: X_dev_seq=(54385, 7, 145) + cats=(54385, 7, 35)\n[Fold 1/4] LGB iters: mean=166, q20=73, cls=65 | DNN done\n[Fold 2/4] LGB iters: mean=190, q20=79, cls=104 | DNN done\n[Fold 3/4] LGB iters: mean=95, q20=20, cls=104 | DNN done\n[Fold 4/4] LGB iters: mean=121, q20=79, cls=80 | DNN done\n[OOF Calibration] thr=0.450, a=0.850, b=3.560, fpr=0.210, oof_score=1.200000\n\ud83d\udcca Gini=0.9260, Err=0.0000, Spear=0.8048, RMSE=159.44, Score=1.2000\n\n============================================================\n\ud83d\udcca Gini=0.9412, Err=0.1717, Spear=0.8678, RMSE=216.90, Score=0.9285\n============================================================\n\n\ud83c\udfaf Final Score: 0.9285\nscore = 0.9285298231244087\n",
+  "stderr": ""
+}

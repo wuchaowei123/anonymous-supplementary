@@ -1,0 +1,14 @@
+{
+  "node_id": "1e6f843c",
+  "method": "Method 21: Random Forest",
+  "score": 0.6929469416683343,
+  "metrics": {
+    "gini": 0.8185059820910578,
+    "error_rate": 0.014508636976963925,
+    "spearman": 0.6664457787016264,
+    "rmse": 221.1473609532475
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.684105"
+}

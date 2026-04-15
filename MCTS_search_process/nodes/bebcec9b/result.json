@@ -1,0 +1,21 @@
+{
+  "node_id": "bebcec9b",
+  "score": 1.175268308895114,
+  "success": true,
+  "metrics": {
+    "num_cols": 164.0,
+    "cat_cols": 16.0,
+    "categorical": 14.0,
+    "tau": 0.2,
+    "gini": 0.9716,
+    "err": 0.0488,
+    "spear": 0.8666,
+    "rmse": 200.57,
+    "final_score": 1.175268
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T22:42:23.297190",
+  "stdout": "======================================================================\nImproved Method: LightGBM temporal wide+stats + TE + hurdle auxiliaries\n======================================================================\nDetected num_cols=164, cat_cols=16\nFinal feature count = 742 (categorical=14)\nTrain/Val/Test users = 49638/4975/5545\n\n[Training] AWMSE regressors...\n[Training] Quantile (tau=0.20) regressors...\n[Training] Negative classifier p(y<0)...\n[Training] Zero classifier p(y==0 | y>=0)...\n[Training] Pos/Neg magnitude experts...\n\n[Tuning] Searching conservative policy on VAL (small grid)...\nBest VAL policy score = 1.200000\nBest params: {'use_qmin': True, 'thr_gate': 0.5, 'thr_zero': None, 'w_aw': 0.35, 'w_q': 0.0, 'w_moe': 0.65, 'a': 1.7425244911045734, 'b': -2.0097292487918317}\n\n======================================================================\n\ud83d\udcca Gini=0.9716, Err=0.0488, Spear=0.8666, RMSE=200.57, Score=1.1753\n======================================================================\n\n\ud83c\udfaf Final Score: 1.175268\nscore = 1.175268308895114\n",
+  "stderr": ""
+}

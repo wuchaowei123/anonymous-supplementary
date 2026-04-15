@@ -1,0 +1,14 @@
+{
+  "node_id": "eedb8ce7",
+  "method": "Method 7: Hybrid Feature Fusion",
+  "score": 0.5542189404757212,
+  "metrics": {
+    "gini": 0.8101536420668713,
+    "error_rate": 0.10792294900482811,
+    "spearman": 0.6385727498836263,
+    "rmse": 228.92764700068096
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.676975"
+}

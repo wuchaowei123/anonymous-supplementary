@@ -1,0 +1,11 @@
+{
+  "node_id": "9e8127d3",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T03:10:14.409247",
+  "stdout": "Using device: cuda\n======================================================================\nPhysics-inspired time-stepping net (Heun/RK2) + hybrid LightGBM ensemble\n======================================================================\nDay column: TDATE_RN\nDetected columns | numerical=164 | categorical=16\n\nTraining PhysicsTimeStepperNet (Heun/RK2)...\nEpoch 001/55 | train_loss=127397.8410 | val_loss=31288.5753\nEpoch 010/55 | train_loss=50225.5102 | val_loss=14210.3401\nEpoch 020/55 | train_loss=42641.6812 | val_loss=20176.8336\nEpoch 030/55 | train_loss=24432.3696 | val_loss=13927.2398\nEarly stopping at epoch 39 (best_val_loss=7233.6407)\n\nTraining LightGBM (mean on signed-log target, hybrid features)...\nTraining LightGBM (quantile tau=0.20, raw target, hybrid features)...\nTraining LightGBM (custom AWMSE, raw target, hybrid features)...\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/9e8127d3/avia_code_1768359976.py\", line 1107, in <module>\n    score, test_predictions, y_test = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/9e8127d3/avia_code_1768359976.py\", line 1040, in main\n    booster_aw = train_lgbm_awmse(Xtr, y_train, Xva, y_val, seed=SEED + 13)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/9e8127d3/avia_code_1768359976.py\", line 868, in train_lgbm_awmse\n    booster = lgbm.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+}

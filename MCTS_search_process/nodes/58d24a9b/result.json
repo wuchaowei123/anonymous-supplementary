@@ -1,0 +1,18 @@
+{
+  "node_id": "58d24a9b",
+  "score": 1.0854725878179305,
+  "success": true,
+  "metrics": {
+    "full_train": 54613.0,
+    "test": 5545.0,
+    "gini": 0.9578,
+    "err": 0.0857,
+    "spear": 0.8744,
+    "rmse": 145.93
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T01:13:31.970489",
+  "stdout": "============================================================\nImproved Method 17.2: CV-bagged LGB ensemble + stacking + affine calibration\n============================================================\nUsers: full_train=54613, test=5545\nFeatures = 1864\n\n--- Fold 1/5 ---\n\n--- Fold 2/5 ---\n\n--- Fold 3/5 ---\n\n--- Fold 4/5 ---\n\n--- Fold 5/5 ---\n\n============================================================\nOOF (train+val) diagnostic score (should be optimistic but stable):\n\ud83d\udcca Gini=0.9713, Err=0.0000, Spear=0.8779, RMSE=133.75, Score=1.2000\n============================================================\n\n============================================================\n\ud83d\udcca Gini=0.9578, Err=0.0857, Spear=0.8744, RMSE=145.93, Score=1.0855\n============================================================\nscore = 1.0854725878179305\n\ud83d\udcca Gini=0.9578, Err=0.0857, Spear=0.8744, RMSE=145.93, Score=1.0855\nscore = 1.0854725878179305\n",
+  "stderr": ""
+}

@@ -1,0 +1,24 @@
+{
+  "node_id": "c4e8fc1b",
+  "score": 0.31352044749384056,
+  "success": true,
+  "metrics": {
+    "gini": 0.7830903095045173,
+    "error_rate": 0.3444488510614101,
+    "spearman": 0.5649894048594348,
+    "rmse": 226.79324397515282,
+    "gini_score": 0.4154515475225866,
+    "error_score": 0.01632690864291141,
+    "spearman_score": 0.2166313495314494,
+    "rmse_score": 0.553445933747453,
+    "base_score": 0.31352044749384056,
+    "pareto_bonus": 0.0,
+    "diversity_bonus": 0.0,
+    "excellence_count": 0
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T01:26:15.118168",
+  "stdout": "================================================================================\nMethod 19 (Improved): XGBoost AWMSE + Risk Target Encoding + Calibrated Ensemble\n================================================================================\n\ud83d\udcc2 Loading data...\n   Train: (352772, 183) (49638 users)\n   Val:   (34825, 183) (4975 users)\n   Test:  (38815, 183) (5545 users)\n\ud83d\udd27 Creating user-level features + encodings...\n   Features: 568\n   X_train: (49638, 568), X_val: (4975, 568), X_test: (5545, 568)\n\ud83d\ude80 Training ensemble (XGB_AWMSE + XGB_MSE + LGBM_mean + LGBM_q20)...\n\ud83d\ude80 Training XGBoost with Custom AWMSE...\n[0]\ttrain-rmse:575.91765\ttrain-awmse:62595.35938\tval-rmse:170.84080\tval-awmse:29741.73828\n[150]\ttrain-rmse:73.40206\ttrain-awmse:4955.01465\tval-rmse:245.89906\tval-awmse:65360.68359\n[152]\ttrain-rmse:72.61763\ttrain-awmse:4896.80664\tval-rmse:245.69784\tval-awmse:65263.37891\n   Best iteration: 2\n\ud83d\ude80 Training XGBoost Standard (MSE)...\n[0]\ttrain-rmse:251.94677\tval-rmse:171.00777\n[144]\ttrain-rmse:150.23608\tval-rmse:188.80640\n\ud83d\ude80 Training LightGBM (mean) for ensemble diversity...\n\ud83d\ude80 Training LightGBM (quantile tau=0.20) for conservative signal...\n   Optimized blend:\n     - xgboost_awmse : weight=0.250\n     - xgboost_mse   : weight=0.250\n     - lightgbm_mean : weight=0.250\n     - lightgbm_q20  : weight=0.250\n     - global_bias: -20.00\n   Best VAL composite score (silent): 0.2856\n\ud83d\udcca Making predictions on test...\n\n============================================================\n\ud83d\udcca Metrics: Gini=0.7831, ErrRate=0.3444, Spearman=0.5650, RMSE=226.79\n\ud83d\udcca Individual Scores: Gini=0.415, Err=0.016, Spear=0.217, RMSE=0.553\n\ud83d\udcca Base=0.3135, Pareto=0.00, Diversity=0.000, FINAL=0.3135\n\ud83d\udcca Excellence count: 0/4 metrics\n============================================================\n\n\ud83c\udfaf Final Score: 0.3135\n\n\ud83d\udcbe Results saved to: /home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/method_19_results.json\nscore = 0.31352044749384056\nscore = 0.31352044749384056\n",
+  "stderr": ""
+}

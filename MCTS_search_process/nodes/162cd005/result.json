@@ -1,0 +1,22 @@
+{
+  "node_id": "162cd005",
+  "method": "Method 19: XGBoost with Custom Asymmetric Loss (AWMSE)",
+  "score": 0.6618810804895128,
+  "metrics": {
+    "gini": 0.8155032544730085,
+    "error_rate": 0.07105874504798419,
+    "spearman": 0.6683407092649029,
+    "rmse": 219.38498911217474,
+    "gini_score": 0.5775162723650427,
+    "error_score": 0.8204154557412229,
+    "spearman_score": 0.5611356975496761,
+    "rmse_score": 0.6769168481304211,
+    "base_score": 0.6418810804895128,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.683274"
+}

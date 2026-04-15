@@ -1,0 +1,29 @@
+{
+  "correct": true,
+  "error": null,
+  "combined_score": 0.89565,
+  "public": {
+    "R2": 0.6806,
+    "Spearman": 0.6499,
+    "Norm_GINI": 0.732,
+    "Error_Rate": 0.4791,
+    "RMSE": 3646.8512,
+    "MAE": 382.0094
+  },
+  "private": {
+    "base_score": 0.7356499999999999,
+    "bonus": 0.16,
+    "all_metrics": {
+      "R2": 0.6806,
+      "Spearman": 0.6499,
+      "RMSE": 3646.8512,
+      "NRMSE": 4.5737,
+      "MAE": 382.0094,
+      "MAPE": 102.3853,
+      "GINI": 0.3468,
+      "Norm_GINI": 0.732,
+      "Error_Rate": 0.4791
+    }
+  },
+  "text_feedback": "R\u00b2=0.6806, Spearman=0.6499, GINI=0.7320, ErrRate=47.91%, RMSE=3646.9"
+}

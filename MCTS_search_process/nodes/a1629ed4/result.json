@@ -1,0 +1,24 @@
+{
+  "node_id": "a1629ed4",
+  "score": 0.6617545294752952,
+  "success": true,
+  "metrics": {
+    "gini": 0.8260847123210966,
+    "error_rate": 0.07346638215342569,
+    "spearman": 0.6494314568142006,
+    "rmse": 219.82602953775628,
+    "gini_score": 0.630423561605483,
+    "error_score": 0.8133341701369832,
+    "spearman_score": 0.4981048560473351,
+    "rmse_score": 0.6695661743707286,
+    "base_score": 0.6417545294752952,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T06:40:56.990951",
+  "stdout": "\ud83d\udcc2 Loading data...\n   Train: (352772, 183) (49638 users)\n   Val:   (34825, 183) (4975 users)\n   Test:  (38815, 183) (5545 users)\n\ud83d\udd27 Creating features...\n   Features: 1519 (categorical: 7)\n   X_train: (49638, 1519), X_val: (4975, 1519), X_test: (5545, 1519)\n\ud83d\ude80 Training models (enhanced LightGBM ensemble + hurdle)...\n   - Training AWMSE boosters...\n   - Training signed-log mean models...\n   - Training huber regressor...\n   - Training quantile regressors (q10, q20)...\n   - Training negative-risk classifier...\n   - Training zero-inflation classifier...\n   - Training magnitude regressors (pos/neg)...\n\ud83d\udcca Making base predictions...\n\ud83e\uddea Optimizing ensemble on validation...\n   Best val score (silent) = 0.598748\n   Best params = {'w': [0.3244112639479553, 0.0016749292984905104, 0.06998161691531031, 0.0916135099071743, 0.09953561266003373, 0.4127830672710358], 'beta20': 0.05876895325617228, 'beta10': 0.11070740727268881, 'gamma_pos': 15.210395742545186, 'ppow': 1.4278808919985218, 'tneg': 0.672179189991085, 'zshrink': 0.43424717411510266, 'zp': 0.8796779348519295, 'tzero': 0.8691426861510805, 'zthr': 20.88825495277729, 'zthr_small': 1.0671449166033917, 'delta': 0.0, 'scale': 0.9999999999999999}\n   Affine: a=1.8538, b=9.6483, clip=[-89.85, 3155.81]\n\n============================================================\n\ud83d\udcca Metrics: Gini=0.8261, ErrRate=0.0735, Spearman=0.6494, RMSE=219.83\n\ud83d\udcca Individual Scores: Gini=0.630, Err=0.813, Spear=0.498, RMSE=0.670\n\ud83d\udcca Base=0.6418, Pareto=0.02, Diversity=0.000, FINAL=0.6618\n\ud83d\udcca Excellence count: 1/4 metrics\n============================================================\n\n\ud83c\udfaf Final Score: 0.6618\n   Baseline: 0.377 (this template)\n   \u2713 Better than baseline! (+0.2848)\nscore = 0.6617545294752952\n\ud83d\udcca Metrics: Gini=0.8261, ErrRate=0.0735, Spearman=0.6494, RMSE=219.83\n\ud83d\udcca Individual Scores: Gini=0.630, Err=0.813, Spear=0.498, RMSE=0.670\n\ud83d\udcca Base=0.6418, Pareto=0.02, Diversity=0.000, FINAL=0.6618\n\ud83d\udcca Excellence count: 1/4 metrics\nscore = 0.6617545294752952\n",
+  "stderr": ""
+}

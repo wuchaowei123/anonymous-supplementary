@@ -1,0 +1,11 @@
+{
+  "node_id": "4a46464a",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T03:53:49.265449",
+  "stdout": "======================================================================\nBT_IOS_2503_Pareto: Stronger LGBM ensemble + richer temporal FE + TEv2 + FIXED AWMSE + FIXED binary probs\n======================================================================\nDetected: 164 numerical cols, 16 categorical cols\nStage1 features: Xtr=(49638, 4108), Xva=(4975, 4108), cat_idx=112\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4a46464a/avia_code_1768448842.py\", line 1262, in <module>\n    score_local, y_test, test_predictions = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4a46464a/avia_code_1768448842.py\", line 813, in main\n    m_aw, it_aw = train_lgb_aw(Xtr, ytr, Xva, yva, cat_idx, seed=sd, extra_trees=extra_trees_flag)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/4a46464a/avia_code_1768448842.py\", line 498, in train_lgb_aw\n    model = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+}

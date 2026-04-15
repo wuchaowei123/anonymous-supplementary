@@ -1,0 +1,14 @@
+{
+  "node_id": "b8415417",
+  "method": "Method 9: MC Dropout",
+  "score": 0.3113892633714961,
+  "metrics": {
+    "gini": 0.7854827574858017,
+    "error_rate": 0.21777418035748272,
+    "spearman": 0.5934903329954839,
+    "rmse": 258.168220089677
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.677940"
+}

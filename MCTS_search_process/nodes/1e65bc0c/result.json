@@ -1,0 +1,22 @@
+{
+  "node_id": "1e65bc0c",
+  "method": "Method 13: TabNet",
+  "score": 0.5575402792236004,
+  "metrics": {
+    "gini": 0.8131467291945408,
+    "error_rate": 0.29532722713824217,
+    "spearman": 0.6048476582103086,
+    "rmse": 194.9708820272596,
+    "gini_score": 0.5657336459727039,
+    "error_score": 0.1608022731228171,
+    "spearman_score": 0.349492194034362,
+    "rmse_score": 1.0,
+    "base_score": 0.5175402792236004,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.02,
+    "excellence_count": 1
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.680177"
+}

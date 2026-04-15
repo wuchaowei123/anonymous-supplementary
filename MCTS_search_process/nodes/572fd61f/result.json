@@ -1,0 +1,14 @@
+{
+  "node_id": "572fd61f",
+  "method": "Method 10: Multi-Task Learning",
+  "score": 0.4980702435005104,
+  "metrics": {
+    "gini": 0.7999048387317828,
+    "error_rate": 0.19152865470503933,
+    "spearman": 0.6352090521918929,
+    "rmse": 224.7967618546462
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.678445"
+}

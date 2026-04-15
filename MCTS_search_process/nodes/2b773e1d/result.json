@@ -1,0 +1,24 @@
+{
+  "node_id": "2b773e1d",
+  "score": 0.7339269679512889,
+  "success": true,
+  "metrics": {
+    "gini": 0.8378024383706284,
+    "error_rate": 0.06367750100371675,
+    "spearman": 0.708161275937775,
+    "rmse": 220.73600856651052,
+    "gini_score": 0.689012191853142,
+    "error_score": 0.842124997047892,
+    "spearman_score": 0.6938709197925832,
+    "rmse_score": 0.6543998572248246,
+    "base_score": 0.7139269679512888,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T05:35:09.818674",
+  "stdout": "\ud83d\udcc2 Loading data...\n   Train: (352772, 183) (49638 users)\n   Val:   (34825, 183) (4975 users)\n   Test:  (38815, 183) (5545 users)\n\ud83d\udd27 Creating features...\n   Features: 1083 (categorical: 7)\n   X_train: (49638, 1083), X_val: (4975, 1083), X_test: (5545, 1083)\n\ud83d\ude80 Training models (LightGBM ensemble)...\n\ud83d\udcca Making base predictions...\n\ud83e\uddea Optimizing ensemble on validation...\n   Best val score (silent) = 0.661877\n   Best params = {'w': array([0.37619427, 0.53182191, 0.09198382]), 'gamma': 12.927985290519189, 'beta': 0.1171245055386344, 'ppow': 0.9740198738284296, 'tneg': 0.7548115111380492, 'zthr': 1.939557774109586, 'delta': 0.0}\n   Affine: a=1.7032, b=15.9977, clip=[-89.85, 3155.81]\n\n============================================================\n\ud83d\udcca Metrics: Gini=0.8378, ErrRate=0.0637, Spearman=0.7082, RMSE=220.74\n\ud83d\udcca Individual Scores: Gini=0.689, Err=0.842, Spear=0.694, RMSE=0.654\n\ud83d\udcca Base=0.7139, Pareto=0.02, Diversity=0.000, FINAL=0.7339\n\ud83d\udcca Excellence count: 1/4 metrics\n============================================================\n\n\ud83c\udfaf Final Score: 0.7339\n   Baseline: 0.377 (this template)\n   \u2713 Better than baseline! (+0.3569)\nscore = 0.7339269679512889\n",
+  "stderr": ""
+}

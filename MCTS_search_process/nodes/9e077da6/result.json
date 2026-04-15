@@ -1,0 +1,29 @@
+{
+  "node_id": "9e077da6",
+  "score": 0.5771751142049347,
+  "success": true,
+  "metrics": {
+    "train": 49638.0,
+    "val": 4975.0,
+    "test": 5545.0,
+    "numeric": 164.0,
+    "categorical": 16.0,
+    "train_loss": 30886.6267,
+    "val_awmse": 22415.3574,
+    "pos_weight": 1.89,
+    "best_val_awmse": 15107.2051,
+    "k_uncert": 0.0,
+    "k_risk": 0.0,
+    "delta": 0.0,
+    "gini": 0.8447,
+    "err": 0.1732,
+    "spear": 0.2174,
+    "rmse": 193.3,
+    "final_score": 0.5772
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T07:50:03.449018",
+  "stdout": "\ud83d\udd27 Using device: cuda\n============================================================\nMethod 16: Physics-Inspired Time-Stepping Network (Euler/RK2 ResNet)\n============================================================\n\ud83d\udce6 Users: train=49638 | val=4975 | test=5545\n\ud83e\uddfe Features/day: numeric=164 | categorical=16\n   Epoch 01/35 | train_loss=228648.3791 | val_awmse=23088.7773 | pos_weight=1.89\n   Epoch 05/35 | train_loss=30888.3051 | val_awmse=20653.8906 | pos_weight=1.89\n   Epoch 10/35 | train_loss=14081.5806 | val_awmse=18821.0918 | pos_weight=1.89\n   Epoch 15/35 | train_loss=30886.6267 | val_awmse=22415.3574 | pos_weight=1.89\n   Early stopping at epoch 18, best_val_awmse=15107.2051\n\ud83e\uddea Best VAL calibration: score=0.6746 | k_uncert=0.0 | k_risk=0.0 | delta=0.0 | clamp=False\n\n============================================================\n\ud83d\udcca Gini=0.8447, Err=0.1732, Spear=0.2174, RMSE=193.30, Score=0.5772\n============================================================\n\n\ud83c\udfaf Final Score: 0.5772\nscore = 0.5771751142049347\nscore = 0.5771751142049347\n",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "node_id": "f503dba9",
+  "method": "Method 28: Self-Supervised",
+  "score": 0.6565274885923872,
+  "metrics": {
+    "gini": 0.8200840455689298,
+    "error_rate": 0.059194705128260805,
+    "spearman": 0.6410933144141648,
+    "rmse": 218.6777873974672
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.687424"
+}

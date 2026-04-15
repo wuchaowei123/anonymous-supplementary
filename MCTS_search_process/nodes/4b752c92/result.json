@@ -1,0 +1,26 @@
+{
+  "node_id": "4b752c92",
+  "score": 1.0674937647467582,
+  "success": true,
+  "metrics": {
+    "numeric": 164.0,
+    "cat": 16.0,
+    "rate": 0.346,
+    "scale_pos_weight": 1.887,
+    "gamma": 1.0,
+    "alpha": 0.0,
+    "beta": 0.0,
+    "gate": 0.55,
+    "bias": 0.0,
+    "gini": 0.9657,
+    "err": 0.0894,
+    "spear": 0.8644,
+    "rmse": 204.73,
+    "final_score": 1.0675
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T10:05:10.685959",
+  "stdout": "======================================================================\nStacked GBDT Ensemble (AWMSE + Quantile + Neg-Risk) with OOF calibration\n======================================================================\nDetected columns: numeric=164, cat=16\nBuilding OOF target encodings (train+val only)...\nNeg-rate=0.346, scale_pos_weight=1.887\n\ud83d\ude80 Training 5-fold LightGBM ensemble (AWMSE + MSE + Q20 + NegClassifier)...\n  Fold 1/5 done. (silent score; AW only) = 1.1736\n  Fold 2/5 done. (silent score; AW only) = 1.1653\n  Fold 3/5 done. (silent score; AW only) = 1.1842\n  Fold 4/5 done. (silent score; AW only) = 1.1990\n  Fold 5/5 done. (silent score; AW only) = 1.1989\n\ud83e\uddea OOF calibration (NO test leakage): searching (gamma, alpha, beta, gate)...\nBest OOF calib: score=1.2000, gamma=1.000, alpha=0.00, beta=0.0, gate=0.55, bias=0.0\n\n======================================================================\n\ud83d\udcca Gini=0.9657, Err=0.0894, Spear=0.8644, RMSE=204.73, Score=1.0675\n======================================================================\n\n\ud83c\udfaf Final Score: 1.0675\nscore = 1.0674937647467582\n\ud83d\udcca Gini=0.9657, Err=0.0894, Spear=0.8644, RMSE=204.73, Score=1.0675\nscore = 1.0674937647467582\n",
+  "stderr": ""
+}

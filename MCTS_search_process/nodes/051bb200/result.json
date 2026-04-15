@@ -1,0 +1,14 @@
+{
+  "node_id": "051bb200",
+  "method": "Method 6: Focal Loss GBDT",
+  "score": 0.29900967334564366,
+  "metrics": {
+    "gini": 0.7783819197804811,
+    "error_rate": 0.26364840813411244,
+    "spearman": 0.6332555116292531,
+    "rmse": 273.4150351088165
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.676351"
+}

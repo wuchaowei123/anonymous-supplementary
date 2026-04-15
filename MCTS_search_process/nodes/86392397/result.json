@@ -1,0 +1,14 @@
+{
+  "node_id": "86392397",
+  "method": "Method 15: GNN",
+  "score": 0.5637370659296238,
+  "metrics": {
+    "gini": 0.7824481402709242,
+    "error_rate": 0.090922763156453,
+    "spearman": 0.6774169774514376,
+    "rmse": 224.23791061036286
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.681335"
+}

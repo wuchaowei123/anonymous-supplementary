@@ -1,0 +1,24 @@
+{
+  "node_id": "eaa170f7",
+  "score": 0.7371445396029966,
+  "success": true,
+  "metrics": {
+    "gini": 0.8351269650604932,
+    "error_rate": 0.054840248161577634,
+    "spearman": 0.7095775611660424,
+    "rmse": 220.27970009768038,
+    "gini_score": 0.6756348253024661,
+    "error_score": 0.8681169171718306,
+    "spearman_score": 0.6985918705534746,
+    "rmse_score": 0.6620049983719938,
+    "base_score": 0.7171445396029966,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T04:21:26.477961",
+  "stdout": "[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n[LightGBM] [Warning] Met negative value in categorical features, will convert it to NaN\n\ud83d\udcc2 Loading data...\n   Train: (352772, 183) (49638 users)\n   Val:   (34825, 183) (4975 users)\n   Test:  (38815, 183) (5545 users)\n\ud83d\udd27 Creating features...\n   Features: 2530  (num=2474, cat=56)\n   X_train: (49638, 2530), X_val: (4975, 2530), X_test: (5545, 2530)\n\ud83d\ude80 Training models (GBDT ensemble + hurdle heads)...\n\ud83d\udcca Predicting base models...\n\ud83e\uddee Searching blend weights on validation (no test leakage)...\n   Best pre-calibration val score (blend only): 0.393908\n   Blend weights: awmse_a=0.245, awmse_b=0.177, huber=0.545, q20=0.004, hurdle=0.009, min_awmse_q20=0.021\n   Calibration: a=1.2262, b=14.9196, s=0.8500\n\ud83d\udee1\ufe0f Tuning conservative post-processing on validation...\n   Best postprocess params: {'bias': 0.0, 'scale': 0.95, 'zero_snap': 0.0, 'risk_thr': 0.65}\n\n============================================================\n\ud83d\udcca Metrics: Gini=0.8351, ErrRate=0.0548, Spearman=0.7096, RMSE=220.28\n\ud83d\udcca Individual Scores: Gini=0.676, Err=0.868, Spear=0.699, RMSE=0.662\n\ud83d\udcca Base=0.7171, Pareto=0.02, Diversity=0.000, FINAL=0.7371\n\ud83d\udcca Excellence count: 1/4 metrics\n============================================================\n\n\ud83c\udfaf Final Score: 0.737145\n   Baseline: 0.377 (template baseline)\n   \u2713 Better than baseline! (+0.360145)\nscore = 0.7371445396029966\n\ud83d\udcca Metrics: Gini=0.8351, ErrRate=0.0548, Spearman=0.7096, RMSE=220.28\n\ud83d\udcca Individual Scores: Gini=0.676, Err=0.868, Spear=0.699, RMSE=0.662\n\ud83d\udcca Base=0.7171, Pareto=0.02, Diversity=0.000, FINAL=0.7371\n\ud83d\udcca Excellence count: 1/4 metrics\nscore = 0.7371445396029966\n",
+  "stderr": ""
+}

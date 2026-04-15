@@ -1,0 +1,24 @@
+{
+  "node_id": "433ffc18",
+  "score": 1.2,
+  "success": true,
+  "metrics": {
+    "num_cols": 164.0,
+    "cat_cols": 16.0,
+    "mean": 20.471085,
+    "train_loss": 10921.64801,
+    "val_score": 0.757818,
+    "val_fpr": 0.254,
+    "best_val": 1.043912,
+    "gini": 0.9591,
+    "err": 0.0037,
+    "spear": 0.8139,
+    "rmse": 185.9,
+    "final_score": 1.2
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T00:40:02.050835",
+  "stdout": "======================================================================\nPhysics-Inspired Deep MTL: finite-difference features + residual TCN + sign/mean/q20 heads\n======================================================================\nDetected num_cols=164, cat_cols=16\nAnchor mean (train+val) = 23.671732 | train mean=23.992517 | val mean=20.471085\n\n[Training] Deep MTL model...\nEpoch 01 | train_loss=51196.75852 | val_score=0.679015 | val_fpr=0.348\nEpoch 02 | train_loss=35556.44902 | val_score=1.042367 | val_fpr=0.338\nEpoch 04 | train_loss=25186.47555 | val_score=0.785986 | val_fpr=0.349\nEpoch 06 | train_loss=24150.46132 | val_score=1.035814 | val_fpr=0.030\nEpoch 08 | train_loss=17865.37648 | val_score=0.934826 | val_fpr=0.234\nEpoch 10 | train_loss=11324.12766 | val_score=1.043912 | val_fpr=0.173\nEpoch 12 | train_loss=10921.64801 | val_score=0.757818 | val_fpr=0.254\nEarly stopping at epoch 13 (best_val=1.043912)\n\n[Tuning] Searching conservative policy on VAL...\nBest VAL policy score = 1.043912\nBest params: {'w_q': 0.3, 'use_min': False, 'thr_gate': 0.75, 'snap_eps': 0.0, 'risk_scale': 0.35, 'a': 1.1121604451792808, 'b': -8.63716306551935, 'delta': 0.0}\n\n[Inference] Predicting TEST...\n\n======================================================================\n\ud83d\udcca Gini=0.9591, Err=0.0037, Spear=0.8139, RMSE=185.90, Score=1.2000\n======================================================================\n\n\ud83c\udfaf Final Score: 1.200000\nscore = 1.2\n\ud83d\udcca Gini=0.9591, Err=0.0037, Spear=0.8139, RMSE=185.90, Score=1.2000\nscore = 1.2\n",
+  "stderr": ""
+}

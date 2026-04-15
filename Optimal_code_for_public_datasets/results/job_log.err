@@ -1,0 +1,62 @@
+2026-02-06 15:25:32 | INFO | ✅ ShinkaAutoFixer available
+2026-02-06 15:25:32 | INFO | ✅ Scoring function imported from evaluate.py
+2026-02-06 15:25:32 | INFO | 🔧 Using ShinkaAutoFixer
+2026-02-06 15:28:21 | INFO | === STDOUT (last 2000 chars) ===
+2026-02-06 15:28:21 | INFO | ======================================================================
+        ZILN Model - ShinkaEvolve Version (Mutual Learning)
+======================================================================
+
+
+2026-02-06 15:28:21 | WARNING | === STDERR (last 1000 chars) ===
+2026-02-06 15:28:21 | WARNING | e/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 560, in run_experiment
+    test_metrics, test_preds, test_trues = train_and_evaluate(
+  File "/home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 436, in train_and_evaluate
+    loss = model.calculate_loss(y, logits)
+  File "/home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 253, in calculate_loss
+    loss = self._ziln_loss(labels, logits[:, i, :], self.peers[i])
+  File "/home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/main.py", line 300, in _ziln_loss
+    bce_loss = F.binary_cross_entropy_with_logits(
+  File "/home/jupyter/test_deploy_venv/lib/python3.10/site-packages/torch/nn/functional.py", line 3593, in binary_cross_entropy_with_logits
+    return torch.binary_cross_entropy_with_logits(
+RuntimeError: The function 'binary_cross_entropy_with_logits' is not differentiable with respect to argument 'pos_weight'. This input cannot have requires_grad True.
+
+2026-02-06 15:42:01 | INFO | === STDOUT (last 2000 chars) ===
+2026-02-06 15:42:01 | INFO | ======================================================================
+        ZILN Model - ShinkaEvolve Version (Mutual Learning)
+======================================================================
+
+
+======================================================================
+                         Test Results
+======================================================================
+  RMSE           :  3646.8512
+  NRMSE          :     4.5737
+  MAE            :   382.0094
+  MAPE           :   102.3853
+  R2             :     0.6806
+  Spearman       :     0.6499
+  GINI           :     0.3468
+  Norm_GINI      :     0.7320
+  Error_Rate     :     0.4791
+  True_Sum       : 20478542.0000
+  Pred_Sum       : 20867426.0000
+======================================================================
+
+2026-02-06 15:42:01 | INFO | Metrics: Gini=0.7320, ErrRate=0.4791, Spearman=0.6499, RMSE=3646.85
+2026-02-06 15:42:01 | INFO | Score: 0.8956 (base=0.7356, bonus=0.1600)
+2026-02-06 15:42:01 | INFO | Metrics written to: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/results/metrics.json
+2026-02-06 15:42:01 | INFO | Correct status written to: /home/jupyter/ShinkaEvolve/tasks/ZILNLTV/results_zilnltv_v2/gen_16/results/correct.json
+2026-02-06 15:42:01 | INFO | 
+2026-02-06 15:42:01 | INFO | ============================================================
+2026-02-06 15:42:01 | INFO | Evaluation Results
+2026-02-06 15:42:01 | INFO | ============================================================
+2026-02-06 15:42:01 | INFO |   Correct: True
+2026-02-06 15:42:01 | INFO |   Combined Score: 0.8956
+2026-02-06 15:42:01 | INFO |   Public Metrics:
+2026-02-06 15:42:01 | INFO |     R2: 0.6806
+2026-02-06 15:42:01 | INFO |     Spearman: 0.6499
+2026-02-06 15:42:01 | INFO |     Norm_GINI: 0.7320
+2026-02-06 15:42:01 | INFO |     Error_Rate: 0.4791
+2026-02-06 15:42:01 | INFO |     RMSE: 3646.8512
+2026-02-06 15:42:01 | INFO |     MAE: 382.0094
+2026-02-06 15:42:01 | INFO | ============================================================

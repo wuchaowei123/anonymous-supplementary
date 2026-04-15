@@ -1,0 +1,14 @@
+{
+  "node_id": "9a06582c",
+  "method": "Method 22: MLP-Mixer",
+  "score": 0.3806414959897372,
+  "metrics": {
+    "gini": 0.7961465552628137,
+    "error_rate": 0.2905400547422658,
+    "spearman": 0.6236682048778405,
+    "rmse": 237.69447545158695
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.684511"
+}

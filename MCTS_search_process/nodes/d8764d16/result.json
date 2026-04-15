@@ -1,0 +1,31 @@
+{
+  "node_id": "d8764d16",
+  "score": 0.8358305841592446,
+  "success": true,
+  "metrics": {
+    "users": 5545.0,
+    "aw": 207.0,
+    "hub": 5998.0,
+    "log": 11.0,
+    "q20": 58.0,
+    "q80": 392.0,
+    "thr_neg": 0.7,
+    "thr_zero": 0.55,
+    "zero_shrink": 0.75,
+    "a": 1.05,
+    "delta": 10.0,
+    "gini": 0.866,
+    "err": 1.0728,
+    "spear": 0.7584,
+    "rmse": 177.25,
+    "est_mean_test": 48.887,
+    "cur_mean": 29.304,
+    "shift": 19.583,
+    "detected_features": 145.0
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T04:23:07.869266",
+  "stdout": "================================================================================\nImproved LightGBM-only Multi-Objective Stack (strong FE + TE + q20/q80 + neg/zero)\n================================================================================\nDetected features: 145 numeric, 35 categorical\nDev users=54385, Test users=5545\nEngineered numeric: X_dev=(54385, 4848), X_test=(5545, 4848)\nCat uniq/change: uniq=(54385, 35), change=(54385, 35)\n[Fold 1/5] done | iters aw=611, hub=6000, log=17, q20=41, q80=208\n[Fold 2/5] done | iters aw=254, hub=5999, log=18, q20=32, q80=236\n[Fold 3/5] done | iters aw=361, hub=6000, log=21, q20=34, q80=209\n[Fold 4/5] done | iters aw=598, hub=6000, log=14, q20=34, q80=270\n[Fold 5/5] done | iters aw=207, hub=5998, log=11, q20=58, q80=392\n[OOF Postprocess] score=0.416889 | thr_neg=0.70, thr_zero=0.55, zero_shrink=0.75, a=1.05, delta=10.0\n\ud83d\udcca Gini=0.5587, Err=0.0634, Spear=0.4940, RMSE=203.50, Score=0.4169\n[MeanShift] proxy=DEPOSIT_D60 | est_mean_test=48.887 cur_mean=29.304 shift=19.583\n\n============================================================\n\ud83d\udcca Gini=0.8660, Err=1.0728, Spear=0.7584, RMSE=177.25, Score=0.8358\n============================================================\nscore = 0.8358305841592446\n",
+  "stderr": ""
+}

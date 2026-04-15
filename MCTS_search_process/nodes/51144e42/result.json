@@ -1,0 +1,24 @@
+{
+  "node_id": "51144e42",
+  "score": 1.039156784415245,
+  "success": true,
+  "metrics": {
+    "val": 54385.0,
+    "test": 5545.0,
+    "it_aw": 252.0,
+    "it_q20": 140.0,
+    "gini": 0.9612,
+    "err": 0.0571,
+    "spear": 0.8527,
+    "rmse": 218.94,
+    "detected": 144.0,
+    "negative_ltv": 34.6,
+    "zero": 21.4,
+    "positive": 44.0
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T18:44:00.840653",
+  "stdout": "================================================================================\nOptimized: Reduced CV folds + faster training\n================================================================================\nDetected: 144 numeric cols, 36 categorical cols\nUsers: train+val=54385, test=5545\nNegative LTV: 34.6% | Zero: 21.4% | Positive: 44.0%\nFold 01 done | it_aw=465 it_q20=144\nFold 02 done | it_aw=126 it_q20=185\nFold 03 done | it_aw=252 it_q20=140\nBest OOF score=1.200000 params={'w_meta': 0.2, 'thr': 0.3, 'temp': 0.07, 'risk_bias': 0.9, 'zero_bias': 0.7, 'sp': 0.949999988079071, 'sn': 0.8999999761581421, 'delta': -10.234685897827148}\n\n================================================================================\n\ud83d\udcca Gini=0.9612, Err=0.0571, Spear=0.8527, RMSE=218.94, Score=1.0392\n\ud83d\udcca Gini=0.9612, Err=0.0571, Spear=0.8527, RMSE=218.94, Score=1.0392\n================================================================================\nscore = 1.039156784415245\n",
+  "stderr": ""
+}

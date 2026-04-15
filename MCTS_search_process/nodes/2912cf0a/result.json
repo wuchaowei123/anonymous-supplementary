@@ -1,0 +1,21 @@
+{
+  "node_id": "2912cf0a",
+  "score": 1.087744920935308,
+  "success": true,
+  "metrics": {
+    "cat_idx": 32.0,
+    "val_score": 1.2,
+    "fpr": 0.073,
+    "gini": 0.9694,
+    "err": 0.0818,
+    "spear": 0.8797,
+    "rmse": 189.86,
+    "detected": 164.0,
+    "final_score": 1.0877
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T02:53:09.768098",
+  "stdout": "======================================================================\nImproved LightGBM Ensemble + OOF Target Encoding + Conservative Calibration\n======================================================================\nDetected: 164 numerical cols, 16 categorical cols\nStage1 features: Xtr=(49638, 1636), Xva=(4975, 1636), cat_idx=32\nCalibration best: val_score=1.20000 | fpr=0.073 | params={'w_aw': 0.46796424775693163, 'w_log': 0.15228397100106328, 'w_q': 0.37975178124200504, 'thr_neg': 0.7461877820279186, 'thr_zero': 0.8350063597529485, 'neg_mix': 0.8491648116741695, 'lam_neg': 106.89509890542298, 'scale': 1.162706323894252, 'delta': -72.5452880859375, 'y_clip_lo': -89.85148620605469, 'y_clip_hi': 3155.812744140625}\nChosen full-train iterations (median): {'aw': 791, 'log': 153, 'q': 1796, 'negcls': 120, 'zerocls': 269, 'negreg': 835}\n\n======================================================================\n\ud83d\udcca Gini=0.9694, Err=0.0818, Spear=0.8797, RMSE=189.86, Score=1.0877\n======================================================================\n\nFinal Score: 1.0877\nscore = 1.087744920935308\n\ud83d\udcca Gini=0.9694, Err=0.0818, Spear=0.8797, RMSE=189.86, Score=1.0877\nscore = 1.087744920935308\n",
+  "stderr": ""
+}

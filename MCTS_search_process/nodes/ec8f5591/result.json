@@ -1,0 +1,14 @@
+{
+  "node_id": "ec8f5591",
+  "method": "Method 26: Survival Analysis",
+  "score": 0.6856366557913037,
+  "metrics": {
+    "gini": 0.8333038979953947,
+    "error_rate": 0.07612921641062367,
+    "spearman": 0.6544181926640782,
+    "rmse": 217.22823615668887
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.686514"
+}

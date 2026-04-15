@@ -1,0 +1,19 @@
+{
+  "node_id": "c4c16798",
+  "score": 0.6856366557913036,
+  "success": true,
+  "metrics": {
+    "gini": 0.8333,
+    "err": 0.0761,
+    "spear": 0.6544,
+    "rmse": 217.23,
+    "features": 90.0,
+    "samples": 54385.0,
+    "final_score": 0.6856
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-12T20:43:00.109736",
+  "stdout": "============================================================\nMethod 26: Survival Analysis for LTV\n============================================================\nUsing Cox-inspired modeling: P(event) \u00d7 E[value|event]\nFeatures: 90, Samples: 54385\n\n\ud83d\ude80 Step 1: Multi-class sign classifier...\n   Mean P(neg): 0.479\n   Mean P(zero): 0.143\n   Mean P(pos): 0.378\n\ud83d\ude80 Step 2: Negative LTV regressor...\n\ud83d\ude80 Step 3: Positive LTV regressor...\n\ud83d\udd27 Combining predictions...\n\n============================================================\n\ud83d\udcca Gini=0.8333, Err=0.0761, Spear=0.6544, RMSE=217.23, Score=0.6856\n============================================================\n\n\ud83c\udfaf Final Score: 0.6856\nscore = 0.6856366557913036\n",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "node_id": "3accee62",
+  "method": "Method 16: Neural ODT",
+  "score": 0.5175729453065041,
+  "metrics": {
+    "gini": 0.8024509387342085,
+    "error_rate": 0.09295969277939406,
+    "spearman": 0.64288553039968,
+    "rmse": 239.59629605882927
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.681799"
+}

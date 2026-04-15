@@ -1,0 +1,33 @@
+{
+  "node_id": "f3ffe695",
+  "score": 1.178993282492308,
+  "success": true,
+  "metrics": {
+    "\u03c4": 0.2,
+    "train": 49638.0,
+    "val": 4975.0,
+    "test": 5545.0,
+    "numeric": 164.0,
+    "cat": 16.0,
+    "seq_cols": 38.0,
+    "xtr": 2228.0,
+    "best_val_score": 1.2,
+    "m_mix": 0.5,
+    "w_hurdle": 0.0,
+    "w_q20": 0.1,
+    "risk_scale": 0.0,
+    "thr_gate": 0.55,
+    "thr_cap": 0.8,
+    "a": 1.8813,
+    "b": -6.1739,
+    "gini": 0.9777,
+    "err": 0.0457,
+    "spear": 0.8755,
+    "rmse": 181.06
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T21:08:43.920611",
+  "stdout": "================================================================================\nImproved approach: LightGBM suite + OOF Target Encoding + Quantile/Risk heads + VAL affine calibration\n - Stronger user-level temporal features (aggregate + compact day-wise subset)\n - AWMSE custom objective for asymmetric cost\n - Quantile (\u03c4=0.20) conservative bound\n - Negative-probability classifier used for risk adjustment\n - Post-hoc affine calibration on VAL to drastically improve budget/error_rate without hurting rank metrics\n================================================================================\nUsers: train=49638 | val=4975 | test=5545\nCols: numeric=164 | cat=16 | seq_cols=38\nFeature dim: Xtr=2228\n\n--- VAL calibration search (best) ---\nbest_val_score=1.200000 | metrics={'gini': 0.9742652773857117, 'error_rate': 0.007275015115737915, 'spearman': 0.8798401010915085, 'rmse': 95.62367248535156}\nparams: m_mix=0.50, w_hurdle=0.00, w_q20=0.10, risk_scale=0.00, thr_gate=0.55, thr_cap=0.80, a=1.8813, b=-6.1739\n\n================================================================================\n\ud83d\udcca Gini=0.9777, Err=0.0457, Spear=0.8755, RMSE=181.06, Score=1.1790\n================================================================================\n\ud83d\udcca Gini=0.9777, Err=0.0457, Spear=0.8755, RMSE=181.06, Score=1.1790\nscore = 1.178993282492308\n",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "node_id": "9413c366",
+  "method": "Method 20: Logistic + Hurdle",
+  "score": 0.5506591289785471,
+  "metrics": {
+    "gini": 0.8184131020403385,
+    "error_rate": 0.1546520578304171,
+    "spearman": 0.6374053750478123,
+    "rmse": 225.79364990478717
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.683697"
+}

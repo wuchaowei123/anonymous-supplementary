@@ -1,0 +1,22 @@
+{
+  "node_id": "7ce90b3e",
+  "score": 0.93,
+  "success": true,
+  "metrics": {
+    "numerical": 164.0,
+    "categorical": 16.0,
+    "train_loss": 75703.0066,
+    "val_loss": 20724.2754,
+    "best_val_loss": 17461.6729,
+    "tau": 0.2,
+    "gini": 0.9752,
+    "err": 0.398,
+    "spear": 0.8916,
+    "rmse": 189.92
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T08:40:13.627171",
+  "stdout": "Using device: cuda\n======================================================================\nPhysics-inspired Euler/ResNet time-stepping model + LightGBM ensemble\n======================================================================\nDay column: TDATE_RN\nDetected columns | numerical=164 | categorical=16\n\nTraining PhysicsEulerNet...\nEpoch 001/70 | train_loss=106629.9263 | val_loss=24130.7682\nEpoch 010/70 | train_loss=75703.0066 | val_loss=20724.2754\nEarly stopping at epoch 14 (best_val_loss=17461.6729)\n\nTraining LightGBM (mean, on signed-log target)...\nTraining LightGBM (quantile tau=0.20, raw target)...\n\nValidation conservative shift delta = 0.0629 (to reduce FP risk)\n\nValidation metrics (for monitoring only):\n\ud83d\udcca Gini=0.9732, Err=0.3588, Spear=0.8985, RMSE=114.96, Score=0.9300\n\n======================================================================\n\ud83d\udcca Gini=0.9752, Err=0.3980, Spear=0.8916, RMSE=189.92, Score=0.9300\n======================================================================\nscore = 0.93\n\ud83d\udcca Gini=0.9752, Err=0.3980, Spear=0.8916, RMSE=189.92, Score=0.9300\nscore = 0.93\n",
+  "stderr": ""
+}

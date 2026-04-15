@@ -1,0 +1,31 @@
+{
+  "node_id": "f6d1070b",
+  "score": 0.9140165992715853,
+  "success": true,
+  "metrics": {
+    "seq_len": 7.0,
+    "train": 49638.0,
+    "val": 4975.0,
+    "train_loss": 17338.999,
+    "val_score": 0.83842,
+    "best_epoch": 1.0,
+    "best_val_score": 0.60281,
+    "alpha": 0.6,
+    "thr": 0.4,
+    "delta": -15.0,
+    "fpr": 0.349,
+    "epochs": 6.0,
+    "loss": 22183.6456,
+    "gini": 0.9051,
+    "err": 0.0311,
+    "spear": 0.5701,
+    "rmse": 202.09,
+    "detected": 164.0,
+    "final_score": 0.914
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T01:38:35.734200",
+  "stdout": "Using device: cuda\n============================================================\nPhysics-Inspired Neural ODE Time-Stepping Network + Validation Calibration\n============================================================\nDetected: 164 numerical cols, 16 categorical cols\nUsing time column: TDATE_RN with seq_len=7\nUsers: train=49638, val=4975 | X_num=(49638, 7, 164) X_cat=(49638, 7, 16)\nEpoch 01/35 | train_loss=97310.8704 | val_score=0.60281\nEpoch 02/35 | train_loss=52592.9141 | val_score=0.34011\nEpoch 04/35 | train_loss=37812.1299 | val_score=0.50950\nEpoch 06/35 | train_loss=24080.7076 | val_score=0.41062\nEpoch 08/35 | train_loss=17338.9990 | val_score=0.22000\nEarly stopping at epoch 8 (best_epoch=1, best_val_score=0.60281)\nCalibration best: val_score=0.83842 | alpha=0.600 thr=0.400 delta=-15.0 | fpr=0.349\nTraining on full data for epochs=6 (best_epoch from stage-1)\n  full epoch 01/6 | loss=64253.2138\n  full epoch 02/6 | loss=49480.2700\n  full epoch 04/6 | loss=28765.3736\n  full epoch 06/6 | loss=22183.6456\n\n============================================================\n\ud83d\udcca Gini=0.9051, Err=0.0311, Spear=0.5701, RMSE=202.09, Score=0.9140\n============================================================\n\nFinal Score: 0.9140\nscore = 0.9140165992715853\n",
+  "stderr": ""
+}

@@ -1,0 +1,135 @@
+rank,node_id,score,gini,error_rate,spearman,rmse,depth,is_root,parent_id,mutation,method
+1,433ffc18,1.2000,0.9591,0.0037,0.8139,185.90,6,No,162c38d7,replicate,Node 433ffc18
+2,d94f676b,1.2000,0.9481,0.0037,0.8550,155.41,4,No,913d2fb0,-,Leak-free Fold Target Encoding + Strong LightGBM Suite + Hurdle Head + LGB Meta + Distribution Calib
+3,908990a3,1.2000,0.9736,0.0062,0.8497,37.08,1,No,bfe77fca,expert,"Temporal Trajectory Features + Asymmetric GBDT Stack + RL-style MLP"""""""
+4,162c38d7,1.1988,0.9597,0.0037,0.8320,200.36,5,No,5cbc6c18,-,Node 162c38d7
+5,d28db21c,1.1951,0.9747,0.0184,0.8271,151.27,2,No,9d5408eb,-,- Stronger temporal features (adds median + diff-based dynamics)
+6,01a20a18,1.1937,0.9647,0.0208,0.8558,186.33,2,No,db05059c,replicate,Node 01a20a18
+7,3fcd0d5e,1.1921,0.9175,0.0234,0.8097,169.41,1,No,88803fc6,expert,"Temporal Fusion Transformer (TFT) + Strong temporal feature engineering + GBDT ensemble"""""""
+8,a77319f8,1.1839,0.9742,0.0373,0.8224,150.27,3,No,d28db21c,replicate,Node a77319f8
+9,30238a87,1.1813,0.9708,0.0417,0.8456,72.31,5,No,cc72486a,-,Node 30238a87
+10,6b978a62,1.1790,0.9777,0.0457,0.8755,181.06,6,No,f3ffe695,-,Node 6b978a62
+11,f3ffe695,1.1790,0.9777,0.0457,0.8755,181.06,5,No,47cb9ac4,-,Node f3ffe695
+12,a2e56892,1.1778,0.9726,0.0477,0.8415,83.16,2,No,908990a3,hybridize,Node a2e56892
+13,cc72486a,1.1778,0.9726,0.0478,0.8666,69.24,4,No,a77319f8,-,Node cc72486a
+14,49de05bf,1.1776,0.9763,0.0480,0.8875,176.28,3,No,f041d38a,-,Node 49de05bf
+15,bebcec9b,1.1753,0.9716,0.0488,0.8666,200.57,2,No,5ca91174,-,LightGBM + Temporal Wide/Stats Features + OOF Target Encoding
+16,5cbc6c18,1.1753,0.9716,0.0488,0.8666,200.57,4,No,02485096,-,Node 5cbc6c18
+17,02485096,1.1753,0.9716,0.0488,0.8666,200.57,3,No,bebcec9b,-,Node 02485096
+18,7b3c7b9d,1.1752,0.9678,0.0522,0.8556,198.28,9,No,4887fd18,-,Node 7b3c7b9d
+19,59394c83,1.1747,0.9153,0.0037,0.7857,204.03,5,No,d94f676b,replicate,Node 59394c83
+20,3622f710,1.1706,0.9559,0.0601,0.8655,70.46,8,No,82a0a92c,replicate,Node 3622f710
+21,f041d38a,1.1685,0.9664,0.0209,0.7699,46.80,2,No,a31d2ff8,-,Node f041d38a
+22,a31d2ff8,1.1685,0.9664,0.0209,0.7699,46.80,1,No,5b3f0138,replicate,Physics-Inspired Euler/ResNet Time-Stepping Network
+23,913d2fb0,1.1633,0.9582,0.0723,0.8775,145.62,3,No,58d24a9b,replicate,Physics-inspired Deep Residual Time-Stepping (Lecture Notes: Deep Learning & Computational Physics)
+24,f8777984,1.1612,0.9800,0.0760,0.8910,179.28,8,No,0c55d264,-,Node f8777984
+25,ed857ad7,1.1322,0.9645,0.0681,0.7596,127.31,1,No,1c2c7ed8,replicate,Node ed857ad7
+26,82a0a92c,1.0881,0.9708,0.0812,0.8465,76.51,7,No,ff92b934,-,Node 82a0a92c
+27,2912cf0a,1.0877,0.9694,0.0818,0.8797,189.86,3,No,f6d1070b,-,Node 2912cf0a
+28,ff92b934,1.0877,0.9580,0.0819,0.8320,77.01,6,No,30238a87,-,Node ff92b934
+29,58d24a9b,1.0855,0.9578,0.0857,0.8744,145.93,2,No,3fcd0d5e,standard,- Fix LightGBM custom AWMSE objective usage (was defined but NOT used)
+30,9cf73541,1.0717,0.9544,0.0073,0.7360,155.36,1,No,6f3c3dd5,hybridize,Node 9cf73541
+31,4b752c92,1.0675,0.9657,0.0894,0.8644,204.73,4,No,d5ebfddd,-,Node 4b752c92
+32,80466eed,1.0410,0.9547,0.1613,0.8028,117.30,1,No,12762db7,replicate,Physics-inspired Deep Learning (Euler/ResNet time-stepping)
+33,51144e42,1.0392,0.9612,0.0571,0.8527,218.94,4,No,dce3b341,-,Node 51144e42
+34,32751612,1.0392,0.9612,0.0571,0.8527,218.94,5,No,51144e42,-,Node 32751612
+35,416c8854,1.0389,0.9387,0.1649,0.8760,197.45,2,No,cd4060ff,-,Level 2 Stacking with AWMSE Meta-Optimization - IMPROVED VERSION
+36,d5ebfddd,1.0243,0.9321,0.1464,0.7727,200.81,3,No,416c8854,replicate,Node d5ebfddd
+37,62981d80,1.0133,0.9703,0.2083,0.8568,191.48,9,No,2fd9f26c,-,Node 62981d80
+38,2fd9f26c,1.0133,0.9703,0.2083,0.8568,191.48,8,No,c18f552a,-,Node 2fd9f26c
+39,c18f552a,1.0133,0.9703,0.2083,0.8568,191.48,7,No,433ffc18,-,Node c18f552a
+40,9bf10fa8,0.9781,0.9547,0.2683,0.8163,163.41,1,No,6327ebfc,replicate,Node 9bf10fa8
+41,a4761e1f,0.9772,0.9003,0.1930,0.7458,197.76,10,No,7b3c7b9d,-,Node a4761e1f
+42,9c38989b,0.9546,0.9777,0.2894,0.8205,203.33,4,No,2e634f72,-,Node 9c38989b
+43,2e634f72,0.9546,0.9777,0.2894,0.8205,203.33,3,No,5db24ad1,-,Node 2e634f72
+44,5db24ad1,0.9546,0.9777,0.2894,0.8205,203.33,2,No,ed857ad7,-,Node 5db24ad1
+45,47cb9ac4,0.9504,0.9412,0.3044,0.7923,146.79,4,No,a9fc9882,-,Node 47cb9ac4
+46,a9fc9882,0.9494,0.9414,0.3069,0.7929,146.79,3,No,8bad20b8,-,Node a9fc9882
+47,8bad20b8,0.9479,0.9414,0.3087,0.7923,146.99,2,No,80466eed,hybridize,Node 8bad20b8
+48,5ca91174,0.9313,0.9732,0.3065,0.8686,207.28,1,No,a3829f20,replicate,Physics-inspired Euler / ResNet time-stepping network
+49,7ce90b3e,0.9300,0.9752,0.3980,0.8916,189.92,1,No,9a06582c,replicate,Node 7ce90b3e
+50,dce3b341,0.9300,0.9692,0.0029,0.8820,264.33,3,No,01a20a18,-,Node dce3b341
+51,83ae388b,0.9285,0.9412,0.1717,0.8678,216.90,5,No,9c38989b,replicate,Node 83ae388b
+52,0c55d264,0.9215,0.9416,0.0869,0.7757,227.90,7,No,6b978a62,replicate,Node 0c55d264
+53,f6d1070b,0.9140,0.9051,0.0311,0.5701,202.09,2,No,16aa46fc,replicate,Node f6d1070b
+54,cd4060ff,0.8995,0.8704,0.2577,0.8651,209.91,1,No,e7761f68,expert,Level 2 Stacking with AWMSE Meta-Optimization - IMPROVED VERSION
+55,9d5408eb,0.8389,0.9750,0.1196,0.8806,252.98,1,No,b95ea2de,-,Rich temporal user features + OOF target encoding + LightGBM (AWMSE + Quantile) + risk-aware calibra
+56,d8764d16,0.8358,0.8660,1.0728,0.7584,177.25,6,No,83ae388b,-,Node d8764d16
+57,bfe77fca,0.8036,0.8329,0.0306,0.6478,189.59,0,Yes,,-,Method 27: RL Value Network
+58,d5460491,0.7871,0.9590,0.1923,0.7810,250.94,2,No,9cf73541,replicate,Node d5460491
+59,db05059c,0.7567,0.9119,0.1260,0.4633,198.73,1,No,69259f53,standard,Node db05059c
+60,eaa170f7,0.7371,0.8351,0.0548,0.7096,220.28,1,No,cd1c0b7d,-,Node eaa170f7
+61,2b773e1d,0.7339,0.8378,0.0637,0.7082,220.74,1,No,cf670b6f,-,Node 2b773e1d
+62,816fa83a,0.7273,0.8444,0.0368,0.6820,224.41,2,No,eaa170f7,-,Node 816fa83a
+63,ae1e5d84,0.7231,0.9173,0.1836,0.5002,154.19,6,No,59394c83,-,Node ae1e5d84
+64,4887fd18,0.7173,0.9582,0.2780,0.7425,247.14,8,No,1534ef5e,-,Node 4887fd18
+65,1534ef5e,0.7173,0.9582,0.2780,0.7425,247.14,7,No,ae1e5d84,replicate,Node 1534ef5e
+66,8cf48023,0.7156,0.8341,0.0315,0.7075,229.81,1,No,240a7516,expert,Node 8cf48023
+67,6f3c3dd5,0.7014,0.8305,0.0231,0.6462,218.35,0,Yes,,-,Method 23: RALTV
+68,240a7516,0.7003,,,,,0,Yes,,-,Node 240a7516
+69,16aa46fc,0.6960,0.9190,0.4759,0.5853,198.59,1,No,eedb8ce7,replicate,Node 16aa46fc
+70,1e6f843c,0.6929,0.8185,0.0145,0.6664,221.15,0,Yes,,-,Method 21: Random Forest
+71,cd1c0b7d,0.6901,,,,,0,Yes,,-,Node cd1c0b7d
+72,cf670b6f,0.6884,,,,,0,Yes,,-,Node cf670b6f
+73,7b89bc67,0.6872,0.8173,0.0321,0.6679,219.51,1,No,b95ea2de,standard,"Production Pipeline - Optimized Ensemble of Best Methods"""""""
+74,b95ea2de,0.6872,0.8173,0.0321,0.6679,219.51,0,Yes,,-,Method 29: Production Pipeline
+75,ec8f5591,0.6856,0.8333,0.0761,0.6544,217.23,0,Yes,,-,Method 26: Survival Analysis
+76,c4c16798,0.6856,0.8333,0.0761,0.6544,217.23,1,No,ec8f5591,standard,"Survival Analysis for LTV with Time-to-Event Modeling"""""""
+77,69259f53,0.6841,0.8166,0.1443,0.6774,202.62,0,Yes,,-,Method 3: Three-Part Hurdle
+78,86f287bf,0.6763,,,,,0,Yes,,-,Node 86f287bf
+79,c7552e7b,0.6760,0.9197,0.1553,0.5551,220.82,1,No,f503dba9,standard,"Strong temporal feature engineering + (OOF) target encoding + LightGBM ensemble + stacking"""""""
+80,6327ebfc,0.6753,0.8300,0.0999,0.5970,186.64,0,Yes,,-,Method 30: Ultimate Ensemble
+81,5f482347,0.6707,0.8184,0.0664,0.6577,216.40,1,No,86f287bf,replicate,Node 5f482347
+82,162cd005,0.6619,0.8155,0.0711,0.6683,219.38,0,Yes,,-,Method 19: XGBoost with Custom Asymmetric Loss (AWMSE)
+83,a1629ed4,0.6618,0.8261,0.0735,0.6494,219.83,2,No,2b773e1d,-,Node a1629ed4
+84,457104dc,0.6599,0.9346,0.1454,0.6257,245.06,1,No,9413c366,replicate,Node 457104dc
+85,e1adbcfd,0.6585,0.8338,0.0998,0.6087,210.03,1,No,312390de,replicate,Node e1adbcfd
+86,f503dba9,0.6565,0.8201,0.0592,0.6411,218.68,0,Yes,,-,Method 28: Self-Supervised
+87,12762db7,0.6515,0.8023,0.0852,0.6160,199.94,0,Yes,,-,Method 18: Ridge
+88,88803fc6,0.6366,0.8104,0.0704,0.6532,220.63,0,Yes,,-,Method 17: Temporal Fusion Transformer
+89,13f241ad,0.6358,0.8338,0.0967,0.6575,223.59,3,No,816fa83a,replicate,Node 13f241ad
+90,2a123087,0.6346,0.8238,0.0473,0.5782,219.56,1,No,cf670b6f,hybridize,Node 2a123087
+91,57ca6601,0.6278,0.8208,0.0238,0.4077,210.64,11,No,a4761e1f,-,Node 57ca6601
+92,cad7caec,0.6154,0.8067,0.0409,0.6862,244.50,1,No,b3448f2c,replicate,Node cad7caec
+93,e7761f68,0.6049,0.8124,0.0847,0.6571,223.61,0,Yes,,-,Method 8: Stacking Ensemble
+94,06e2b562,0.6021,0.8102,0.0953,0.6479,219.15,0,Yes,,-,Method 05: FT-Transformer
+95,a3b33577,0.6013,0.8141,0.1516,0.7124,227.64,1,No,cd1c0b7d,hybridize,Node a3b33577
+96,43c05145,0.5937,0.8157,0.0847,0.6939,237.94,2,No,8cf48023,replicate,Node 43c05145
+97,b3448f2c,0.5867,0.7957,0.0774,0.6587,228.03,0,Yes,,-,Method 2: Risk-Averse Quantile Regression
+98,9e077da6,0.5772,0.8447,0.1732,0.2174,193.30,1,No,3accee62,replicate,Physics-inspired Euler/ResNet time-stepping sequence network
+99,1c2c7ed8,0.5695,0.7961,0.0935,0.6414,220.24,0,Yes,,-,Method 11: Residual GBDT
+100,06a3c776,0.5675,0.8172,0.1281,0.6524,228.53,0,Yes,,-,Method 14: CatBoost with Ordered Boosting and Custom Asymmetric Loss
+101,86392397,0.5637,0.7824,0.0909,0.6774,224.24,0,Yes,,-,Method 15: GNN
+102,1e65bc0c,0.5575,0.8131,0.2953,0.6048,194.97,0,Yes,,-,Method 13: TabNet
+103,eedb8ce7,0.5542,0.8102,0.1079,0.6386,228.93,0,Yes,,-,Method 7: Hybrid Feature Fusion
+104,9413c366,0.5507,0.8184,0.1547,0.6374,225.79,0,Yes,,-,Method 20: Logistic + Hurdle
+105,3accee62,0.5176,0.8025,0.0930,0.6429,239.60,0,Yes,,-,Method 16: Neural ODT
+106,efbf93b9,0.5093,0.8091,0.1395,0.6486,238.81,0,Yes,,-,Method 12: Bidirectional LSTM with Attention (PyTorch)
+107,572fd61f,0.4981,0.7999,0.1915,0.6352,224.80,0,Yes,,-,Method 10: Multi-Task Learning
+108,91e40de5,0.4840,0.7967,0.1951,0.6284,225.02,1,No,572fd61f,replicate,"Multi-Task Learning (MTL) DNN with Sign-Regularization (PyTorch)"""""""
+109,ae818f6c,0.4598,0.5910,0.2750,0.5992,0.58,1,No,1e6f843c,expert,Random Forest + LightGBM with Temporal Feature Engineering
+110,312390de,0.4194,,,,,0,Yes,,-,Node 312390de
+111,5b3f0138,0.4023,0.8079,0.2760,0.6619,249.48,0,Yes,,-,Method 25: Mixture of Experts (MoE)
+112,9a06582c,0.3806,0.7961,0.2905,0.6237,237.69,0,Yes,,-,Method 22: MLP-Mixer
+113,a3829f20,0.3649,0.7745,0.1690,0.5613,236.92,0,Yes,,-,Method 24: Diffusion
+114,c4e8fc1b,0.3135,0.7831,0.3444,0.5650,226.79,1,No,162cd005,expert,XGBoost with Custom Asymmetric Loss (AWMSE) + Risk Target Encoding
+115,b8415417,0.3114,0.7855,0.2178,0.5935,258.17,0,Yes,,-,Method 9: MC Dropout
+116,051bb200,0.2990,0.7784,0.2636,0.6333,273.42,0,Yes,,-,Method 6: Focal Loss GBDT
+117,62ae0afc,0.2368,0.7775,0.3480,0.5893,252.33,0,Yes,,-,Method 4: TCN
+118,25e6b6bb,0.1259,0.7151,0.8364,0.3978,230.17,6,No,32751612,-,Node 25e6b6bb
+119,d4b077f3,-inf,,,,,9,No,3622f710,-,Node d4b077f3
+120,4a46464a,-inf,,,,,4,No,2912cf0a,-,Node 4a46464a
+121,3d6ff439,-inf,,,,,3,No,d5460491,-,Node 3d6ff439
+122,58a713fa,-inf,,,,,7,No,d8764d16,-,Node 58a713fa
+123,8ffcac95,-inf,,,,,5,No,4b752c92,-,Node 8ffcac95
+124,59c29211,-inf,,,,,9,No,f8777984,-,Node 59c29211
+125,9e8127d3,-inf,,,,,2,No,7ce90b3e,replicate,Node 9e8127d3
+126,ea3e96c1,-inf,,,,,10,No,62981d80,-,Node ea3e96c1
+127,5f156734,-inf,,,,,4,No,49de05bf,-,Node 5f156734
+128,8e5cad99,-inf,,,,,2,No,908990a3,-,Node 8e5cad99
+129,80561153,-inf,,,,,1,No,62ae0afc,-,Strong user-level temporal feature engineering + LightGBM ensemble
+130,4f14b271,-inf,,,,,1,No,051bb200,-,Strong temporal feature engineering + CV-bagged LightGBM ensemble
+131,4be073b3,-inf,,,,,1,No,b8415417,replicate,Node 4be073b3
+132,7572216d,-inf,,,,,1,No,86392397,expert,Hybrid Feature Fusion (Manual + Deep Sequence Embeddings + Risk Encoding + kNN Cohorts)
+133,965bc7b4,-inf,,,,,1,No,06a3c776,standard,CV-stacked LightGBM (Custom AWMSE + Quantile) + ExtraTrees + Risk features
+134,cd9e6042,-inf,,,,,1,No,06e2b562,hybridize,Node cd9e6042

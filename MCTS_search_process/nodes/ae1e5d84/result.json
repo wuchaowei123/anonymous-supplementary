@@ -1,0 +1,21 @@
+{
+  "node_id": "ae1e5d84",
+  "score": 0.723090718756763,
+  "success": true,
+  "metrics": {
+    "full_train": 54613.0,
+    "test": 5545.0,
+    "gini": 0.9173,
+    "err": 0.1836,
+    "spear": 0.5002,
+    "rmse": 154.19,
+    "a": 1.2008,
+    "b": -4.91,
+    "delta": -1.5
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T14:37:05.954875",
+  "stdout": "========================================================================\nImproved: Leak-reduced OOF Target Encoding + Multi-head LightGBM suite + Ridge/LGB meta + conservative postproc\n========================================================================\nUsers: full_train=54613, test=5545\nUser-level categorical cols for TE = 16\n\n--- Outer Fold 1/5 ---\n\n--- Outer Fold 2/5 ---\n\n--- Outer Fold 3/5 ---\n\n--- Outer Fold 4/5 ---\n\n--- Outer Fold 5/5 ---\n\n========================================================================\nOOF (train+val) diagnostic score (optimistic but useful):\n\ud83d\udcca Gini=0.9458, Err=0.1094, Spear=0.6712, RMSE=134.23, Score=0.9092\nAffine a=1.2008, b=-4.91, delta=-1.50\n========================================================================\n\n========================================================================\n\ud83d\udcca Gini=0.9173, Err=0.1836, Spear=0.5002, RMSE=154.19, Score=0.7231\n========================================================================\nscore = 0.723090718756763\n\ud83d\udcca Gini=0.9173, Err=0.1836, Spear=0.5002, RMSE=154.19, Score=0.7231\nscore = 0.723090718756763\n",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "node_id": "e7761f68",
+  "method": "Method 8: Stacking Ensemble",
+  "score": 0.6049152637073409,
+  "metrics": {
+    "gini": 0.8123742347393071,
+    "error_rate": 0.08469166527374748,
+    "spearman": 0.6570584518352315,
+    "rmse": 223.60562497760998
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.677456"
+}

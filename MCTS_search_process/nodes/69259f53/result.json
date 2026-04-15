@@ -1,0 +1,14 @@
+{
+  "node_id": "69259f53",
+  "method": "Method 3: Three-Part Hurdle",
+  "score": 0.6840990432995036,
+  "metrics": {
+    "gini": 0.8165721010134649,
+    "error_rate": 0.14432480368764578,
+    "spearman": 0.6774204516291503,
+    "rmse": 202.62137582815632
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.674996"
+}

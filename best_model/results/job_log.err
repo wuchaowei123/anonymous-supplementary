@@ -1,0 +1,36 @@
+2026-01-20 10:42:18 | WARNING | ⚠️ ShinkaAutoFixer not available, running without auto-fix
+2026-01-20 10:42:18 | INFO | Evaluating: results_pareto_evolution/gen_25/main.py
+2026-01-20 10:42:18 | INFO | Results will be in: results_pareto_evolution/gen_25/results
+2026-01-20 10:42:18 | INFO | Running: results_pareto_evolution/gen_25/main.py
+2026-01-20 10:42:18 | INFO | Output JSON will be: results_pareto_evolution/gen_25/results/output.json
+2026-01-20 10:43:57 | INFO | === STDOUT (last 3000 chars) ===
+2026-01-20 10:43:57 | INFO | ======================================================================
+Physics-Inspired Deep MTL: finite-difference features + residual TCN + sign/mean/q20 heads
+======================================================================
+Detected num_cols=164, cat_cols=16
+Anchor mean (train+val) = 23.671732 | train mean=23.992517 | val mean=20.471085
+
+[Training] Deep MTL model...
+Epoch 01 | train_loss=47024.06250 | val_score=0.333912 | val_fpr=0.356
+Epoch 02 | train_loss=37557.70933 | val_score=0.559565 | val_fpr=0.273
+Epoch 04 | train_loss=31978.48495 | val_score=0.995990 | val_fpr=0.099
+Epoch 06 | train_loss=26980.05952 | val_score=0.730380 | val_fpr=0.267
+Epoch 08 | train_loss=17047.73484 | val_score=1.026058 | val_fpr=0.248
+Epoch 10 | train_loss=15384.57641 | val_score=1.043912 | val_fpr=0.217
+Epoch 12 | train_loss=10470.88521 | val_score=1.043912 | val_fpr=0.222
+Early stopping at epoch 13 (best_val=1.043912)
+
+[Tuning] Searching conservative policy on VAL...
+Best VAL policy score = 1.043912
+Best params: {'w_q': 0.0, 'use_min': True, 'thr_gate': 0.65, 'snap_eps': 0.0, 'risk_scale': 0.0, 'a': 4.191576286675182, 'b': 8.191299214557024, 'delta': 0.0}
+
+[Inference] Predicting TEST...
+
+======================================================================
+📊 Gini=0.9625, Err=0.0037, Spear=0.8285, RMSE=91.37, Score=1.2000
+======================================================================
+
+🎯 Final Score: 1.200000
+Results saved to: results_pareto_evolution/gen_25/results/output.json
+score = 1.2
+

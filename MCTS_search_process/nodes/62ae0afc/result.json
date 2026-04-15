@@ -1,0 +1,14 @@
+{
+  "node_id": "62ae0afc",
+  "method": "Method 4: TCN",
+  "score": 0.23675210563726126,
+  "metrics": {
+    "gini": 0.777471499622225,
+    "error_rate": 0.34797684820406255,
+    "spearman": 0.5892986715056686,
+    "rmse": 252.32860027442527
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.675449"
+}

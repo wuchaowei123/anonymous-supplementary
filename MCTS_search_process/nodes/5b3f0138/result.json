@@ -1,0 +1,22 @@
+{
+  "node_id": "5b3f0138",
+  "method": "Method 25: Mixture of Experts (MoE)",
+  "score": 0.4022619163745659,
+  "metrics": {
+    "gini": 0.8078528495038773,
+    "error_rate": 0.27600823757855547,
+    "spearman": 0.6619097076610433,
+    "rmse": 249.47896783150506,
+    "gini_score": 0.5392642475193863,
+    "error_score": 0.2176228306513074,
+    "spearman_score": 0.5396990255368109,
+    "rmse_score": 0.17535053614158233,
+    "base_score": 0.4022619163745659,
+    "pareto_bonus": 0.0,
+    "diversity_bonus": 0.0,
+    "excellence_count": 0
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.686019"
+}

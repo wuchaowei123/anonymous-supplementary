@@ -1,0 +1,1155 @@
+#!/usr/bin/env python3
+"""
+AviaAgentMonty - Execution Node: 49de05bf
+Type: fixed
+Generated: 2026-01-13T11:53:29.832987
+Fix Attempts: 1
+
+DO NOT DELETE - This file is preserved for reproducibility.
+"""
+import warnings
+warnings.filterwarnings('ignore')
+
+import os
+import json
+import numpy as np
+import pandas as pd
+from scipy.stats import spearmanr
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import KFold
+
+import lightgbm as lgb
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, TensorDataset
+from torch.optim import AdamW
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"🔧 Using device: {device}")
+
+def seed_everything(seed: int = 42):
+    import random
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+seed_everything(42)
+
+TRAIN_PATH = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/train.csv"
+VAL_PATH   = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/val.csv"
+TEST_PATH  = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/test.csv"
+OUTPUT_JSON = os.environ.get('AVIA_OUTPUT_JSON', '/tmp/avia_score_output.json')
+
+TARGET_COL = "REC_USD_D60"
+ID_COL = "DEVICE_ID"
+TEMPORAL_COL = "TDATE_RN"
+
+NUMERICAL_COLS = [
+    'DEPOSIT_AMOUNT', 'REC_USD', 'REC_USD_CUM', 'REC_USD_D6', 'CPI',
+    'RANK1_PLAY_CNT_ALL', 'RANK_UNDER3_PLAY_CNT_ALL', 'PLAY_CNT_ALL', 'PLAY_CNT_TICKET', 'AD_PLAY_CNT_ALL',
+    'CLEAR_PLAY_CNT_ALL', 'AVG_SCORE_ALL', 'SESSION_CNT_ALL', 'ACTUAL_ENTRY_FEE_CASH',
+    'ACTUAL_BONUS_ENTRY_FEE_CASH', 'ACTUAL_REWARD_CASH', 'ACTUAL_BONUS_REWARD_CASH', 'PLAY_CNT_CASH',
+    'RANK1_PLAY_CNT_CASH', 'HIGHFEE_PLAY_CNT_CASH', 'JN_PLAY_CNT', 'FJ80_PLAY_CNT',
+    'CASH_RATIO', 'ACTIVE_DAYS_ALL_CUM', 'PLAY_CNT_ALL_CUM', 'PLAY_CNT_CASH_CUM',
+]
+CATEGORICAL_COLS = ['MEDIA_SOURCE', 'COUNTRY', 'DEVICE_TYPE']
+
+def calculate_norm_gini(y_true, y_pred):
+    y_true = np.asarray(y_true).flatten()
+    y_pred = np.asarray(y_pred).flatten()
+    
+    if len(y_true) == 0 or np.sum(y_true) <= 0:
+        return 0.0
+    
+    order = np.argsort(y_pred)[::-1]
+    y_true_sorted = y_true[order]
+    cumsum = np.cumsum(y_true_sorted)
+    total = cumsum[-1]
+    
+    if total == 0:
+        return 0.0
+    
+    lorenz = cumsum / total
+    n = len(y_true)
+    gini_actual = 2 * np.sum(lorenz) / n - 1
+    
+    y_true_perfect = np.sort(y_true)[::-1]
+    cumsum_perfect = np.cumsum(y_true_perfect)
+    lorenz_perfect = cumsum_perfect / total
+    gini_perfect = 2 * np.sum(lorenz_perfect) / n - 1
+    
+    if gini_perfect == 0:
+        return 1.0
+    
+    return gini_actual / gini_perfect
+
+
+def calculate_error_rate(y_true, y_pred):
+    """Per-sample absolute error rate (MAE normalized by sum of true values)"""
+    y_true = np.asarray(y_true).flatten()
+    y_pred = np.asarray(y_pred).flatten()
+    
+    numerator = np.sum(np.abs(y_pred - y_true))
+    denominator = np.sum(y_true)
+    
+    if denominator == 0:
+        return float('inf') if numerator > 0 else 0.0
+    
+    return numerator / denominator
+
+
+def calculate_spearman(y_true, y_pred):
+    y_true = np.asarray(y_true).flatten()
+    y_pred = np.asarray(y_pred).flatten()
+    
+    corr, _ = spearmanr(y_true, y_pred)
+    return float(corr) if not np.isnan(corr) else 0.0
+
+
+def calculate_rmse(y_true, y_pred):
+    y_true = np.asarray(y_true).flatten()
+    y_pred = np.asarray(y_pred).flatten()
+    
+    return float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
+
+
+def compute_composite_score(y_true, y_pred):
+    gini = calculate_norm_gini(y_true, y_pred)
+    error_rate = calculate_error_rate(y_true, y_pred)
+    spearman = calculate_spearman(y_true, y_pred)
+    rmse = calculate_rmse(y_true, y_pred)
+    
+    gini_score = np.clip((gini - 0.70) / (0.90 - 0.70), 0.0, 1.0)
+    error_score = np.clip((0.35 - error_rate) / (0.35 - 0.01), 0.0, 1.0)
+    spearman_score = np.clip((spearman - 0.50) / (0.80 - 0.50), 0.0, 1.0)
+    rmse_score = np.clip((260 - rmse) / (260 - 200), 0.0, 1.0)
+    
+    base_score = 0.35 * gini_score + 0.25 * spearman_score + 0.20 * rmse_score + 0.20 * error_score
+    
+    pareto_bonus = 0.0
+    excellence_count = 0
+    
+    if gini_score > 0.8:
+        pareto_bonus += 0.035
+        excellence_count += 1
+    if spearman_score > 0.8:
+        pareto_bonus += 0.025
+        excellence_count += 1
+    if rmse_score > 0.8:
+        pareto_bonus += 0.020
+        excellence_count += 1
+    if error_score > 0.8:
+        pareto_bonus += 0.020
+        excellence_count += 1
+    
+    scores = [gini_score, error_score, spearman_score, rmse_score]
+    score_std = np.std(scores)
+    
+    diversity_bonus = min(0.02, score_std * 0.1) if score_std > 0.2 and base_score > 0.5 else 0.0
+    
+    if excellence_count >= 2:
+        pareto_bonus += 0.02
+    if excellence_count >= 3:
+        pareto_bonus += 0.03
+    if excellence_count == 4:
+        pareto_bonus += 0.05
+    
+    final_score = base_score + pareto_bonus + diversity_bonus
+    
+    print(f"📊 Metrics: Gini={gini:.4f}, ErrRate={error_rate:.4f}, Spearman={spearman:.4f}, RMSE={rmse:.2f}")
+    print(f"📊 Individual Scores: Gini={gini_score:.3f}, Err={error_score:.3f}, Spear={spearman_score:.3f}, RMSE={rmse_score:.3f}")
+    print(f"📊 Base={base_score:.4f}, Pareto={pareto_bonus:.2f}, Diversity={diversity_bonus:.3f}, FINAL={final_score:.4f}")
+    print(f"📊 Excellence count: {excellence_count}/4 metrics")
+    
+    return final_score, {
+        'gini': gini, 'error_rate': error_rate, 'spearman': spearman, 'rmse': rmse,
+        'gini_score': gini_score, 'error_score': error_score, 
+        'spearman_score': spearman_score, 'rmse_score': rmse_score,
+        'base_score': base_score, 'pareto_bonus': pareto_bonus,
+        'diversity_bonus': diversity_bonus, 'excellence_count': excellence_count,
+    }
+
+def compute_pareto_multi_objective(y_true, y_pred):
+    s, _ = compute_composite_score(y_true, y_pred)
+    return s
+
+def silent_composite_score(y_true, y_pred):
+    gini = calculate_norm_gini(y_true, y_pred)
+    error_rate = calculate_error_rate(y_true, y_pred)
+    spearman = calculate_spearman(y_true, y_pred)
+    rmse = calculate_rmse(y_true, y_pred)
+    
+    gini_score = np.clip((gini - 0.70) / (0.90 - 0.70), 0.0, 1.0)
+    error_score = np.clip((0.35 - error_rate) / (0.35 - 0.01), 0.0, 1.0)
+    spearman_score = np.clip((spearman - 0.50) / (0.80 - 0.50), 0.0, 1.0)
+    rmse_score = np.clip((260 - rmse) / (260 - 200), 0.0, 1.0)
+    
+    base_score = 0.35 * gini_score + 0.25 * spearman_score + 0.20 * rmse_score + 0.20 * error_score
+    
+    pareto_bonus = 0.0
+    excellence_count = 0
+    
+    if gini_score > 0.8:
+        pareto_bonus += 0.035
+        excellence_count += 1
+    if spearman_score > 0.8:
+        pareto_bonus += 0.025
+        excellence_count += 1
+    if rmse_score > 0.8:
+        pareto_bonus += 0.020
+        excellence_count += 1
+    if error_score > 0.8:
+        pareto_bonus += 0.020
+        excellence_count += 1
+    
+    scores = [gini_score, error_score, spearman_score, rmse_score]
+    score_std = np.std(scores)
+    
+    diversity_bonus = min(0.02, score_std * 0.1) if score_std > 0.2 and base_score > 0.5 else 0.0
+    
+    if excellence_count >= 2:
+        pareto_bonus += 0.02
+    if excellence_count >= 3:
+        pareto_bonus += 0.03
+    if excellence_count == 4:
+        pareto_bonus += 0.05
+    
+    final_score = base_score + pareto_bonus + diversity_bonus
+    return final_score, {
+        'gini': gini, 'error_rate': error_rate, 'spearman': spearman, 'rmse': rmse,
+        'gini_score': gini_score, 'error_score': error_score, 
+        'spearman_score': spearman_score, 'rmse_score': rmse_score,
+        'base_score': base_score, 'pareto_bonus': pareto_bonus,
+        'diversity_bonus': diversity_bonus, 'excellence_count': excellence_count,
+    }
+
+def load_all_data():
+    print("📂 Loading data...")
+    train_df = pd.read_csv(TRAIN_PATH)
+    val_df = pd.read_csv(VAL_PATH)
+    test_df = pd.read_csv(TEST_PATH)
+    print(f"   Train: {train_df.shape} ({train_df[ID_COL].nunique()} users)")
+    print(f"   Val:   {val_df.shape} ({val_df[ID_COL].nunique()} users)")
+    print(f"   Test:  {test_df.shape} ({test_df[ID_COL].nunique()} users)")
+    return train_df, val_df, test_df
+
+def infer_columns(train_df: pd.DataFrame):
+    cat_cols = [c for c in CATEGORICAL_COLS if c in train_df.columns]
+    auto_obj = [c for c in train_df.columns if (train_df[c].dtype == 'object' or str(train_df[c].dtype).startswith('string'))]
+    for c in auto_obj:
+        if c not in cat_cols and c not in (ID_COL,):
+            cat_cols.append(c)
+
+    exclude = {ID_COL, TARGET_COL, TEMPORAL_COL}
+    num_cols = [c for c in train_df.select_dtypes(include=[np.number, 'bool']).columns if c not in exclude]
+
+    if len(num_cols) == 0:
+        num_cols = [c for c in NUMERICAL_COLS if c in train_df.columns]
+
+    return num_cols, cat_cols
+
+def fit_category_maps(train_df: pd.DataFrame, cat_cols):
+    cat_maps = {}
+    cat_sizes = {}
+    for c in cat_cols:
+        vals = train_df[c].fillna("__NA__").astype(str).values
+        uniq = pd.unique(vals)
+        mapping = {v: i + 1 for i, v in enumerate(uniq)}
+        cat_maps[c] = mapping
+        cat_sizes[c] = len(mapping) + 1
+    return cat_maps, cat_sizes
+
+def encode_categories(df: pd.DataFrame, cat_cols, cat_maps):
+    if len(cat_cols) == 0:
+        return np.zeros((len(df), 0), dtype=np.int64)
+    out = np.zeros((len(df), len(cat_cols)), dtype=np.int64)
+    for j, c in enumerate(cat_cols):
+        mapping = cat_maps[c]
+        vals = df[c].fillna("__NA__").astype(str).values
+        out[:, j] = np.array([mapping.get(v, 0) for v in vals], dtype=np.int64)
+    return out
+
+def build_user_sequences(
+    df: pd.DataFrame,
+    num_cols,
+    cat_cols,
+    cat_maps=None,
+    scaler=None,
+    fit_scaler=False,
+    expect_days=7,
+):
+    df = df.sort_values([ID_COL, TEMPORAL_COL]).reset_index(drop=True)
+
+    counts = df.groupby(ID_COL)[TEMPORAL_COL].count().values
+    if not np.all(counts == expect_days):
+        ids = df[ID_COL].unique()
+        n_users = len(ids)
+        n_num = len(num_cols)
+        n_cat = len(cat_cols)
+
+        X_num = np.zeros((n_users, expect_days, n_num), dtype=np.float32)
+        X_cat = np.zeros((n_users, expect_days, n_cat), dtype=np.int64)
+        y = np.zeros((n_users,), dtype=np.float32) if TARGET_COL in df.columns else None
+
+        num_rows = df[num_cols].astype(np.float32).fillna(0.0).values
+        cat_rows = encode_categories(df, cat_cols, cat_maps) if cat_maps is not None else np.zeros((len(df), n_cat), dtype=np.int64)
+
+        grp = df.groupby(ID_COL).indices
+        for i, uid in enumerate(ids):
+            idxs = grp[uid]
+            take = idxs[:expect_days]
+            k = len(take)
+            X_num[i, :k, :] = num_rows[take]
+            X_cat[i, :k, :] = cat_rows[take]
+            if y is not None:
+                y[i] = float(df.loc[take[0], TARGET_COL])
+    else:
+        ids = df[ID_COL].drop_duplicates().values
+        n_users = len(ids)
+        n_num = len(num_cols)
+        n_cat = len(cat_cols)
+
+        num_rows = df[num_cols].astype(np.float32).fillna(0.0).values
+        X_num = num_rows.reshape(n_users, expect_days, n_num)
+
+        if n_cat > 0 and cat_maps is not None:
+            cat_rows = encode_categories(df, cat_cols, cat_maps)
+            X_cat = cat_rows.reshape(n_users, expect_days, n_cat)
+        else:
+            X_cat = np.zeros((n_users, expect_days, 0), dtype=np.int64)
+
+        y = None
+        if TARGET_COL in df.columns:
+            y = df.groupby(ID_COL)[TARGET_COL].first().astype(np.float32).values
+
+    X_num_flat = X_num.reshape(-1, X_num.shape[-1]).astype(np.float32)
+    if fit_scaler:
+        scaler = StandardScaler()
+        X_num_flat = scaler.fit_transform(X_num_flat).astype(np.float32)
+    else:
+        X_num_flat = scaler.transform(X_num_flat).astype(np.float32)
+    X_num_scaled = X_num_flat.reshape(X_num.shape)
+
+    t = np.linspace(-1.0, 1.0, expect_days, dtype=np.float32)[None, :, None]
+    t = np.repeat(t, X_num_scaled.shape[0], axis=0)
+
+    diffs = np.diff(X_num_scaled, axis=1, prepend=X_num_scaled[:, 0:1, :]).astype(np.float32)
+
+    X_seq_num = np.concatenate([X_num_scaled, diffs, t], axis=2).astype(np.float32)
+
+    mean = X_num_scaled.mean(axis=1)
+    std = X_num_scaled.std(axis=1)
+    mn = X_num_scaled.min(axis=1)
+    mx = X_num_scaled.max(axis=1)
+    last = X_num_scaled[:, -1, :]
+    slope = (X_num_scaled[:, -1, :] - X_num_scaled[:, 0, :])
+    X_static = np.concatenate([mean, std, mn, mx, last, slope], axis=1).astype(np.float32)
+
+    return X_seq_num, X_cat, X_static, y, ids, scaler
+
+def choose_emb_dim(cardinality: int) -> int:
+    if cardinality <= 2:
+        return 2
+    return int(min(16, max(3, round(1.6 * np.sqrt(cardinality)))))
+
+class DynamicsMLP(nn.Module):
+    def __init__(self, state_dim: int, input_dim: int, hidden: int = 256, dropout: float = 0.10):
+        super().__init__()
+        self.norm = nn.LayerNorm(state_dim + input_dim)
+        self.fc1 = nn.Linear(state_dim + input_dim, hidden)
+        self.act = nn.GELU()
+        self.drop = nn.Dropout(dropout)
+        self.fc2 = nn.Linear(hidden, state_dim)
+
+    def forward(self, h, x):
+        z = torch.cat([h, x], dim=-1)
+        z = self.norm(z)
+        z = self.fc1(z)
+        z = self.act(z)
+        z = self.drop(z)
+        z = self.fc2(z)
+        return z
+
+class EulerResNetEncoder(nn.Module):
+    def __init__(self, seq_num_dim: int, cat_sizes: dict, cat_cols: list, state_dim: int = 128):
+        super().__init__()
+        self.cat_cols = cat_cols
+        self.state_dim = state_dim
+
+        self.embeddings = nn.ModuleDict()
+        self.emb_dims = {}
+        emb_total = 0
+        for c in cat_cols:
+            card = int(cat_sizes[c])
+            dim = choose_emb_dim(card)
+            self.embeddings[c] = nn.Embedding(card, dim)
+            self.emb_dims[c] = dim
+            emb_total += dim
+
+        in_dim = seq_num_dim + emb_total
+        self.in_proj = nn.Linear(in_dim, state_dim)
+
+        self.dynamics = DynamicsMLP(state_dim=state_dim, input_dim=state_dim, hidden=256, dropout=0.15)
+
+        self._dt = nn.Parameter(torch.tensor(0.0))
+        self._gamma = nn.Parameter(torch.tensor(-2.0))
+
+        self.h_norm = nn.LayerNorm(state_dim)
+
+    def forward(self, x_num, x_cat):
+        B, T, _ = x_num.shape
+        dt = torch.sigmoid(self._dt)
+        gamma = torch.sigmoid(self._gamma)
+
+        if x_cat.shape[-1] > 0:
+            emb_list = []
+            for j, c in enumerate(self.cat_cols):
+                emb = self.embeddings[c](x_cat[:, :, j])
+                emb_list.append(emb)
+            x = torch.cat([x_num] + emb_list, dim=-1)
+        else:
+            x = x_num
+
+        x = self.in_proj(x)
+
+        h = torch.zeros((B, self.state_dim), device=x.device, dtype=x.dtype)
+        hs = []
+        energy_accum = 0.0
+
+        for t in range(T):
+            xt = x[:, t, :]
+            dh = self.dynamics(h, xt)
+            h = (1.0 - gamma) * h + dt * dh
+            h = self.h_norm(h)
+            hs.append(h.unsqueeze(1))
+            energy_accum = energy_accum + (dh ** 2).mean()
+
+        h_seq = torch.cat(hs, dim=1)
+        h_last = h_seq[:, -1, :]
+        h_mean = h_seq.mean(dim=1)
+        energy = energy_accum / float(T)
+        return h_last, h_mean, energy
+
+class MultiHeadPredictor(nn.Module):
+    def __init__(self, seq_num_dim: int, static_dim: int, cat_sizes: dict, cat_cols: list, state_dim: int = 128):
+        super().__init__()
+        self.encoder = EulerResNetEncoder(seq_num_dim=seq_num_dim, cat_sizes=cat_sizes, cat_cols=cat_cols, state_dim=state_dim)
+
+        head_in = state_dim * 2 + static_dim
+        self.shared = nn.Sequential(
+            nn.Linear(head_in, 256),
+            nn.GELU(),
+            nn.Dropout(0.10),
+            nn.Linear(256, 128),
+            nn.GELU(),
+            nn.Dropout(0.05),
+        )
+
+        self.mean_head = nn.Linear(128, 1)
+        self.q20_head = nn.Linear(128, 1)
+        self.sign_head = nn.Linear(128, 1)
+
+    def forward(self, x_num, x_cat, x_static):
+        h_last, h_mean, energy = self.encoder(x_num, x_cat)
+        z = torch.cat([h_last, h_mean, x_static], dim=-1)
+        z = self.shared(z)
+        y_mean = self.mean_head(z).squeeze(-1)
+        y_q20 = self.q20_head(z).squeeze(-1)
+        sign_logit = self.sign_head(z).squeeze(-1)
+        return y_mean, y_q20, sign_logit, energy
+
+def awmse_loss(y_true, y_pred):
+    err = (y_pred - y_true)
+    fp = (y_pred > 0) & (y_true < 0)
+    fn = (y_pred < 0) & (y_true > 0)
+
+    w = torch.ones_like(y_true)
+    w_fp = 2.5 + 0.02 * torch.abs(y_true)
+    w_fn = 1.5 + 0.01 * torch.clamp(y_true, min=0.0)
+
+    w = torch.where(fp, w_fp, w)
+    w = torch.where(fn, w_fn, w)
+    return (w * (err ** 2)).mean()
+
+def pinball_loss(y_true, y_pred, tau: float = 0.20):
+    diff = y_true - y_pred
+    return torch.mean(torch.maximum(tau * diff, (tau - 1.0) * diff))
+
+def weighted_bce_with_logits(logits, targets, pos_weight: float = 1.67):
+    pw = torch.tensor([pos_weight], device=logits.device, dtype=logits.dtype)
+    return F.binary_cross_entropy_with_logits(logits, targets, pos_weight=pw)
+
+def false_positive_rate(y_true, y_pred):
+    y_true = np.asarray(y_true)
+    y_pred = np.asarray(y_pred)
+    pos_pred = (y_pred > 0)
+    if pos_pred.sum() == 0:
+        return 0.0
+    return float(((y_true < 0) & pos_pred).sum() / pos_pred.sum())
+
+def apply_conservative_calibration(mean_pred, q20_pred, p_neg, alpha=0.30, beta=0.50, delta=0.0):
+    mean_pred = np.asarray(mean_pred, dtype=np.float32)
+    q20_pred = np.asarray(q20_pred, dtype=np.float32)
+    p_neg = np.asarray(p_neg, dtype=np.float32)
+
+    blended = (1.0 - alpha) * mean_pred + alpha * q20_pred
+    shrink = 1.0 - beta * p_neg
+    calibrated = blended * shrink
+    calibrated = calibrated - float(delta)
+    return calibrated
+
+@torch.no_grad()
+def predict_model(model, X_seq_num, X_seq_cat, X_static, batch_size=2048):
+    model.eval()
+    preds_mean = []
+    preds_q20 = []
+    preds_pneg = []
+
+    ds = TensorDataset(
+        torch.from_numpy(X_seq_num),
+        torch.from_numpy(X_seq_cat),
+        torch.from_numpy(X_static),
+    )
+    dl = DataLoader(ds, batch_size=batch_size, shuffle=False, pin_memory=(device.type == 'cuda'))
+
+    for xb_num, xb_cat, xb_static in dl:
+        xb_num = xb_num.to(device)
+        xb_cat = xb_cat.to(device)
+        xb_static = xb_static.to(device)
+
+        y_mean, y_q20, sign_logit, _ = model(xb_num, xb_cat, xb_static)
+        p_neg = torch.sigmoid(sign_logit)
+
+        preds_mean.append(y_mean.cpu().numpy())
+        preds_q20.append(y_q20.cpu().numpy())
+        preds_pneg.append(p_neg.cpu().numpy())
+
+    return (
+        np.concatenate(preds_mean, axis=0),
+        np.concatenate(preds_q20, axis=0),
+        np.concatenate(preds_pneg, axis=0),
+    )
+
+def train_physics_inspired_model(
+    Xtr_num, Xtr_cat, Xtr_static, ytr,
+    Xva_num, Xva_cat, Xva_static, yva,
+    cat_sizes, cat_cols,
+    epochs=60,
+    batch_size=1024,
+    eval_every=2,
+    patience=10,
+):
+    model = MultiHeadPredictor(
+        seq_num_dim=Xtr_num.shape[-1],
+        static_dim=Xtr_static.shape[-1],
+        cat_sizes=cat_sizes,
+        cat_cols=cat_cols,
+        state_dim=128,
+    ).to(device)
+
+    opt = AdamW(model.parameters(), lr=1.6e-3, weight_decay=1e-2)
+
+    ytr_t = torch.from_numpy(ytr.astype(np.float32))
+    train_ds = TensorDataset(
+        torch.from_numpy(Xtr_num),
+        torch.from_numpy(Xtr_cat),
+        torch.from_numpy(Xtr_static),
+        ytr_t,
+    )
+    train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True, pin_memory=(device.type == 'cuda'))
+
+    best_state = None
+    best_val_score = -1e18
+    best_epoch = -1
+    bad = 0
+
+    lam_q = 0.35
+    lam_bce = 0.25
+    lam_energy = 0.02
+
+    for epoch in range(1, epochs + 1):
+        model.train()
+        running = 0.0
+        for xb_num, xb_cat, xb_static, yb in train_dl:
+            xb_num = xb_num.to(device)
+            xb_cat = xb_cat.to(device)
+            xb_static = xb_static.to(device)
+            yb = yb.to(device)
+
+            opt.zero_grad(set_to_none=True)
+
+            y_mean, y_q20, sign_logit, energy = model(xb_num, xb_cat, xb_static)
+
+            loss_mean = awmse_loss(yb, y_mean)
+            loss_q20 = pinball_loss(yb, y_q20, tau=0.20)
+            yneg = (yb < 0).float()
+            loss_sign = weighted_bce_with_logits(sign_logit, yneg, pos_weight=1.67)
+
+            loss = loss_mean + lam_q * loss_q20 + lam_bce * loss_sign + lam_energy * energy
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 2.0)
+            opt.step()
+
+            running += float(loss.cpu().item())
+
+        do_eval = (epoch == 1) or (epoch % eval_every == 0) or (epoch == epochs)
+        if do_eval:
+            mean_va, q20_va, pneg_va = predict_model(model, Xva_num, Xva_cat, Xva_static, batch_size=2048)
+            pred_va = apply_conservative_calibration(mean_va, q20_va, pneg_va, alpha=0.20, beta=0.20, delta=0.0)
+            val_score, _ = silent_composite_score(yva, pred_va)
+
+            if val_score > best_val_score:
+                best_val_score = val_score
+                best_epoch = epoch
+                best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}
+                bad = 0
+            else:
+                bad += 1
+
+            print(f"Epoch {epoch:02d}/{epochs} | train_loss={running/len(train_dl):.4f} | val_score={val_score:.4f} | best={best_val_score:.4f}@{best_epoch} | bad={bad}/{patience}")
+
+            if bad >= patience:
+                print("⏹️ Early stopping")
+                break
+
+    if best_state is not None:
+        model.load_state_dict(best_state)
+    print(f"✅ Best epoch: {best_epoch} with val_score={best_val_score:.4f}")
+    return model
+
+def build_gbdt_features_from_seq(X_seq_num, X_static, X_cat, n_base_num: int):
+    vals = X_seq_num[:, :, :n_base_num]
+    diffs = X_seq_num[:, :, n_base_num:2*n_base_num]
+
+    day1 = vals[:, 0, :]
+    day3 = vals[:, 2, :]
+    day7 = vals[:, -1, :]
+
+    abs_diff_mean = np.mean(np.abs(diffs), axis=1)
+    diff_std = np.std(diffs, axis=1)
+
+    accel = np.diff(diffs, axis=1)
+    accel_abs_mean = np.mean(np.abs(accel), axis=1) if accel.shape[1] > 0 else np.zeros_like(abs_diff_mean)
+
+    trend_73 = day7 - day3
+    trend_31 = day3 - day1
+
+    cats0 = X_cat[:, 0, :] if X_cat.shape[-1] > 0 else np.zeros((X_seq_num.shape[0], 0), dtype=np.int64)
+    cats0_f = cats0.astype(np.float32)
+
+    X = np.concatenate(
+        [X_static, day1, day3, day7, trend_31, trend_73, abs_diff_mean, diff_std, accel_abs_mean, cats0_f],
+        axis=1
+    ).astype(np.float32)
+    return X
+
+def get_user_cat_frame(df: pd.DataFrame, ids: np.ndarray, cat_cols: list) -> pd.DataFrame:
+    if len(cat_cols) == 0:
+        return pd.DataFrame(index=pd.Index(ids, name=ID_COL))
+    g = df.sort_values([ID_COL, TEMPORAL_COL]).groupby(ID_COL)[cat_cols].first()
+    g = g.reindex(ids)
+    for c in cat_cols:
+        g[c] = g[c].fillna("__NA__").astype(str)
+    return g
+
+def target_encode_oof(train_cats: pd.DataFrame, y: np.ndarray, other_cats: list, smoothing: float = 50.0, n_splits: int = 5, seed: int = 42):
+    cols = list(train_cats.columns)
+    n = len(train_cats)
+    oof = np.zeros((n, 2 * len(cols)), dtype=np.float32)
+
+    y = np.asarray(y, dtype=np.float32)
+    global_mean = float(np.mean(y))
+    global_neg = float(np.mean(y < 0))
+
+    kf = KFold(n_splits=n_splits, shuffle=True, random_state=seed)
+
+    for tr_idx, va_idx in kf.split(train_cats):
+        tr = train_cats.iloc[tr_idx]
+        ytr = y[tr_idx]
+
+        fold_mean_prior = float(np.mean(ytr))
+        fold_neg_prior = float(np.mean(ytr < 0))
+
+        for j, c in enumerate(cols):
+            grp = tr.groupby(c).size()
+            s_mean = pd.Series(ytr, index=tr.index).groupby(tr[c]).sum()
+            s_neg = pd.Series((ytr < 0).astype(np.float32), index=tr.index).groupby(tr[c]).sum()
+
+            cnt = grp
+            mean = s_mean.reindex(cnt.index).fillna(0.0) / cnt
+            neg = s_neg.reindex(cnt.index).fillna(0.0) / cnt
+
+            m = smoothing
+            enc_mean = (mean * cnt + fold_mean_prior * m) / (cnt + m)
+            enc_neg = (neg * cnt + fold_neg_prior * m) / (cnt + m)
+
+            va_vals = train_cats.iloc[va_idx][c]
+            oof[va_idx, 2*j + 0] = va_vals.map(enc_mean).fillna(fold_mean_prior).astype(np.float32).values
+            oof[va_idx, 2*j + 1] = va_vals.map(enc_neg).fillna(fold_neg_prior).astype(np.float32).values
+
+    def encode_full(df_cats: pd.DataFrame):
+        out = np.zeros((len(df_cats), 2 * len(cols)), dtype=np.float32)
+        for j, c in enumerate(cols):
+            tr = train_cats
+            grp = tr.groupby(c).size()
+            s_mean = pd.Series(y, index=train_cats.index).groupby(train_cats[c]).sum()
+            s_neg = pd.Series((y < 0).astype(np.float32), index=train_cats.index).groupby(train_cats[c]).sum()
+
+            cnt = grp
+            mean = s_mean.reindex(cnt.index).fillna(0.0) / cnt
+            neg = s_neg.reindex(cnt.index).fillna(0.0) / cnt
+
+            m = smoothing
+            enc_mean = (mean * cnt + global_mean * m) / (cnt + m)
+            enc_neg = (neg * cnt + global_neg * m) / (cnt + m)
+
+            vals = df_cats[c]
+            out[:, 2*j + 0] = vals.map(enc_mean).fillna(global_mean).astype(np.float32).values
+            out[:, 2*j + 1] = vals.map(enc_neg).fillna(global_neg).astype(np.float32).values
+        return out
+
+    other_encoded = [encode_full(df) for df in other_cats]
+    return oof, other_encoded
+
+def lgb_awmse_obj(y_pred, dataset):
+    y_true = dataset.get_label()
+    err = (y_pred - y_true)
+    fp = (y_pred > 0) & (y_true < 0)
+    fn = (y_pred < 0) & (y_true > 0)
+
+    w = np.ones_like(y_true, dtype=np.float32)
+    w_fp = 2.5 + 0.02 * np.abs(y_true)
+    w_fn = 1.5 + 0.01 * np.clip(y_true, 0.0, None)
+
+    w = np.where(fp, w_fp, w)
+    w = np.where(fn, w_fn, w)
+
+    grad = 2.0 * w * err
+    hess = 2.0 * w
+    return grad, hess
+
+def train_lightgbm_suite(Xtr, ytr, Xva, yva, seed=42):
+    dtr = lgb.Dataset(Xtr, label=ytr)
+    dva = lgb.Dataset(Xva, label=yva, reference=dtr)
+    params_aw = {
+        "objective": "regression",
+        "metric": "rmse",
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_data_in_leaf": 80,
+        "feature_fraction": 0.85,
+        "bagging_fraction": 0.80,
+        "bagging_freq": 1,
+        "lambda_l2": 1.0,
+        "max_depth": -1,
+        "verbosity": -1,
+        "seed": seed,
+        "num_threads": max(1, os.cpu_count() // 2),
+    }
+    aw = lgb.train(
+        params_aw, dtr,
+        num_boost_round=8000,
+        valid_sets=[dva],
+        callbacks=[lgb.early_stopping(300, verbose=False)],
+    )
+
+    params_l2 = {
+        "objective": "regression",
+        "metric": "rmse",
+        "learning_rate": 0.03,
+        "num_leaves": 127,
+        "min_data_in_leaf": 80,
+        "feature_fraction": 0.85,
+        "bagging_fraction": 0.80,
+        "bagging_freq": 1,
+        "lambda_l2": 1.0,
+        "max_depth": -1,
+        "verbosity": -1,
+        "seed": seed + 13,
+        "num_threads": max(1, os.cpu_count() // 2),
+    }
+    l2 = lgb.train(
+        params_l2, dtr,
+        num_boost_round=8000,
+        valid_sets=[dva],
+        callbacks=[lgb.early_stopping(300, verbose=False)],
+    )
+
+    params_q = {
+        "objective": "quantile",
+        "alpha": 0.20,
+        "metric": "quantile",
+        "learning_rate": 0.035,
+        "num_leaves": 127,
+        "min_data_in_leaf": 100,
+        "feature_fraction": 0.85,
+        "bagging_fraction": 0.80,
+        "bagging_freq": 1,
+        "lambda_l2": 1.0,
+        "verbosity": -1,
+        "seed": seed + 7,
+        "num_threads": max(1, os.cpu_count() // 2),
+    }
+    q20 = lgb.train(
+        params_q, dtr,
+        num_boost_round=8000,
+        valid_sets=[dva],
+        callbacks=[lgb.early_stopping(300, verbose=False)],
+    )
+
+    ytr_neg = (ytr < 0).astype(np.float32)
+    yva_neg = (yva < 0).astype(np.float32)
+    dtrc = lgb.Dataset(Xtr, label=ytr_neg)
+    dvac = lgb.Dataset(Xva, label=yva_neg, reference=dtrc)
+    pos = float(np.sum(ytr_neg == 1))
+    neg = float(np.sum(ytr_neg == 0))
+    spw = (neg / max(1.0, pos)) * 1.67
+    params_c = {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "num_leaves": 63,
+        "min_data_in_leaf": 120,
+        "feature_fraction": 0.85,
+        "bagging_fraction": 0.80,
+        "bagging_freq": 1,
+        "lambda_l2": 1.0,
+        "verbosity": -1,
+        "seed": seed + 21,
+        "scale_pos_weight": spw,
+        "num_threads": max(1, os.cpu_count() // 2),
+    }
+    clf = lgb.train(
+        params_c, dtrc,
+        num_boost_round=6000,
+        valid_sets=[dvac],
+        callbacks=[lgb.early_stopping(300, verbose=False)],
+    )
+
+    return aw, l2, q20, clf
+
+def fit_affine_positive_slope(y_true, y_pred):
+    y_true = np.asarray(y_true, dtype=np.float64)
+    y_pred = np.asarray(y_pred, dtype=np.float64)
+    X = np.vstack([y_pred, np.ones_like(y_pred)]).T
+    a, b = np.linalg.lstsq(X, y_true, rcond=None)[0]
+    if not np.isfinite(a): a = 1.0
+    if not np.isfinite(b): b = 0.0
+    if a < 0:
+        a = 0.0
+    adj = (np.sum(y_true) - np.sum(a * y_pred + b)) / max(1.0, len(y_true))
+    b = b + adj
+    return float(a), float(b)
+
+def tune_ensemble_on_val(y_val, deep_pack, lgb_pack):
+    deep_mean, deep_q20, deep_pneg = deep_pack
+    lgb_aw, lgb_l2, lgb_q20, lgb_pneg = lgb_pack
+
+    alphas = [0.0, 0.10, 0.20, 0.30, 0.40]
+    betas = [0.0, 0.25, 0.50, 0.75, 1.00]
+    deltas = [-240, -200, -160, -120, -80, -40, -20, 0, 20, 40, 80, 120, 160, 200]
+    ws = [0.0, 0.25, 0.50, 0.75, 1.00]
+    vs = [0.0, 0.50, 1.00]
+
+    best = None
+    for a in alphas:
+        for b in betas:
+            deep_cal0 = apply_conservative_calibration(deep_mean, deep_q20, deep_pneg, alpha=a, beta=b, delta=0.0)
+            lgb_mix_mean0 = None
+            lgb_cal0_by_v = {}
+
+            for v in vs:
+                lgb_mix_mean0 = v * lgb_aw + (1.0 - v) * lgb_l2
+                lgb_cal0_by_v[v] = apply_conservative_calibration(lgb_mix_mean0, lgb_q20, lgb_pneg, alpha=a, beta=b, delta=0.0)
+
+            for d in deltas:
+                deep_cal = deep_cal0 - float(d)
+                for v in vs:
+                    lgb_cal = lgb_cal0_by_v[v] - float(d)
+                    for w in ws:
+                        pred = w * deep_cal + (1.0 - w) * lgb_cal
+                        a_aff, b_aff = fit_affine_positive_slope(y_val, pred)
+                        pred2 = a_aff * pred + b_aff
+                        sc, m = silent_composite_score(y_val, pred2)
+                        key = (sc, m["spearman"], -m["error_rate"])
+                        if best is None or key > best["key"]:
+                            best = {
+                                "key": key,
+                                "score": sc,
+                                "metrics": m,
+                                "alpha": a, "beta": b, "delta": d,
+                                "w_deep": w, "v_aw": v,
+                                "aff_a": a_aff, "aff_b": b_aff,
+                            }
+
+    print("🧪 Best ensemble calibration (VAL): "
+          f"score={best['score']:.4f} | alpha={best['alpha']}, beta={best['beta']}, delta={best['delta']}, "
+          f"w_deep={best['w_deep']}, v_aw={best['v_aw']} | aff=({best['aff_a']:.4f},{best['aff_b']:.2f}) | "
+          f"spear={best['metrics']['spearman']:.4f} err={best['metrics']['error_rate']:.4f}")
+    return best
+
+def main():
+    try:
+        print("=" * 80)
+        print("Improved: Deep Physics-Inspired Sequence Model + LightGBM Suite + Tuned Stacking/Calibration")
+        print("=" * 80)
+
+        train_df, val_df, test_df = load_all_data()
+        num_cols, cat_cols = infer_columns(train_df)
+        print(f"🔧 Using {len(num_cols)} numeric cols, {len(cat_cols)} categorical cols")
+
+        cat_maps, cat_sizes = fit_category_maps(train_df, cat_cols) if len(cat_cols) > 0 else ({}, {})
+
+        Xtr_num, Xtr_cat, Xtr_static, ytr, tr_ids, scaler = build_user_sequences(
+            train_df, num_cols, cat_cols, cat_maps=cat_maps, scaler=None, fit_scaler=True, expect_days=7
+        )
+        Xva_num, Xva_cat, Xva_static, yva, va_ids, _ = build_user_sequences(
+            val_df, num_cols, cat_cols, cat_maps=cat_maps, scaler=scaler, fit_scaler=False, expect_days=7
+        )
+        Xte_num, Xte_cat, Xte_static, yte, te_ids, _ = build_user_sequences(
+            test_df, num_cols, cat_cols, cat_maps=cat_maps, scaler=scaler, fit_scaler=False, expect_days=7
+        )
+
+        print(f"   Train users: {len(tr_ids)}, Val users: {len(va_ids)}, Test users: {len(te_ids)}")
+        print(f"   X_seq_num: {Xtr_num.shape}, X_seq_cat: {Xtr_cat.shape}, X_static: {Xtr_static.shape}")
+
+        if len(cat_cols) == 0:
+            cat_sizes = {}
+
+        model = train_physics_inspired_model(
+            Xtr_num, Xtr_cat, Xtr_static, ytr,
+            Xva_num, Xva_cat, Xva_static, yva,
+            cat_sizes=cat_sizes,
+            cat_cols=cat_cols,
+            epochs=60,
+            batch_size=1024,
+            eval_every=2,
+            patience=10,
+        )
+
+        deep_mean_va, deep_q20_va, deep_pneg_va = predict_model(model, Xva_num, Xva_cat, Xva_static)
+        deep_mean_te, deep_q20_te, deep_pneg_te = predict_model(model, Xte_num, Xte_cat, Xte_static)
+
+        n_base_num = len(num_cols)
+        Xtr_gbdt_core = build_gbdt_features_from_seq(Xtr_num, Xtr_static, Xtr_cat, n_base_num=n_base_num)
+        Xva_gbdt_core = build_gbdt_features_from_seq(Xva_num, Xva_static, Xva_cat, n_base_num=n_base_num)
+        Xte_gbdt_core = build_gbdt_features_from_seq(Xte_num, Xte_static, Xte_cat, n_base_num=n_base_num)
+
+        tr_cats = get_user_cat_frame(train_df, tr_ids, cat_cols)
+        va_cats = get_user_cat_frame(val_df, va_ids, cat_cols)
+        te_cats = get_user_cat_frame(test_df, te_ids, cat_cols)
+
+        if len(cat_cols) > 0:
+            te_tr, (te_va, te_te) = target_encode_oof(
+                tr_cats, ytr,
+                other_cats=[va_cats, te_cats],
+                smoothing=50.0,
+                n_splits=5,
+                seed=42,
+            )
+            Xtr_gbdt = np.concatenate([Xtr_gbdt_core, te_tr], axis=1).astype(np.float32)
+            Xva_gbdt = np.concatenate([Xva_gbdt_core, te_va], axis=1).astype(np.float32)
+            Xte_gbdt = np.concatenate([Xte_gbdt_core, te_te], axis=1).astype(np.float32)
+        else:
+            Xtr_gbdt, Xva_gbdt, Xte_gbdt = Xtr_gbdt_core, Xva_gbdt_core, Xte_gbdt_core
+
+        print(f"🌲 GBDT feature dims: train={Xtr_gbdt.shape}, val={Xva_gbdt.shape}, test={Xte_gbdt.shape}")
+
+        aw, l2, q20, clf = train_lightgbm_suite(Xtr_gbdt, ytr, Xva_gbdt, yva, seed=42)
+
+        lgb_aw_va = aw.predict(Xva_gbdt, num_iteration=aw.best_iteration)
+        lgb_l2_va = l2.predict(Xva_gbdt, num_iteration=l2.best_iteration)
+        lgb_q20_va = q20.predict(Xva_gbdt, num_iteration=q20.best_iteration)
+        lgb_pneg_va = clf.predict(Xva_gbdt, num_iteration=clf.best_iteration)
+
+        lgb_aw_te = aw.predict(Xte_gbdt, num_iteration=aw.best_iteration)
+        lgb_l2_te = l2.predict(Xte_gbdt, num_iteration=l2.best_iteration)
+        lgb_q20_te = q20.predict(Xte_gbdt, num_iteration=q20.best_iteration)
+        lgb_pneg_te = clf.predict(Xte_gbdt, num_iteration=clf.best_iteration)
+
+        best = tune_ensemble_on_val(
+            yva,
+            deep_pack=(deep_mean_va, deep_q20_va, deep_pneg_va),
+            lgb_pack=(lgb_aw_va, lgb_l2_va, lgb_q20_va, lgb_pneg_va),
+        )
+
+        alpha = best["alpha"]
+        beta = best["beta"]
+        delta = best["delta"]
+        w_deep = best["w_deep"]
+        v_aw = best["v_aw"]
+        aff_a = best["aff_a"]
+        aff_b = best["aff_b"]
+
+        deep_cal_te = apply_conservative_calibration(deep_mean_te, deep_q20_te, deep_pneg_te, alpha=alpha, beta=beta, delta=0.0) - float(delta)
+        lgb_mix_te = v_aw * lgb_aw_te + (1.0 - v_aw) * lgb_l2_te
+        lgb_cal_te = apply_conservative_calibration(lgb_mix_te, lgb_q20_te, lgb_pneg_te, alpha=alpha, beta=beta, delta=0.0) - float(delta)
+
+        final_predictions = w_deep * deep_cal_te + (1.0 - w_deep) * lgb_cal_te
+        final_predictions = aff_a * final_predictions + aff_b
+
+        y_test = test_df.groupby(ID_COL)[TARGET_COL].first()
+        pred_series = pd.Series(final_predictions, index=te_ids)
+        pred_aligned = pred_series.reindex(y_test.index).values
+        y_test_values = y_test.values
+
+        print("\n" + "=" * 60)
+
+# ========== SAVE PREDICTIONS ==========
+try:
+    import pandas as pd
+    from pathlib import Path
+    save_dir = Path("/home/jupyter/saved_models_final/49de05bf")
+    save_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Variables should be in scope: pred_aligned, y_test_values or similar
+    user_ids_var = None
+    for uid_name in ['te_ids', 'te_users', 'test_ids', 'test_users']:
+        if uid_name in dir() and eval(uid_name) is not None:
+            user_ids_var = eval(uid_name)
+            break
+    
+    if user_ids_var is None:
+        user_ids_var = list(range(len(pred_aligned)))
+    
+    pred_df = pd.DataFrame({
+        'user_id': user_ids_var,
+        'y_pred': pred_aligned,
+        'y_true': y_test_values
+    })
+    pred_df.to_csv(save_dir / "predictions.csv", index=False)
+    print(f"✅✅✅ Saved {len(pred_df)} predictions to {save_dir}")
+except Exception as e:
+    print(f"⚠️ Save error: {e}")
+# ========== END SAVE ==========
+
+        score = compute_pareto_multi_objective(y_test_values, pred_aligned)
+        score2, metrics = compute_composite_score(y_test_values, pred_aligned)
+        print("=" * 60)
+
+
+# ========== MANUAL SAVING CODE ==========
+try:
+    from pathlib import Path
+    import joblib
+    node_id = "49de05bf"
+    save_dir = Path(f"/home/jupyter/saved_models/{node_id}")
+    save_dir.mkdir(parents=True, exist_ok=True)
+    saved = []
+    
+    # Save LightGBM models
+    try:
+        import lightgbm as lgb
+        for name in dir():
+            try:
+                obj = eval(name)
+                if isinstance(obj, lgb.Booster):
+                    obj.save_model(str(save_dir / f"{name}.txt"))
+                    saved.append(name)
+                    print(f"✅ Saved {name}")
+            except: pass
+    except: pass
+    
+    # Save PyTorch model
+    try:
+        import torch
+        if 'model' in dir() and isinstance(model, torch.nn.Module):
+            torch.save(model.state_dict(), save_dir / "model.pt")
+            saved.append('model')
+            print("✅ Saved model.pt")
+    except: pass
+    
+    # Save predictions
+    try:
+        pred_data = None
+        if 'pred_aligned' in dir() and 'y_test_values' in dir() and 'te_ids' in dir():
+            pred_data = pd.DataFrame({
+                'user_id': te_ids,
+                'y_pred': pred_aligned,
+                'y_true': y_test_values
+            })
+        elif 'test_pred' in dir() and 'te_users' in dir():
+            y_vals = y_test_series.values if 'y_test_series' in dir() else y_test_values if 'y_test_values' in dir() else None
+            if y_vals is not None:
+                pred_data = pd.DataFrame({
+                    'user_id': te_users,
+                    'y_pred': test_pred,
+                    'y_true': y_vals
+                })
+        
+        if pred_data is not None:
+            pred_data.to_csv(save_dir / "predictions.csv", index=False)
+            print(f"✅ Saved predictions ({len(pred_data)} rows)")
+            saved.append('predictions')
+    except Exception as e:
+        print(f"⚠️ Prediction save error: {e}")
+    
+    with open(save_dir / "metadata.json", 'w') as f:
+        json.dump({'node_id': node_id, 'saved': saved}, f)
+    print(f"🎉 Saved {len(saved)} items to {save_dir}")
+except Exception as e:
+    print(f"⚠️ Save error: {e}")
+    import traceback
+    traceback.print_exc()
+# ========== END SAVING CODE ==========
+
+        result = {
+            "method": "Improved: Deep Physics-Inspired + LightGBM Suite + Tuned Ensemble/Affine Calibration",
+            "score": float(score),
+            "score_check_same_logic": float(score2),
+            "metrics": metrics,
+            "ensemble": {
+                "alpha": float(alpha), "beta": float(beta), "delta": float(delta),
+                "w_deep": float(w_deep), "v_aw": float(v_aw),
+                "aff_a": float(aff_a), "aff_b": float(aff_b),
+            },
+            "status": "success"
+        }
+
+        output_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch"
+        os.makedirs(output_dir, exist_ok=True)
+        result_path = os.path.join(output_dir, "improved_results.json")
+
+        with open(result_path, 'w') as f:
+            json.dump(result, f, indent=2)
+    # === SAVE MODEL ===
+    node_dir = "/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/49de05bf"
+    os.makedirs(node_dir, exist_ok=True)
+    
+    # Save predictions
+    try:
+        predictions_df = pd.DataFrame({
+            'DEVICE_ID': y_test.index if hasattr(y_test, 'index') else range(len(y_test.values if hasattr(y_test, 'values') else y_test)),
+            'y_true': y_test.values if hasattr(y_test, 'values') else y_test,
+            'y_pred': pred_aligned
+        })
+        predictions_path = os.path.join(node_dir, "predictions.csv")
+        predictions_df.to_csv(predictions_path, index=False)
+        print(f"✅ Predictions saved to: {predictions_path}")
+    except Exception as e:
+        print(f"⚠️ Could not save predictions: {e}")
+
+
+
+        with open(OUTPUT_JSON, 'w') as f:
+            json.dump(result, f, indent=2)
+
+        print(f"\n💾 Results saved to: {result_path}")
+        print(f"score = {score}")
+
+    except Exception as e:
+        import traceback
+        print(f"❌ Error: {e}")
+        traceback.print_exc()
+
+        result = {"method": "Improved", "score": None, "error": str(e), "status": "failed"}
+        with open(OUTPUT_JSON, 'w') as f:
+            json.dump(result, f, indent=2)
+        raise
+
+if __name__ == "__main__":
+    main()

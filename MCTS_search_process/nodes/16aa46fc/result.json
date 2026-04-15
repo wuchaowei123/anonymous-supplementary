@@ -1,0 +1,31 @@
+{
+  "node_id": "16aa46fc",
+  "score": 0.6960475116019977,
+  "success": true,
+  "metrics": {
+    "seq_len": 7.0,
+    "train": 49638.0,
+    "val": 4975.0,
+    "train_loss": 11044.4138,
+    "val_score": 1.01397,
+    "best_epoch": 11.0,
+    "best_val_score": 0.90152,
+    "alpha": 0.85,
+    "thr": 0.55,
+    "delta": 0.0,
+    "fpr": 0.086,
+    "epochs": 11.0,
+    "loss": 11993.0072,
+    "gini": 0.919,
+    "err": 0.4759,
+    "spear": 0.5853,
+    "rmse": 198.59,
+    "detected": 164.0,
+    "final_score": 0.696
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T07:42:04.386492",
+  "stdout": "\ud83d\udd27 Using device: cuda\n============================================================\nPhysics-Inspired Time-Stepping Network (ODE/ResNet) + Conservative Calibration\n============================================================\nDetected: 164 numerical cols, 16 categorical cols\nUsing time column: TDATE_RN with seq_len=7\nUsers: train=49638, val=4975 | X_num=(49638, 7, 164) X_cat=(49638, 7, 16)\nEpoch 01/30 | train_loss=115335.9994 | val_score=0.69164\nEpoch 02/30 | train_loss=52549.1498 | val_score=0.48358\nEpoch 04/30 | train_loss=31581.4782 | val_score=0.71724\nEpoch 06/30 | train_loss=25748.8869 | val_score=0.72619\nEpoch 08/30 | train_loss=20007.2122 | val_score=0.61164\nEpoch 10/30 | train_loss=19032.7745 | val_score=0.75192\nEpoch 12/30 | train_loss=15980.7822 | val_score=0.69583\nEpoch 14/30 | train_loss=13409.3687 | val_score=0.74129\nEpoch 16/30 | train_loss=11044.4138 | val_score=0.76524\nEarly stopping at epoch 17 (best_epoch=11, best_val_score=0.90152)\n\ud83d\udd0e Calibration best: val_score=1.01397 | alpha=0.85 thr=0.55 delta=0.0 | fpr=0.086\n\ud83c\udfcb\ufe0f Training on full data for epochs=11 (best_epoch from stage-1)\n  full epoch 01/11 | loss=63595.4617\n  full epoch 02/11 | loss=44362.0958\n  full epoch 04/11 | loss=29880.6841\n  full epoch 06/11 | loss=21813.5369\n  full epoch 08/11 | loss=16348.1661\n  full epoch 10/11 | loss=12617.0693\n  full epoch 11/11 | loss=11993.0072\n\n============================================================\n\ud83d\udcca Gini=0.9190, Err=0.4759, Spear=0.5853, RMSE=198.59, Score=0.6960\n============================================================\n\n\ud83c\udfaf Final Score: 0.6960\nscore = 0.6960475116019977\n",
+  "stderr": ""
+}

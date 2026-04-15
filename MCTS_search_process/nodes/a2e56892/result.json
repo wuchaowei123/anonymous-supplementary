@@ -1,0 +1,23 @@
+{
+  "node_id": "a2e56892",
+  "score": 1.1778296309569702,
+  "success": true,
+  "metrics": {
+    "train": 49638.0,
+    "val": 4975.0,
+    "test": 5545.0,
+    "features": 3202.0,
+    "valmse": 1527.1703,
+    "alpha": 3.0,
+    "val_score": 1.2,
+    "gini": 0.9726,
+    "err": 0.0477,
+    "spear": 0.8415,
+    "rmse": 83.16
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T21:58:54.131222",
+  "stdout": "\ud83d\udd27 Using device: cuda\n================================================================================\nHybrid: A's strong holdout stacking + B's OOF target encoding + q10 + dynamic risk gating\n================================================================================\nUsers: train=49638 val=4975 test=5545 | features=3202\n\ud83d\ude80 Training Value Network (AWMSE MLP)...\n   Epoch 10/70: ValMSE=2006.8916\n   Epoch 20/70: ValMSE=1527.1703\n\ud83d\ude80 Training RandomForest...\n\ud83d\ude80 Training ExtraTrees...\n\ud83d\ude80 Training LightGBM (custom AWMSE objective)...\n\ud83d\ude80 Training LightGBM Quantile (alpha=0.20)...\n\ud83d\ude80 Training LightGBM Quantile (alpha=0.10)...\n\ud83d\ude80 Training LightGBM on signed_log1p(target)...\n\ud83d\ude80 Training LightGBM Sign Classifier (P(LTV<0))...\n\ud83e\udde9 Training Ridge meta-learner (CV alpha on VAL)...\n   Selected Ridge alpha=3.0\n\ud83e\uddea Tuning dynamic gate + conservative shift on VAL...\n   Best VAL calibration: {'thr': 0.35, 'strength': 0.0, 'pw': 1.0, 'delta': -150.0, 'bias': -149.66046011306534} | val_score=1.200000\n\n================================================================================\n\ud83d\udcca Gini=0.9726, Err=0.0477, Spear=0.8415, RMSE=83.16, Score=1.1778\n================================================================================\nscore = 1.1778296309569702\nscore = 1.1778296309569702\n",
+  "stderr": ""
+}

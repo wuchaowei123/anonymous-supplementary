@@ -1,0 +1,22 @@
+{
+  "node_id": "b3448f2c",
+  "method": "Method 2: Risk-Averse Quantile Regression",
+  "score": 0.5866503577406513,
+  "metrics": {
+    "gini": 0.7956949725876539,
+    "error_rate": 0.07743884037065596,
+    "spearman": 0.6587401340522379,
+    "rmse": 228.02881496926662,
+    "gini_score": 0.4784748629382694,
+    "error_score": 0.8016504694980707,
+    "spearman_score": 0.5291337801741262,
+    "rmse_score": 0.5328530838455563,
+    "base_score": 0.5666503577406513,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.674528"
+}

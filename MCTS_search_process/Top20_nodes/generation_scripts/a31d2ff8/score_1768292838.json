@@ -1,0 +1,27 @@
+{
+  "method": "Method 25 (Rewritten): Physics-Inspired Euler/ResNet Time-Stepping Network",
+  "score": 1.1685023406760622,
+  "score_check_same_logic": 1.1685023406760622,
+  "metrics": {
+    "gini": 0.9663533322946323,
+    "error_rate": 0.020879413355284537,
+    "spearman": 0.7698823947091226,
+    "rmse": 46.79748673125865,
+    "gini_score": 1.0,
+    "error_score": 0.9680017254256338,
+    "spearman_score": 0.8996079823637417,
+    "rmse_score": 1.0,
+    "base_score": 0.9685023406760621,
+    "pareto_bonus": 0.2,
+    "diversity_bonus": 0.0,
+    "excellence_count": 4
+  },
+  "calibration": {
+    "alpha": 0.3,
+    "beta": 0.5,
+    "delta": 0.0,
+    "score": 1.176169941288627,
+    "fpr": 0.08657786885245902
+  },
+  "status": "success"
+}

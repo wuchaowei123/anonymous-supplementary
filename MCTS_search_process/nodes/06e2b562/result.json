@@ -1,0 +1,14 @@
+{
+  "node_id": "06e2b562",
+  "method": "Method 05: FT-Transformer",
+  "score": 0.6021265442808683,
+  "metrics": {
+    "gini": 0.8101836924769016,
+    "error_rate": 0.09526299007277071,
+    "spearman": 0.6479433374023582,
+    "rmse": 219.1478996038605
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.675906"
+}

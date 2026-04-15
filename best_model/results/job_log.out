@@ -1,0 +1,11 @@
+
+[evaluate.py] === FINAL RESULTS ===
+Score: 1.200000
+Base Score: 1.000000
+Pareto Bonus: 0.200000
+Gini: 0.9625
+Error Rate: 0.0037 (0.37%)
+Spearman: 0.8285
+RMSE: 91.37
+
+[evaluate.py] Metrics saved to: results_pareto_evolution/gen_25/results/metrics.json

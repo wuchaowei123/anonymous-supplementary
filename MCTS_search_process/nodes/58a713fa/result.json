@@ -1,0 +1,11 @@
+{
+  "node_id": "58a713fa",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T14:12:00.087008",
+  "stdout": "================================================================================\nOptimized LGBM Stack v3 (reduced complexity for timeout)\n================================================================================\nDetected features: 145 numeric, 35 categorical\nDev users=54385, Test users=5545\nEngineered numeric: X_dev=(54385, 3045), X_test=(5545, 3045)\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/58a713fa/avia_code_1768399839.py\", line 824, in <module>\n    score = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/58a713fa/avia_code_1768399839.py\", line 567, in main\n    m_aw = lgb_train_reg(p_aw, dtr, dva, num_boost_round=2000, early=120, custom_obj=awmse_lgb_obj)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/58a713fa/avia_code_1768399839.py\", line 413, in lgb_train_reg\n    return lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+}

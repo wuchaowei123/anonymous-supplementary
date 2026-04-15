@@ -1,0 +1,29 @@
+{
+  "method": "Improved: Deep Physics-Inspired + LightGBM Suite + Tuned Ensemble/Affine Calibration",
+  "score": 1.1776368754973219,
+  "score_check_same_logic": 1.1776368754973219,
+  "metrics": {
+    "gini": 0.9763163737137696,
+    "error_rate": 0.0480173116545528,
+    "spearman": 0.8875312558133056,
+    "rmse": 176.2785626523837,
+    "gini_score": 1.0,
+    "error_score": 0.8881843774866094,
+    "spearman_score": 1.0,
+    "rmse_score": 1.0,
+    "base_score": 0.9776368754973219,
+    "pareto_bonus": 0.2,
+    "diversity_bonus": 0.0,
+    "excellence_count": 4
+  },
+  "ensemble": {
+    "alpha": 0.0,
+    "beta": 0.75,
+    "delta": -240.0,
+    "w_deep": 0.0,
+    "v_aw": 1.0,
+    "aff_a": 1.0758658376453925,
+    "aff_b": -260.13063782422677
+  },
+  "status": "success"
+}

@@ -1,0 +1,31 @@
+{
+  "node_id": "9cf73541",
+  "score": 1.0716502561775378,
+  "success": true,
+  "metrics": {
+    "features": 12.0,
+    "val_awmse": 25996.3398,
+    "best": 24267.0566,
+    "best_epoch": 8.0,
+    "dims": 90.0,
+    "users_train": 49638.0,
+    "users_val": 4975.0,
+    "tau": 0.2,
+    "best_val_score": 1.181835,
+    "best_delta": 0.0,
+    "gini": 0.9544,
+    "err": 0.0073,
+    "spear": 0.736,
+    "rmse": 155.36,
+    "lgb_aw": 0.1714,
+    "lgb_q20": 0.007,
+    "rf": 0.6197,
+    "knn_wmean": 0.1732,
+    "tcn": 0.0287
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-12T17:14:56.767971",
+  "stdout": "============================================================\nHybrid: Retrieval + TCN Embeddings + LightGBM(AWMSE) + Quantile + RF\n============================================================\n\ud83d\udd27 Using device: cuda\n[TCN] seq features=12, train_seq=(49638, 7, 12), val_seq=(4975, 7, 12)\n   [TCN] epoch 10/60 val_awMSE=25996.3398 best=24267.0566\n[TCN] best_epoch=8\n[kNN] base dims=90 users_train=49638 users_val=4975\n[LGB] training AWMSE model...\n[LGB] training Quantile (tau=0.20) model...\n[RF] training RandomForest...\n[BLEND] best_val_score=1.181835 best_delta=0.0 weights:\n   LGB_AW    : 0.1714\n   LGB_Q20   : 0.0070\n   RF        : 0.6197\n   KNN_WMEAN : 0.1732\n   TCN       : 0.0287\n\n[REFIT] Re-training base models on TRAIN+VAL and predicting TEST...\n[REFIT-LGB] training AWMSE on full...\n[REFIT-LGB] training Quantile on full...\n[REFIT-RF] training RF on full...\n\n============================================================\n\ud83d\udcca Gini=0.9544, Err=0.0073, Spear=0.7360, RMSE=155.36, Score=1.0717\n============================================================\n[OK] wrote /home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_deepresearch/hybrid_retrieval_tcn_results.json\nscore = 1.0716502561775378\n\ud83d\udcca Gini=0.9544, Err=0.0073, Spear=0.7360, RMSE=155.36, Score=1.0717\nscore = 1.0716502561775378\n",
+  "stderr": ""
+}

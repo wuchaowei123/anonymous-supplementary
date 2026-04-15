@@ -1,0 +1,26 @@
+{
+  "node_id": "7b89bc67",
+  "score": 0.6872286953855462,
+  "success": true,
+  "metrics": {
+    "rf": 0.7,
+    "lgb": 0.131,
+    "xgb": 0.169,
+    "gini": 0.8173,
+    "err": 0.0321,
+    "spear": 0.6679,
+    "rmse": 219.51,
+    "g": 0.587,
+    "e": 0.935,
+    "s": 0.56,
+    "r": 0.675,
+    "final": 0.6872,
+    "features": 114.0,
+    "final_score": 0.6872
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-12T20:32:11.345940",
+  "stdout": "============================================================\nMethod 29: Production Pipeline - Best Ensemble\n============================================================\nFeatures: 114\n\ud83d\ude80 Training Random Forest...\n\ud83d\ude80 Training LightGBM...\n\ud83d\ude80 Training XGBoost...\n\ud83d\udd27 Optimizing ensemble weights...\n   Optimal weights: RF=0.700, LGB=0.131, XGB=0.169\n\n============================================================\n\ud83d\udcca Gini=0.8173, Err=0.0321, Spear=0.6679, RMSE=219.51\n\ud83d\udcca Scores: G=0.587, E=0.935, S=0.560, R=0.675, Final=0.6872\n============================================================\n\n\ud83c\udfaf Final Score: 0.6872\nscore = 0.6872286953855462\n",
+  "stderr": ""
+}

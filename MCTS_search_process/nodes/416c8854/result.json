@@ -1,0 +1,24 @@
+{
+  "node_id": "416c8854",
+  "score": 1.0388985530857802,
+  "success": true,
+  "metrics": {
+    "numeric": 2297.0,
+    "cat": 16.0,
+    "total": 2313.0,
+    "best_iter_aw": 876.0,
+    "best_iter_q20": 1525.0,
+    "gini": 0.9387,
+    "err": 0.1649,
+    "spear": 0.876,
+    "rmse": 197.45,
+    "bias": 0.0,
+    "oof_best": 1.0768,
+    "final_score": 1.0389
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T08:49:20.417205",
+  "stdout": "============================================================\nMethod 8: Level 2 Stacking Ensemble (AWMSE meta + QR + Hurdle)\n============================================================\nUsers(train)=54,385, Users(test)=5,545\nFeatures: numeric=2297, cat=16, total=2313\n\ud83d\ude80 Training Level 1 models with 5-fold CV...\n  Fold 1/5 done. best_iter_aw=713, best_iter_q20=1991\n  Fold 2/5 done. best_iter_aw=249, best_iter_q20=1922\n  Fold 3/5 done. best_iter_aw=1181, best_iter_q20=1396\n  Fold 4/5 done. best_iter_aw=2478, best_iter_q20=1881\n  Fold 5/5 done. best_iter_aw=876, best_iter_q20=1525\n\ud83d\ude80 Training Level 2 meta-learner (LightGBM + custom AWMSE)...\n\n============================================================\n\ud83d\udcca Gini=0.9387, Err=0.1649, Spear=0.8760, RMSE=197.45, Score=1.0389\n============================================================\n\n\ud83c\udfaf Final Score: 1.0389 (bias=0.0, oof_best=1.0768)\nscore = 1.0388985530857802\n\ud83d\udcca Gini=0.9387, Err=0.1649, Spear=0.8760, RMSE=197.45, Score=1.0389\nscore = 1.0388985530857802\n",
+  "stderr": ""
+}

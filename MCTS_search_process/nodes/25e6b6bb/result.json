@@ -1,0 +1,21 @@
+{
+  "node_id": "25e6b6bb",
+  "score": 0.12592337280511856,
+  "success": true,
+  "metrics": {
+    "val": 54385.0,
+    "test": 5545.0,
+    "it_raw": 147.0,
+    "it_log": 56.0,
+    "gini": 0.7151,
+    "err": 0.8364,
+    "spear": 0.3978,
+    "rmse": 230.17,
+    "detected": 144.0
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T22:16:30.665793",
+  "stdout": "================================================================================\nOptimized: Fast training with reduced folds and iterations\n================================================================================\nDetected: 144 numeric cols, 36 categorical cols\nUsers: train+val=54385, test=5545\nFold 01 done | it_raw=662 it_log=55\nFold 02 done | it_raw=71 it_log=58\nFold 03 done | it_raw=147 it_log=56\n\n================================================================================\n\ud83d\udcca Gini=0.7151, Err=0.8364, Spear=0.3978, RMSE=230.17, Score=0.1259\n\ud83d\udcca Gini=0.7151, Err=0.8364, Spear=0.3978, RMSE=230.17, Score=0.1259\n================================================================================\nscore = 0.12592337280511856\n",
+  "stderr": ""
+}

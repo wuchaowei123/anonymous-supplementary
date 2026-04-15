@@ -1,0 +1,14 @@
+{
+  "node_id": "6327ebfc",
+  "method": "Method 30: Ultimate Ensemble",
+  "score": 0.6753409456253869,
+  "metrics": {
+    "gini": 0.8299599682079973,
+    "error_rate": 0.0999274553697212,
+    "spearman": 0.5969714053040613,
+    "rmse": 186.63663826468996
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.688418"
+}

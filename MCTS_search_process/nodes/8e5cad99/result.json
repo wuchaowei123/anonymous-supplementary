@@ -1,0 +1,11 @@
+{
+  "node_id": "8e5cad99",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T10:02:11.622168",
+  "stdout": "============================================================\nMethod 28: OOF Target Encoding + Fixed AWMSE LGB + Hurdle + OOF Stacking + Conservative Calibration\n============================================================\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/8e5cad99/avia_code_1768298434.py\", line 873, in <module>\n    score, y_test, test_predictions = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/8e5cad99/avia_code_1768298434.py\", line 665, in main\n    aw_model, aw_it = train_aw_lgb(X_tr, y_tr, X_va, y_va, seed=42 + fold)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/8e5cad99/avia_code_1768298434.py\", line 507, in train_aw_lgb\n    model = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+}

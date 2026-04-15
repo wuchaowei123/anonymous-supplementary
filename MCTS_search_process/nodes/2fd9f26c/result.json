@@ -1,0 +1,20 @@
+{
+  "node_id": "2fd9f26c",
+  "score": 1.013339144945192,
+  "success": true,
+  "metrics": {
+    "num_cols": 164.0,
+    "cat_cols": 16.0,
+    "tau": 0.2,
+    "gini": 0.9703,
+    "err": 0.2083,
+    "spear": 0.8568,
+    "rmse": 191.48,
+    "final_score": 1.013339
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T01:46:10.121957",
+  "stdout": "======================================================================\nImproved Hybrid GBDT Ensemble: AWMSE mean + q20 + hurdle(sign) + conservative calibration\n======================================================================\nDetected num_cols=164, cat_cols=16\nAnchor mean (train+val) = 23.671732\nTarget clip: [-89.851, 3155.811]\n\n[Training] LightGBM AWMSE mean regressor...\n[Training] LightGBM Quantile (tau=0.20) regressor...\n[Training] LightGBM Negative-risk classifier P(y<0)...\n[Training] Hurdle magnitude regressors (pos/neg magnitudes)...\n\n[Tuning] Ensemble blend + conservative policy on VAL...\nBest VAL score = 1.084178\nBest params: {'w_aw': 0.55, 'w_q': 0.2, 'use_min': True, 'thr_gate': 0.65, 'snap_eps': 1.0, 'risk_scale': 0.0, 'a': 1.5996209909746812, 'b': -0.7271840350870491, 'delta': 5.0}\n\n[Inference] Predicting TEST...\n\n======================================================================\n\ud83d\udcca Gini=0.9703, Err=0.2083, Spear=0.8568, RMSE=191.48, Score=1.0133\n======================================================================\n\n\ud83c\udfaf Final Score: 1.013339\n\ud83d\udcca Gini=0.9703, Err=0.2083, Spear=0.8568, RMSE=191.48, Score=1.0133\nscore = 1.013339144945192\n",
+  "stderr": ""
+}

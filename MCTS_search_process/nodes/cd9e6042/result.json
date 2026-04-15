@@ -1,0 +1,11 @@
+{
+  "node_id": "cd9e6042",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T03:55:35.135563",
+  "stdout": "\ud83d\udd27 Using device: cuda\n======================================================================\nHybrid: FT-Transformer + TCN + LightGBM(AWMSE/Quantile) + Ridge stack\n======================================================================\nNumeric cols (seq/GBDT): 164 | Categorical cols (TE): 16\nFT compact numeric cols: 21\nShapes: X_full=(49638, 1936) | X_ft=(49638, 290) | X_seq=(49638, 7, 164)\n\ud83d\ude80 Training FT-Transformer (compact tabular)...\n   [FT] Epoch 5/25 val_mse=25299.17188\n   [FT] Epoch 10/25 val_mse=24599.41211\n   [FT] Epoch 15/25 val_mse=24766.62109\n\ud83d\ude80 Training TCN (full numeric sequence)...\n   [TCN] Epoch 5/25 val_mse=1820.18250\n   [TCN] Epoch 10/25 val_mse=1796.81689\n   [TCN] Epoch 15/25 val_mse=2521.92627\nHybrid LightGBM feature shape: (49638, 2128)\n\ud83d\ude80 Training LightGBM AWMSE (hybrid features)...\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/cd9e6042/avia_code_1768275707.py\", line 860, in <module>\n    main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/cd9e6042/avia_code_1768275707.py\", line 729, in main\n    lgb_aw = lgb.train(\nTypeError: train() got an unexpected keyword argument 'obj'\n"
+}

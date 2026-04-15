@@ -1,0 +1,24 @@
+{
+  "node_id": "e1adbcfd",
+  "score": 0.6584618188596011,
+  "success": true,
+  "metrics": {
+    "gini": 0.8337852375095507,
+    "error_rate": 0.09976756356451091,
+    "spearman": 0.6086789975190825,
+    "rmse": 210.02711866772603,
+    "gini_score": 0.6689261875477535,
+    "error_score": 0.7359777542220268,
+    "spearman_score": 0.36226332506360825,
+    "rmse_score": 0.8328813555378995,
+    "base_score": 0.6384618188596011,
+    "pareto_bonus": 0.02,
+    "diversity_bonus": 0.0,
+    "excellence_count": 1
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T08:18:07.644415",
+  "stdout": "\ud83d\udcc2 Loading data...\n   Train: (352772, 183) (49638 users)\n   Val:   (34825, 183) (4975 users)\n   Test:  (38815, 183) (5545 users)\n\ud83d\udd27 Creating features (GBDT aggregates)...\n\ud83e\udde9 Categorical columns: total=10 | high-card=8 | low-card=2\n\ud83e\udde0 Building 7-day sequences (physics-inspired model)...\n   GBDT features: 689\n   Seq tensors: X_num=(49638, 7, 125), X_cat=(49638, 7, 7)\n\ud83c\udf32 Training LightGBM (GBDT + TargetEncoding)...\n[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.021628 seconds.\nYou can set `force_col_wise=true` to remove the overhead.\n[LightGBM] [Info] Total Bins 31667\n[LightGBM] [Info] Number of data points in the train set: 49638, number of used features: 154\n[LightGBM] [Info] Start training from score 0.576459\nTraining until validation scores don't improve for 500 rounds\n[500]\tvalid_0's rmse: 1.28197\tvalid_0's l2: 1.64345\nEarly stopping, best iteration is:\n[328]\tvalid_0's rmse: 1.27868\tvalid_0's l2: 1.63502\nEvaluated only: rmse\n\ud83e\udde0 Training Euler/ResNet time-stepping model...\n   epoch 01 | train_loss=135742.73581 | val_score=0.22000\n   epoch 02 | train_loss=79627.41933 | val_score=0.22000\n   epoch 03 | train_loss=53413.05514 | val_score=0.22000\n   epoch 04 | train_loss=54512.27663 | val_score=0.22000\n   epoch 05 | train_loss=159495.30591 | val_score=0.22000\n   epoch 06 | train_loss=inf | val_score=0.22000\n   epoch 07 | train_loss=inf | val_score=0.22000\n\ud83d\udcca Predicting on validation for blending...\n   Best VAL blend: score=0.51875, w_lgb=0.60, a_q=0.00, scale=1.100, bias=0.0, k_risk=0.0\n\ud83d\udcca Making predictions on test...\n\n============================================================\n\ud83d\udcca Metrics: Gini=0.8338, ErrRate=0.0998, Spearman=0.6087, RMSE=210.03\n\ud83d\udcca Individual Scores: Gini=0.669, Err=0.736, Spear=0.362, RMSE=0.833\n\ud83d\udcca Base=0.6385, Pareto=0.02, Diversity=0.000, FINAL=0.6585\n\ud83d\udcca Excellence count: 1/4 metrics\n============================================================\n\n\ud83c\udfaf Final Score: 0.6585\n   Baseline: 0.377 (this template)\n   \u2713 Better than baseline! (+0.2815)\nscore = 0.6584618188596011\n",
+  "stderr": ""
+}

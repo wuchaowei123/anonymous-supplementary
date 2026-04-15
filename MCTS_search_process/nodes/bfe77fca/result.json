@@ -1,0 +1,14 @@
+{
+  "node_id": "bfe77fca",
+  "method": "Method 27: RL Value Network",
+  "score": 0.8036064436139425,
+  "metrics": {
+    "gini": 0.8328926030041665,
+    "error_rate": 0.030580937684975565,
+    "spearman": 0.6477809867467877,
+    "rmse": 189.5881478529963
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.686999"
+}

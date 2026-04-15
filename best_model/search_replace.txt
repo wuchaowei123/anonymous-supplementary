@@ -1,0 +1,109 @@
+<NAME>
+add_static_volatility_trend
+</NAME>
+<DESCRIPTION>
+Add masked per-feature standard deviation and linear trend (slope over days) as static features. These capture volatility and directionality in early engagement, improving tail accuracy and ranking without altering core architecture. This should help RMSE and Spearman by better modeling whales/losers patterns.
+</DESCRIPTION>
+<DIFF>
+<<<<<<< SEARCH
+def masked_mean_np(X: np.ndarray, mask: np.ndarray) -> np.ndarray:
+    cnt = np.clip(mask.sum(axis=1), 1.0, None)  # (U,1)
+    return (X * mask).sum(axis=1) / cnt
+
+def standardize_3d(train_X: np.ndarray, train_mask: np.ndarray, X: np.ndarray, mask: np.ndarray, eps=1e-6):
+=======
+def masked_mean_np(X: np.ndarray, mask: np.ndarray) -> np.ndarray:
+    cnt = np.clip(mask.sum(axis=1), 1.0, None)  # (U,1)
+    return (X * mask).sum(axis=1) / cnt
+
+def masked_std_np(X: np.ndarray, mask: np.ndarray, eps: float = 1e-6) -> np.ndarray:
+    cnt = np.clip(mask.sum(axis=1), 1.0, None)  # (U,1)
+    mean = (X * mask).sum(axis=1) / cnt
+    var = ((X - mean[:, None, :]) ** 2 * mask).sum(axis=1) / cnt
+    return np.sqrt(np.maximum(var, eps)).astype(np.float32)
+
+def masked_trend_np(X: np.ndarray, mask: np.ndarray, eps: float = 1e-6) -> np.ndarray:
+    """
+    Per-feature linear trend over days (slope). Captures growth/decay.
+    """
+    U, T, D = X.shape
+    t = np.arange(T, dtype=np.float32).reshape(1, T, 1)
+    m = mask.astype(np.float32)
+
+    cnt = np.clip(m.sum(axis=1), 1.0, None)  # (U,1)
+    t_mean = (t * m).sum(axis=1) / cnt
+    x_mean = (X * m).sum(axis=1) / cnt
+
+    t_center = t - t_mean[:, None, :]
+    x_center = X - x_mean[:, None, :]
+
+    cov = (t_center * x_center * m).sum(axis=1) / cnt
+    var_t = (t_center ** 2 * m).sum(axis=1) / cnt
+    slope = cov / np.maximum(var_t, eps)
+    return slope.astype(np.float32)
+
+def standardize_3d(train_X: np.ndarray, train_mask: np.ndarray, X: np.ndarray, mask: np.ndarray, eps=1e-6):
+>>>>>>> REPLACE
+</DIFF>
+
+<NAME>
+use_volatility_trend_static
+</NAME>
+<DESCRIPTION>
+Integrate the new masked std and trend features into the static branch concatenation alongside mean/last/daycount and categorical encodings. This expands the static representation with dynamics that help differentiate similarly-ranked users and reduce tail errors.
+</DESCRIPTION>
+<DIFF>
+<<<<<<< SEARCH
+    # Static numeric: mean + last + day_count
+    mean_tr = masked_mean_np(Xn_tr_3d, m_tr).astype(np.float32)
+    mean_va = masked_mean_np(Xn_va_3d, m_va).astype(np.float32)
+    mean_te = masked_mean_np(Xn_te_3d, m_te).astype(np.float32)
+
+    last_tr = Xn_tr_3d[:, -1, :].astype(np.float32)
+    last_va = Xn_va_3d[:, -1, :].astype(np.float32)
+    last_te = Xn_te_3d[:, -1, :].astype(np.float32)
+
+    daycnt_tr = m_tr.sum(axis=1).reshape(-1, 1).astype(np.float32)
+    daycnt_va = m_va.sum(axis=1).reshape(-1, 1).astype(np.float32)
+    daycnt_te = m_te.sum(axis=1).reshape(-1, 1).astype(np.float32)
+
+    te_tr, te_va, te_te, te_names = build_target_encoding_features_v2(
+        Xc_tr, ytr, Xc_va, Xc_te, cat_names, seed=42
+    )
+    (cnt_tr, cnt_names), (cnt_va, _), (cnt_te, _) = build_cat_count_features(train_df, [train_df, val_df, test_df], cat_cols)
+
+    Xs_tr = np.concatenate([mean_tr, last_tr, daycnt_tr, te_tr, cnt_tr], axis=1).astype(np.float32)
+    Xs_va = np.concatenate([mean_va, last_va, daycnt_va, te_va, cnt_va], axis=1).astype(np.float32)
+    Xs_te = np.concatenate([mean_te, last_te, daycnt_te, te_te, cnt_te], axis=1).astype(np.float32)
+=======
+    # Static numeric: mean + std + trend + last + day_count
+    mean_tr = masked_mean_np(Xn_tr_3d, m_tr).astype(np.float32)
+    mean_va = masked_mean_np(Xn_va_3d, m_va).astype(np.float32)
+    mean_te = masked_mean_np(Xn_te_3d, m_te).astype(np.float32)
+
+    std_tr = masked_std_np(Xn_tr_3d, m_tr).astype(np.float32)
+    std_va = masked_std_np(Xn_va_3d, m_va).astype(np.float32)
+    std_te = masked_std_np(Xn_te_3d, m_te).astype(np.float32)
+
+    trend_tr = masked_trend_np(Xn_tr_3d, m_tr).astype(np.float32)
+    trend_va = masked_trend_np(Xn_va_3d, m_va).astype(np.float32)
+    trend_te = masked_trend_np(Xn_te_3d, m_te).astype(np.float32)
+
+    last_tr = Xn_tr_3d[:, -1, :].astype(np.float32)
+    last_va = Xn_va_3d[:, -1, :].astype(np.float32)
+    last_te = Xn_te_3d[:, -1, :].astype(np.float32)
+
+    daycnt_tr = m_tr.sum(axis=1).reshape(-1, 1).astype(np.float32)
+    daycnt_va = m_va.sum(axis=1).reshape(-1, 1).astype(np.float32)
+    daycnt_te = m_te.sum(axis=1).reshape(-1, 1).astype(np.float32)
+
+    te_tr, te_va, te_te, te_names = build_target_encoding_features_v2(
+        Xc_tr, ytr, Xc_va, Xc_te, cat_names, seed=42
+    )
+    (cnt_tr, cnt_names), (cnt_va, _), (cnt_te, _) = build_cat_count_features(train_df, [train_df, val_df, test_df], cat_cols)
+
+    Xs_tr = np.concatenate([mean_tr, std_tr, trend_tr, last_tr, daycnt_tr, te_tr, cnt_tr], axis=1).astype(np.float32)
+    Xs_va = np.concatenate([mean_va, std_va, trend_va, last_va, daycnt_va, te_va, cnt_va], axis=1).astype(np.float32)
+    Xs_te = np.concatenate([mean_te, std_te, trend_te, last_te, daycnt_te, te_te, cnt_te], axis=1).astype(np.float32)
+>>>>>>> REPLACE
+</DIFF>

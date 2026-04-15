@@ -1,0 +1,23 @@
+{
+  "node_id": "1534ef5e",
+  "score": 0.7172621234062788,
+  "success": true,
+  "metrics": {
+    "full_train": 54613.0,
+    "test": 5545.0,
+    "n_num": 78.0,
+    "n_cat": 16.0,
+    "gini": 0.9582,
+    "err": 0.278,
+    "spear": 0.7425,
+    "rmse": 247.14,
+    "a": 3.9262,
+    "b": -0.32,
+    "delta": -2.5
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T22:28:58.025323",
+  "stdout": "========================================================================\nPhysics-inspired RK2 ResNet time-stepping multi-task model (ODE/ResNet view + finite differences)\n========================================================================\nUsers: full_train=54613, test=5545\nDeep sequence features: n_num=78, n_cat=16\n\n--- Fold 1/5 ---\nFold 1 OOF proxy score (val-fold only) = 0.5819\n\n--- Fold 2/5 ---\nFold 2 OOF proxy score (val-fold only) = 0.8030\n\n--- Fold 3/5 ---\nFold 3 OOF proxy score (val-fold only) = 0.7799\n\n--- Fold 4/5 ---\nFold 4 OOF proxy score (val-fold only) = 0.5206\n\n--- Fold 5/5 ---\nFold 5 OOF proxy score (val-fold only) = 0.6475\n\n========================================================================\nOOF (train+val) diagnostic score (optimistic but useful):\n\ud83d\udcca Gini=0.9523, Err=0.2493, Spear=0.7777, RMSE=228.20, Score=0.8266\nAffine a=3.9262, b=-0.32, delta=-2.50\n========================================================================\n\n========================================================================\n\ud83d\udcca Gini=0.9582, Err=0.2780, Spear=0.7425, RMSE=247.14, Score=0.7173\n========================================================================\nscore = 0.7172621234062788\n\ud83d\udcca Gini=0.9582, Err=0.2780, Spear=0.7425, RMSE=247.14, Score=0.7173\nscore = 0.7172621234062788\n",
+  "stderr": ""
+}

@@ -1,0 +1,24 @@
+{
+  "node_id": "d5ebfddd",
+  "score": 1.0243126159450413,
+  "success": true,
+  "metrics": {
+    "numeric": 164.0,
+    "cat": 16.0,
+    "rate": 0.346,
+    "pos_weight": 1.887,
+    "alpha": 0.0,
+    "beta": 100.0,
+    "bias": 65.0,
+    "gini": 0.9321,
+    "err": 0.1464,
+    "spear": 0.7727,
+    "rmse": 200.81,
+    "final_score": 1.0243
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-14T09:07:06.489805",
+  "stdout": "============================================================\nPhysics-inspired Residual Time-Stepping Network (multi-task)\n============================================================\nDevice: cuda\nDetected columns: numeric=164, cat=16\nNeg-rate=0.346, BCE pos_weight=1.887\n\ud83d\ude80 Training 5-fold physics-inspired deep model...\n  Fold 1/5 done. (silent score using mean only) = 0.7647\n  Fold 2/5 done. (silent score using mean only) = 1.0119\n  Fold 3/5 done. (silent score using mean only) = 0.7699\n  Fold 4/5 done. (silent score using mean only) = 0.7513\n  Fold 5/5 done. (silent score using mean only) = 0.7149\n\ud83e\uddea OOF calibration (no test leakage): grid search over (alpha, beta, bias)...\nBest OOF calib: score=1.0370, alpha=0.00, beta=100.0, bias=65.0\n\n============================================================\n\ud83d\udcca Gini=0.9321, Err=0.1464, Spear=0.7727, RMSE=200.81, Score=1.0243\n============================================================\n\n\ud83c\udfaf Final Score: 1.0243\nscore = 1.0243126159450413\n\ud83d\udcca Gini=0.9321, Err=0.1464, Spear=0.7727, RMSE=200.81, Score=1.0243\nscore = 1.0243126159450413\n",
+  "stderr": ""
+}

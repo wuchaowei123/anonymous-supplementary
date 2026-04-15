@@ -1,0 +1,22 @@
+{
+  "node_id": "908990a3",
+  "score": 1.2,
+  "success": true,
+  "metrics": {
+    "loss": 1597.3503,
+    "alpha": 0.2,
+    "delta": -120.0,
+    "bias": -119.5782,
+    "val_score": 1.2,
+    "gini": 0.9736,
+    "err": 0.0062,
+    "spear": 0.8497,
+    "rmse": 37.08,
+    "final_score": 1.2
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-12T16:38:30.568179",
+  "stdout": "\ud83d\udd27 Using device: cuda\n============================================================\nMethod 27 (Improved): Temporal Features + AWMSE LGB Stack + RL MLP\n============================================================\n\ud83d\ude80 Training Value Network (RL-style)...\n   Epoch 10/80: Train Loss=12457.1250, Val Loss=3443.8467\n   Epoch 20/80: Train Loss=5698.2514, Val Loss=1134.6619\n   Epoch 30/80: Train Loss=3980.3152, Val Loss=1597.3503\n\ud83d\ude80 Training Random Forest...\n\ud83d\ude80 Training LightGBM (custom AWMSE objective)...\n\ud83d\ude80 Training LightGBM Quantile (alpha=0.20)...\n\ud83d\ude80 Training LightGBM Sign Classifier (P(LTV<0))...\n\ud83e\udde9 Training Ridge meta-learner on VAL (stacking holdout)...\n\ud83e\uddea Calibrating conservative shift on VAL...\n   Best VAL calibration: delta=-120.0000, bias=-119.5782, val_score=1.200000\n\n============================================================\n\ud83d\udcca Gini=0.9736, Err=0.0062, Spear=0.8497, RMSE=37.08, Score=1.2000\n============================================================\n\n\ud83c\udfaf Final Score: 1.2000\nscore = 1.2\nscore = 1.2\n",
+  "stderr": ""
+}

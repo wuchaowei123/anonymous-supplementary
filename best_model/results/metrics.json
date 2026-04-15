@@ -1,0 +1,22 @@
+{
+  "combined_score": 0.858764,
+  "correct": true,
+  "score": 0.858764,
+  "base_score": 0.828764,
+  "pareto_bonus": 0.03,
+  "metrics": {
+    "gini": 0.96249,
+    "error_rate": 0.003675,
+    "spearman": 0.828476,
+    "rmse": 91.3736
+  },
+  "public": {
+    "score": 0.858764,
+    "gini": 0.9625,
+    "error_rate": 0.0037,
+    "spearman": 0.8285,
+    "rmse": 91.37
+  },
+  "timestamp": "2026-01-20T10:43:57.976043",
+  "text_feedback": "\n=== LTV PREDICTION PERFORMANCE ANALYSIS ===\n\nCURRENT PERFORMANCE:\n- Overall Score: 1.2000\n- Base Score: 1.0000\n- Pareto Bonus: 0.2000\n\nINDIVIDUAL METRICS:\n- Gini Coefficient: 0.9625 (target: 0.90, higher is better)\n- Error Rate: 0.0037 (0.37%) (target: 0.01, lower is better)\n- Spearman Correlation: 0.8285 (target: 0.80, higher is better)\n- RMSE: 91.37 (target: 180, lower is better)\n\nIMPROVEMENT SUGGESTIONS:\n- Gini is excellent! Current: 0.9625\n- Error rate is excellent! Current: 0.0037\n- Spearman is 0.0215 below target. Improve prediction correlation with true values.\n- RMSE is excellent! Current: 91.37\n"
+}

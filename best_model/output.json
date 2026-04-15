@@ -1,0 +1,29 @@
+{
+  "score": 0.93,
+  "metrics": {
+    "gini": 0.9627425148617574,
+    "error_rate": 0.5946556446454697,
+    "spearman": 0.8172824787627535,
+    "rmse": 141.09117277764534,
+    "base_score": 0.8,
+    "pareto_bonus": 0.13
+  },
+  "best_val_policy_score": 0.93,
+  "policy": {
+    "w_q": 0.0,
+    "use_min": true,
+    "thr_gate": 0.55,
+    "snap_eps": 0.0,
+    "risk_scale": 0.0,
+    "a": 1.799178927021044,
+    "b": 6.317940002824885,
+    "delta": 0.0
+  },
+  "num_cols": 164,
+  "cat_cols": 16,
+  "seq_days": 7,
+  "static_features": 785,
+  "anchor_mean": 23.67173194885254,
+  "clip_lo": -89.85148810577392,
+  "clip_hi": 3155.811366455066
+}

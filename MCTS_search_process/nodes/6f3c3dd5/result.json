@@ -1,0 +1,14 @@
+{
+  "node_id": "6f3c3dd5",
+  "method": "Method 23: RALTV",
+  "score": 0.7013882043541136,
+  "metrics": {
+    "gini": 0.830535325481044,
+    "error_rate": 0.023077170486596774,
+    "spearman": 0.6461771972720678,
+    "rmse": 218.35114792110804
+  },
+  "status": "completed",
+  "execution_time": 0,
+  "created_at": "2026-01-12T10:29:12.684989"
+}

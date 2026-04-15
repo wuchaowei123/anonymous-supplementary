@@ -1,0 +1,11 @@
+{
+  "node_id": "d4b077f3",
+  "score": null,
+  "success": false,
+  "metrics": {},
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T20:57:06.261441",
+  "stdout": "============================================================\nImproved: add AWMSE LGB base + q10 + meta LGB + CV-calibrator (budget-stable)\n============================================================\nDEV users=54385, TEST users=5545, tabular_features=3431\nSequence tensors: Xn_dev=(54385, 7, 164), Xc_dev=(54385, 7, 16), raw_num=164, raw_cat=16\n\ud83d\ude80 Training Level-1 GBDT/ET CV models...\n",
+  "stderr": "Traceback (most recent call last):\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/d4b077f3/avia_code_1768509342.py\", line 1611, in <module>\n    y_test, test_predictions = main()\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/d4b077f3/avia_code_1768509342.py\", line 1421, in main\n    m_aw = train_lgb_reg(X_tr, y_tr, X_va, y_va, params_l2, seed=4200 + fold, fobj=awmse_lgb_obj)\n  File \"/home/jupyter/AviaAgentMonty_1226/tasks/BT_IOS_2503_Pareto/run_20260112_102800/d4b077f3/avia_code_1768509342.py\", line 380, in train_lgb_reg\n    booster = lgb.train(\nTypeError: train() got an unexpected keyword argument 'fobj'\n"
+}

@@ -1,0 +1,30 @@
+{
+  "node_id": "d28db21c",
+  "score": 1.1950517357098396,
+  "success": true,
+  "metrics": {
+    "users": 5545.0,
+    "features": 3431.0,
+    "best_alpha": 0.1,
+    "full_score": 1.18596,
+    "thr": 0.4,
+    "s": 1.0,
+    "pw": 1.0,
+    "a": 1.0012,
+    "b": -0.165,
+    "delta": 2.0,
+    "gini": 0.9747,
+    "err": 0.0184,
+    "spear": 0.8271,
+    "rmse": 151.27,
+    "g": 1.0,
+    "e": 0.975,
+    "r": 1.0,
+    "final": 1.1951
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-15T08:56:29.360772",
+  "stdout": "============================================================\nImproved Method 29++: CV LGB ensemble + ridge stack + risk gating + DEV-only calibration\n============================================================\nDEV users=54385, TEST users=5545, features=3431\n\ud83d\ude80 Training level-1 CV models...\n\ud83d\udd27 Selecting ridge alpha via DEV OOF...\n   best_alpha=0.1 (DEV OOF full_score=1.200000)\n\ud83d\udd27 Tuning risk gating + calibration on DEV...\n   Best DEV full_score=1.185960\n   Gate thr=0.40, s=0.75, pw=1.0\n   Calib a=1.0012, b=-0.165, delta=2.000\n   Clip lo/hi = (-148.129, 4943.232)\n\n============================================================\n\ud83d\udcca Gini=0.9747, Err=0.0184, Spear=0.8271, RMSE=151.27\n\ud83d\udcca Scores: G=1.000, E=0.975, S=1.000, R=1.000, Final=1.1951\n============================================================\n\n\ud83c\udfaf Final Score (compute_score): 1.195052\nscore = 1.1950517357098396\nscore = 1.1950517357098396\n",
+  "stderr": ""
+}

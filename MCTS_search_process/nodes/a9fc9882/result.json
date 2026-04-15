@@ -1,0 +1,28 @@
+{
+  "node_id": "a9fc9882",
+  "score": 0.9494059825674974,
+  "success": true,
+  "metrics": {
+    "train": 49638.0,
+    "val": 4975.0,
+    "test": 5545.0,
+    "num_dim": 492.0,
+    "cat_cols": 16.0,
+    "agg_dim": 70.0,
+    "seq_dim": 36.0,
+    "features": 12.0,
+    "train_loss": 54849.0368,
+    "val_score": 0.3602,
+    "cal_val_score": 1.1708,
+    "gini": 0.9414,
+    "err": 0.3069,
+    "spear": 0.7929,
+    "rmse": 146.79,
+    "final_score": 0.9494
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T19:45:28.064464",
+  "stdout": "================================================================================\nHYBRID: Euler/ResNet MTL (Solution A strength) + TCN MTL branch (Solution B strength)\n - Euler: rich categorical embeddings + ODE-style temporal update + conservative heads\n - TCN: causal/dilated temporal pattern extractor on compact temporal feature subset\n - Hybrid: calibrated ensemble weight + (alpha, delta) to improve budget/error_rate under FPR constraint\n================================================================================\nDevice: cuda\nUsers: train=49638, val=4975, test=5545\nEuler num_dim=492, cat_cols=16, agg_dim=70\nTCN seq_dim=36 (features=12 x3), agg_dim=70\nBCE pos_weight (neg-class): 2.364\n\n--- Training Euler/ResNet branch ---\nEuler Epoch 01 | train_loss=47206.2404 | val_score=1.0160\nEuler Epoch 02 | train_loss=32850.8694 | val_score=1.1545\nEuler Epoch 03 | train_loss=26513.7444 | val_score=1.1706\nEuler Epoch 04 | train_loss=25722.1540 | val_score=0.8121\nEuler Epoch 05 | train_loss=18566.9088 | val_score=1.0043\nEuler Epoch 06 | train_loss=15427.1709 | val_score=0.8857\nEuler Epoch 07 | train_loss=12048.3448 | val_score=1.0380\nEuler Epoch 08 | train_loss=11977.9229 | val_score=1.1551\nEuler early stopping.\n\n--- Training TCN branch ---\nTCN   Epoch 01 | train_loss=242553.6964 | val_score=0.3459\nTCN   Epoch 02 | train_loss=1595846.8906 | val_score=0.3490\nTCN   Epoch 03 | train_loss=1560987.9831 | val_score=0.3602\nTCN   Epoch 04 | train_loss=52618.6347 | val_score=0.3566\nTCN   Epoch 05 | train_loss=51086.9355 | val_score=0.3471\nTCN   Epoch 06 | train_loss=1567928.7504 | val_score=0.3558\nTCN   Epoch 07 | train_loss=96322.2760 | val_score=0.3665\nTCN   Epoch 08 | train_loss=49854.3556 | val_score=0.3619\nTCN   Epoch 09 | train_loss=49375.7290 | val_score=0.3609\nTCN   Epoch 10 | train_loss=50495.9500 | val_score=0.3582\nTCN   Epoch 11 | train_loss=49073.5518 | val_score=0.3575\nTCN   Epoch 12 | train_loss=48252.8735 | val_score=0.3687\nTCN   Epoch 13 | train_loss=91528.0299 | val_score=0.3615\nTCN   Epoch 14 | train_loss=49954.6430 | val_score=0.3595\nTCN   Epoch 15 | train_loss=46077.3680 | val_score=0.3602\nTCN   Epoch 16 | train_loss=1593978.3870 | val_score=0.3637\nTCN   Epoch 17 | train_loss=54849.0368 | val_score=0.3602\nTCN early stopping.\n\n--- Hybrid calibration (VAL) ---\nbest_params={'risk_scale': 0.5, 'thr': 0.6, 'w_euler': 0.95, 'alpha': 1.0, 'delta': 0.0}\ncal_val_score=1.1708 | details={'gini': 0.9329692125320435, 'error_rate': 0.006015343098457349, 'spearman': 0.7649721817741707, 'rmse': 118.75708990928452, 'fpr': 0.06530856800479329}\n\n================================================================================\n\ud83d\udcca Gini=0.9414, Err=0.3069, Spear=0.7929, RMSE=146.79, Score=0.9494\n================================================================================\n\ud83c\udfaf Final Score: 0.9494\nscore = 0.9494059825674974\n\ud83d\udcca Gini=0.9414, Err=0.3069, Spear=0.7929, RMSE=146.79, Score=0.9494\nscore = 0.9494059825674974\n",
+  "stderr": ""
+}

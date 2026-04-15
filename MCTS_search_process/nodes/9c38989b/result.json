@@ -1,0 +1,27 @@
+{
+  "node_id": "9c38989b",
+  "score": 0.9545540075004101,
+  "success": true,
+  "metrics": {
+    "aw": 156.0,
+    "huber": 5000.0,
+    "q20": 1783.0,
+    "cls": 152.0,
+    "thr": 0.45,
+    "a": 0.85,
+    "b": 4.815,
+    "fpr": 0.284,
+    "oof_score": 1.2,
+    "gini": 0.9777,
+    "err": 0.2894,
+    "spear": 0.8205,
+    "rmse": 203.33,
+    "detected_features": 145.0,
+    "final_score": 0.9546
+  },
+  "execution_time": null,
+  "code_file_path": null,
+  "saved_at": "2026-01-13T18:59:56.040896",
+  "stdout": "================================================================================\nImproved Stacked LightGBM (Temporal Features + OOF Target Encoding + Ridge Meta)\n================================================================================\nDetected features: 145 numeric, 35 categorical\nUser-level matrices: X_dev=(54385, 2450), X_test=(5545, 2450)\n[Fold 1/4] done. best_iter aw=192, huber=5000, q20=4995, cls=172\n[Fold 2/4] done. best_iter aw=197, huber=5000, q20=3415, cls=171\n[Fold 3/4] done. best_iter aw=179, huber=5000, q20=4998, cls=171\n[Fold 4/4] done. best_iter aw=156, huber=5000, q20=1783, cls=152\n[OOF Calibration] thr=0.450, a=0.850, b=4.815, fpr=0.284, oof_score=1.200000\n\ud83d\udcca Gini=0.9787, Err=0.0000, Spear=0.8751, RMSE=142.93, Score=1.2000\n\n============================================================\n\ud83d\udcca Gini=0.9777, Err=0.2894, Spear=0.8205, RMSE=203.33, Score=0.9546\n============================================================\n\n\ud83c\udfaf Final Score: 0.9546\nscore = 0.9545540075004101\n",
+  "stderr": ""
+}
